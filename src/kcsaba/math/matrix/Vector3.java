@@ -9,13 +9,13 @@ public class Vector3 extends Vector {
 	/**
 	 * Creates a new 3D vector with zero elements.
 	 */
-	public Vector3() {
+	Vector3() {
 		super(3);
 	}
 	/**
 	 * Creates a new 3D vector with the specified elements
 	 */
-	public Vector3(double x, double y, double z) {
+	Vector3(double x, double y, double z) {
 		super(3);
 		setX(x);
 		setY(y);

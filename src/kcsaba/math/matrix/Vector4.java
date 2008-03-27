@@ -9,13 +9,13 @@ public class Vector4 extends Vector {
 	/**
 	 * Creates a new 4D vector with zero elements.
 	 */
-	public Vector4() {
+	Vector4() {
 		super(4);
 	}
 	/**
 	 * Creates a new 4D vector with the specified elements
 	 */
-	public Vector4(double x, double y, double z, double h) {
+	Vector4(double x, double y, double z, double h) {
 		super(4);
 		setX(x);
 		setY(y);

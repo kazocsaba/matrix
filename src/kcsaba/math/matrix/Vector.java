@@ -10,7 +10,7 @@ public class Vector extends Matrix {
 	 * Construct a column vector of the given dimension.
 	 * @param size the number of coordinates of the vector
 	 */
-	public Vector(int size) {
+	Vector(int size) {
 		super(size, 1);
 	}
 	/**

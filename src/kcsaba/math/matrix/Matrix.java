@@ -11,20 +11,8 @@ public class Matrix extends Jama.Matrix {
 	 * @param rows the number of row
 	 * @param cols the number of columns
 	 */
-	public Matrix(int rows, int cols) {
+	Matrix(int rows, int cols) {
 		super(rows, cols);
-	}
-
-	public static Matrix create(int rows, int cols) {
-		if (cols == 1) {
-			if (rows == 3)
-				return new Vector3();
-			else if (rows == 4)
-				return new Vector4();
-			else
-				return new Vector(rows);
-		} else
-			return new Matrix(rows, cols);
 	}
 
 	/**
@@ -42,7 +30,7 @@ public class Matrix extends Jama.Matrix {
 		if (B.getRowDimension() != getColumnDimension()) {
 			throw new IllegalArgumentException("Matrix inner dimensions must agree.");
 		}
-		Matrix X = create(getRowCount(), B.getColumnCount());
+		Matrix X = MatrixFactory.createMatrix(getRowCount(), B.getColumnCount());
 		for (int j = 0; j < B.getColumnDimension(); j++) {
 			for (int i = 0; i < getRowDimension(); i++) {
 				double s = 0;
@@ -57,7 +45,7 @@ public class Matrix extends Jama.Matrix {
 	
 	@Override
 	public Matrix getMatrix(int i0, int i1, int j0, int j1) {
-		Matrix X = create(i1 - i0 + 1, j1 - j0 + 1);
+		Matrix X = MatrixFactory.createMatrix(i1 - i0 + 1, j1 - j0 + 1);
 		try {
 			for (int i = i0; i <= i1; i++) {
 				for (int j = j0; j <= j1; j++) {
