@@ -86,4 +86,8 @@ public class Vector3 extends Vector {
 	public Vector3 plusVec(Vector3 v) {
 		return new Vector3(getX()+v.getX(), getY()+v.getY(), getZ()+v.getZ());
 	}
+	
+	public String toString() {
+		return String.format("(%f; %f; %f)", getX(), getY(), getZ());
+	}
 }
