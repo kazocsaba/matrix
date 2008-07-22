@@ -1,93 +1,77 @@
-
 package kcsaba.math.matrix;
 
 /**
- * A 3D vector.
+ * A 3D column vector.
  * @author Kazó Csaba
  */
-public class Vector3 extends Vector {
+public interface Vector3 extends Vector {
+
 	/**
-	 * Creates a new 3D vector with zero elements.
+	 * Retrieves the x coordinate of the vector.
+	 * @return the same as {@code getCoord(0)}
 	 */
-	Vector3() {
-		super(3);
-	}
+	public double getX();
+
 	/**
-	 * Creates a new 3D vector with the specified elements
+	 * Retrieves the y coordinate of the vector.
+	 * @return the same as {@code getCoord(1)}
 	 */
-	Vector3(double x, double y, double z) {
-		super(3);
-		setX(x);
-		setY(y);
-		setZ(z);
-	}
+	public double getY();
+
 	/**
-	 * Returns the first coordinate of the vector.
-	 * @return the x coordinate
+	 * Retrieves the z coordinate of the vector.
+	 * @return the same as {@code getCoord(2)}
 	 */
-	public double getX() {return getCoord(0);}
+	public double getZ();
+
 	/**
-	 * Returns the second coordinate of the vector.
-	 * @return the y coordinate
+	 * Sets the x coordinate of the vector.
+	 * @param value the new value
 	 */
-	public double getY() {return getCoord(1);}
+	public void setX(double value);
+
 	/**
-	 * Returns the third coordinate of the vector.
-	 * @return the z coordinate
+	 * Sets the x coordinate of the vector.
+	 * @param value the new value
 	 */
-	public double getZ() {return getCoord(2);}
-	
+	public void setY(double value);
+
 	/**
-	 * Sets the first coordinate of the vector.
-	 * @param value the new value of the x coordinate
+	 * Sets the x coordinate of the vector.
+	 * @param value the new value
 	 */
-	public void setX(double value) {setCoord(0, value);}
+	public void setZ(double value);
+
 	/**
-	 * Sets the second coordinate of the vector.
-	 * @param value the new value of the y coordinate
-	 */
-	public void setY(double value) {setCoord(1, value);}
-	/**
-	 * Sets the third coordinate of the vector.
-	 * @param value the new value of the z coordinate
-	 */
-	public void setZ(double value) {setCoord(2, value);}
-	
-	/**
-	 * Converts this 3D vector to a homogen vector. The result will have
-	 * four coordinates: (getX(), getY(), getZ(), 1).
+	 * Creates a new 4D vector that represents this vector in homogen coordinates.
+	 * (I.e. the x, y and z coordinates will be the same as of this vector, the
+	 * fourth coordinate will be 0.)
 	 * @return the homogen representation of this vector
 	 */
-	public Vector4 toHomogen() {
-		return new Vector4(getX(), getY(), getZ(), 1);
-	}
-	
-	/** Returns the vector corresponding to the difference of the argument and this vector. */
-	public Vector3 to(Vector3 v) {
-		return v.minusVec(this);
-	}
+	public Vector4 toHomogen();
 
-	/** Returns the cross product of this vector and the argument. */
-	public Vector3 cross(Vector3 v) {
-		return new Vector3(getY() * v.getZ() - getZ() * v.getY(), getZ() * v.getX() - getX() * v.getZ(),
-				getX() * v.getY() - getY() * v.getX());
-	}
+	/**
+	 * Returns the cross product of this vector and the argument.
+	 * @param v another vector
+	 * @return a new vector containing the cross product
+	 */
+	public Vector3 cross(Vector3 v);
+
+	/**
+	 * Returns a new vector that is the sum of this vector and the argument.
+	 * @param v the other vector
+	 * @return the sum of this vector and the argument
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimension than this vector
+	 */
+	public Vector3 plusVec(Vector3 v);
 	
-	/** Returns the dot product of this vector and the argument. */
-	public double dot(Vector3 v) {
-		return getX() * v.getX() + getY() * v.getY() + getZ() * v.getZ();
-	}
-	
-	/** Returns the difference of this vector and the argument. */
-	public Vector3 minusVec(Vector3 v) {
-		return new Vector3(getX()-v.getX(), getY()-v.getY(), getZ()-v.getZ());
-	}
-	/** Returns the sum of this vector and the argument. */
-	public Vector3 plusVec(Vector3 v) {
-		return new Vector3(getX()+v.getX(), getY()+v.getY(), getZ()+v.getZ());
-	}
-	
-	public String toString() {
-		return String.format("(%f; %f; %f)", getX(), getY(), getZ());
-	}
+	/**
+	 * Returns a new vector that is the difference of this vector and the argument.
+	 * @param v the other vector
+	 * @return the difference of this vector and the argument
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimension than this vector
+	 */
+	public Vector3 minusVec(Vector3 v);
 }

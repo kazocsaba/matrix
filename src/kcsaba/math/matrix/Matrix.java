@@ -1,77 +1,94 @@
 package kcsaba.math.matrix;
 
 /**
- * A matrix.
+ * A matrix of double values.
  * @author Kazó Csaba
  */
-public class Matrix extends Jama.Matrix {
-
+public interface Matrix {
 	/**
-	 * Construct a zero matrix of the specified size.
-	 * @param rows the number of row
-	 * @param cols the number of columns
+	 * Retrieves an element of the matrix.
+	 * @param row the row index
+	 * @param col the column index
+	 * @return the element at the specified position
+	 * @throws IndexOutOfBoundsException if either index is out of range
 	 */
-	Matrix(int rows, int cols) {
-		super(rows, cols);
-	}
-
+	public double get(int row, int col);
+	/**
+	 * Updates an element of the matrix.
+	 * @param row the row index
+	 * @param col the column index
+	 * @param value the new value
+	 * @throws IndexOutOfBoundsException if either index is out of range
+	 */
+	public void set(int row, int col, double value);
 	/**
 	 * Returns the number of columns.
 	 * @return the number of columns
 	 */
-	public int getColumnCount() {return getColumnDimension();}
+	public int getColumnCount();
 	/**
 	 * Returns the number of rows.
 	 * @return the number of rows
 	 */
-	public int getRowCount() {return getRowDimension();}
-
-	public Matrix mul(Matrix B) {
-		if (B.getRowDimension() != getColumnDimension()) {
-			throw new IllegalArgumentException("Matrix inner dimensions must agree.");
-		}
-		Matrix X = MatrixFactory.createMatrix(getRowCount(), B.getColumnCount());
-		for (int j = 0; j < B.getColumnDimension(); j++) {
-			for (int i = 0; i < getRowDimension(); i++) {
-				double s = 0;
-				for (int k = 0; k < getColumnDimension(); k++) {
-					s += get(i, k) * B.get(k, j);
-				}
-				X.set(i, j, s);
-			}
-		}
-		return X;
-	}
-	
-	@Override
-	public Matrix getMatrix(int i0, int i1, int j0, int j1) {
-		Matrix X = MatrixFactory.createMatrix(i1 - i0 + 1, j1 - j0 + 1);
-		try {
-			for (int i = i0; i <= i1; i++) {
-				for (int j = j0; j <= j1; j++) {
-					X.set(i-i0, j-j0, get(i,j));
-				}
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new ArrayIndexOutOfBoundsException("Submatrix indices");
-		}
-		return X;
-	}
+	public int getRowCount();
 	
 	/**
-	 * Multiplies every element of this matrix with the argument (in place).
-	 * @param c the scale factor
+	 * Multiplies this matrix with the argument and returns the result.
+	 * @param m a matrix
+	 * @return the product of the two matrices
+	 * @throws IllegalArgumentException if the matrix dimensions don't match (i.e.
+	 * this.getColumnCount()!=m.getRowCount()
+	 * @throws NullPointerException if the argument is null
 	 */
-	public void scale(double c) {
-		timesEquals(c);
-	}
+	public Matrix mul(Matrix m);
+	
+	/**
+	 * Scales this matrix (in place) by a scalar by multiplying all matrix elements with c.
+	 * @param c the scalar factor
+	 */
+	public void scale(double c);
 	/**
 	 * Adds each element of the argument to the corresponding element of this matrix. (An in-place
 	 * operation.)
 	 * @param m the other matrix
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
 	 */
-	public void add(Matrix m) {
-		plusEquals(m);
-	}
-
+	public void add(Matrix m);
+	
+	/**
+	 * Returns a new matrix that is the sum of this matrix and the argument.
+	 * @param m the other matrix
+	 * @return the sum of this matrix and the argument
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
+	 */
+	public Matrix plus(Matrix m);
+	
+	/**
+	 * Returns a new matrix that is a submatrix of this one. The result will be a matrix with
+	 * {@code row2-row1+1} rows and {@code col2-col1+1} columns, and will be initialized with the
+	 * corresponding values from this matrix.
+	 * @param row1 the first row of the submatrix
+	 * @param row2 the last row of the submatrix
+	 * @param col1 the first column of the submatrix
+	 * @param col2 the last column of the submatrix
+	 * @return the submatrix
+	 * @throws IllegalArgumentException if the arguments don't properly specify a submatrix
+	 */
+	public Matrix getSubmatrix(int row1, int row2, int col1, int col2);
+	
+	/**
+	 * Compute the inverse of this matrix.
+	 * @return the inverse of this matrix
+	 * @throws IllegalArgumentException if this matrix is not square
+	 * @throws SingularityException if this matrix is singular
+	 */
+	public Matrix inverse() throws SingularityException;
+	
+	/**
+	 * Return the transpose of this matrix.
+	 * @return the transpose
+	 */
+	public Matrix transpose();
 }

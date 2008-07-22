@@ -1,32 +1,37 @@
-
 package kcsaba.math.matrix;
 
 /**
  * A column vector.
  * @author Kazó Csaba
  */
-public class Vector extends Matrix {
+public interface Vector extends Matrix {
 	/**
-	 * Construct a column vector of the given dimension.
-	 * @param size the number of coordinates of the vector
+	 * Returns the dimension of this vector.
+	 * @return the same as {@code getRowCount()}
 	 */
-	Vector(int size) {
-		super(size, 1);
-	}
+	public int getDimension();
+	
 	/**
-	 * Returns the specified element of the vector.
-	 * @param coord the index of the element to return
-	 * @return the specified coordinate value
+	 * Retrieves the specified coordinate of the vector.
+	 * @param index the coordinate to return
+	 * @return the same as {@code get(index,0)}
+	 * @throws IndexOutOfBoundsException if the index is out of range
 	 */
-	public double getCoord(int coord) {
-		return super.get(coord, 0);
-	}
+	public double getCoord(int index);
 	/**
-	 * Sets the specified element of the vector.
-	 * @param coord the index of the element to set
-	 * @param value the new value of the specified coordinate
+	 * Updates the specified coordinate of the vector.
+	 * @param index the coordinate to set
+	 * @param value the new value
+	 * @throws IndexOutOfBoundsException if the index is out of range
 	 */
-	public void setCoord(int coord, double value) {
-		super.set(coord, 0, value);
-	}
+	public void setCoord(int index, double value);
+	
+	/**
+	 * Returns the dot product of this vector and the argument
+	 * @param v another vector
+	 * @return the dot product
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the vector dimensions differ
+	 */
+	public double dot(Vector v);
 }

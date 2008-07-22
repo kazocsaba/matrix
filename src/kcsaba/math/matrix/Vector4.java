@@ -1,66 +1,65 @@
-
 package kcsaba.math.matrix;
 
 /**
- * A 4D vector.
+ * A 4D column vector. The elements are called x, y, z and h, respectively.
  * @author Kazó Csaba
  */
-public class Vector4 extends Vector {
+public interface Vector4 extends Vector {
 	/**
-	 * Creates a new 4D vector with zero elements.
+	 * Retrieves the x coordinate of the vector.
+	 * @return the same as {@code getCoord(0)}
 	 */
-	Vector4() {
-		super(4);
-	}
+	public double getX();
 	/**
-	 * Creates a new 4D vector with the specified elements
+	 * Retrieves the y coordinate of the vector.
+	 * @return the same as {@code getCoord(1)}
 	 */
-	Vector4(double x, double y, double z, double h) {
-		super(4);
-		setX(x);
-		setY(y);
-		setZ(z);
-		setH(h);
-	}
+	public double getY();
 	/**
-	 * Returns the first coordinate of the vector.
-	 * @return the x coordinate
+	 * Retrieves the z coordinate of the vector.
+	 * @return the same as {@code getCoord(2)}
 	 */
-	public double getX() {return getCoord(0);}
+	public double getZ();
 	/**
-	 * Returns the second coordinate of the vector.
-	 * @return the y coordinate
+	 * Retrieves the h coordinate of the vector.
+	 * @return the same as {@code getCoord(3)}
 	 */
-	public double getY() {return getCoord(1);}
+	public double getH();
 	/**
-	 * Returns the third coordinate of the vector.
-	 * @return the z coordinate
+	 * Sets the x coordinate of the vector.
+	 * @param value the new value
 	 */
-	public double getZ() {return getCoord(2);}
+	public void setX(double value);
 	/**
-	 * Returns the fourth coordinate of the vector.
-	 * @return the h coordinate
+	 * Sets the x coordinate of the vector.
+	 * @param value the new value
 	 */
-	public double getH() {return getCoord(3);}
+	public void setY(double value);
+	/**
+	 * Sets the x coordinate of the vector.
+	 * @param value the new value
+	 */
+	public void setZ(double value);
+	/**
+	 * Sets the h coordinate of the vector.
+	 * @param value the new value
+	 */
+	public void setH(double value);
+	/**
+	 * Returns a new vector that is the sum of this vector and the argument.
+	 * @param v the other vector
+	 * @return the sum of this vector and the argument
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimension than this vector
+	 */
+	public Vector4 plusVec(Vector4 v);
 	
 	/**
-	 * Sets the first coordinate of the vector.
-	 * @param value the new value of the x coordinate
+	 * Returns a new vector that is the difference of this vector and the argument.
+	 * @param v the other vector
+	 * @return the difference of this vector and the argument
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimension than this vector
 	 */
-	public void setX(double value) {setCoord(0, value);}
-	/**
-	 * Sets the second coordinate of the vector.
-	 * @param value the new value of the y coordinate
-	 */
-	public void setY(double value) {setCoord(1, value);}
-	/**
-	 * Sets the third coordinate of the vector.
-	 * @param value the new value of the z coordinate
-	 */
-	public void setZ(double value) {setCoord(2, value);}
-	/**
-	 * Sets the fourth coordinate of the vector.
-	 * @param value the new value of the h coordinate
-	 */
-	public void setH(double value) {setCoord(2, value);}
+	public Vector4 minusVec(Vector4 v);
 }
