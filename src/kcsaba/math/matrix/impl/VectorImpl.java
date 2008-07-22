@@ -2,6 +2,7 @@ package kcsaba.math.matrix.impl;
 
 import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.MatrixFactory;
+import kcsaba.math.matrix.SingularValueDecomposition;
 import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.Vector;
 
@@ -111,5 +112,23 @@ class VectorImpl implements Vector {
 		for (int i = 0; i < getDimension(); i++)
 			result.set(1, i, getCoord(i));
 		return result;
+	}
+
+	public SingularValueDecomposition svd() {
+		return new JamaSVD(this);
+	}
+
+	public Matrix pseudoInverse() {
+		double threshold = 1E-15;
+		double lenSq = 0;
+		for (int i = 0; i < getDimension(); i++)
+			lenSq += getCoord(i) * getCoord(i);
+		Matrix result = MatrixFactory.createMatrix(1, getDimension());
+		if (lenSq < threshold)
+			return result;
+		for (int i = 0; i < getDimension(); i++)
+			result.set(0, i, getCoord(i) / lenSq);
+		return result;
+
 	}
 }

@@ -87,8 +87,20 @@ public interface Matrix {
 	public Matrix inverse() throws SingularityException;
 	
 	/**
+	 * Compute the pseudo inverse of this matrix.
+	 * @return the pseudo inverse of this matrix
+	 */
+	public Matrix pseudoInverse();
+	
+	/**
 	 * Return the transpose of this matrix.
 	 * @return the transpose
 	 */
 	public Matrix transpose();
+	
+	/**
+	 * Computes the singular value decomposition of this matrix.
+	 * @return the SVD of this matrix
+	 */
+	public SingularValueDecomposition svd();
 }

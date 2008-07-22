@@ -2,6 +2,7 @@ package kcsaba.math.matrix.impl;
 
 import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.MatrixFactory;
+import kcsaba.math.matrix.SingularValueDecomposition;
 import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.util.JamaBridge;
 
@@ -49,7 +50,7 @@ class MatrixImpl implements Matrix {
 	public void scale(double c) {
 		for (int row = 0; row < getRowCount(); row++)
 			for (int col = 0; col < getColumnCount(); col++)
-				data[row][col] *= c;
+				set(row, col, get(row, col)*c);
 	}
 
 	public void add(Matrix m) {
@@ -92,11 +93,25 @@ class MatrixImpl implements Matrix {
 		return JamaBridge.fromJama(m);
 	}
 
+	public Matrix pseudoInverse() {
+		double threshold = 1E-15;
+		SingularValueDecomposition svd = svd();
+		Matrix D = svd.getS();
+		for (int i = 0; i < D.getRowCount(); i++) {
+			if (D.get(i, i) > threshold) D.set(i, i, 1 / D.get(i, i));
+		}
+		return svd.getV().transpose().mul(D).mul(svd.getU().transpose());
+	}
+	
 	public Matrix transpose() {
 		Matrix result = MatrixFactory.createMatrix(getColumnCount(), getRowCount());
 		for (int i = 0; i < getRowCount(); i++)
 			for (int j = 0; j < getColumnCount(); j++)
 				result.set(j, i, get(i, j));
 		return result;
+	}
+
+	public SingularValueDecomposition svd() {
+		return new JamaSVD(this);
 	}
 }
