@@ -16,6 +16,21 @@
 	<packaging>jar</packaging>
 	<name>Matrix</name>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<excludePackageNames>kcsaba.math.matrix.impl</excludePackageNames>
+					<show>public</show>
+					<links>
+						<link>${java-api-url}</link>
+					</links>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>jama</groupId>
