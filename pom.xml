@@ -5,8 +5,9 @@
 	
 	<parent>
 		<groupId>kcsaba</groupId>
-		<artifactId>vision-apps</artifactId>
+		<artifactId>vision-libs</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../library</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
