@@ -15,7 +15,7 @@ import kcsaba.math.matrix.Matrix;
  * for the defaults.
  * <p>
  * The format of the matrix elements can also be specified;
- * they can be converted to string using the default canonical {@link Double.toString(double)},
+ * they can be converted to string using the default canonical {@link Double#toString(double)},
  * a supplied {@link NumberFormat} instance, or a
  * <a href="http://java.sun.com/javase/6/docs/api/java/util/Formatter.html#syntax">format
  * string</a>. (<b>Note:</b> due to
@@ -93,7 +93,7 @@ public class MatrixPrinter {
 	 * @param m the matrix to print
 	 * @param control the control instance specifying the destination and format-related
 	 * parameters
-	 * @param formatter the formatter that converts the elements of the matrix to strings
+	 * @param format the format string
 	 * @param locale the locale to apply; if it is <code>null</code>, then no localization is
 	 * performed
 	 * @throws NullPointerException if the matrix, control, or format string is <code>null</code>
