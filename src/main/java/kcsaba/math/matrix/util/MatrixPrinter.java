@@ -39,7 +39,7 @@ public class MatrixPrinter {
 	/**
 	 * A default Control instance.
 	 */
-	public static final Control DEFAULT_CONTROL=new Control();
+	private static final Control DEFAULT_CONTROL=new Control();
 	
 	private MatrixPrinter() {}
 	
@@ -76,11 +76,35 @@ public class MatrixPrinter {
 	 * <pre>
 	 *     print(m, new Control(), f, Locale.getDefault())</pre>
 	 * @param m the matrix to print
+	 * @param format the format string
 	 * @throws NullPointerException if either argument is <code>null</code>
 	 * @throws java.util.IllegalFormatException if the format string is incorrect
 	 */
 	public static void print(Matrix m, String format) {
 		print(m, DEFAULT_CONTROL, new FormatterNumberFormatter(format, Locale.getDefault()));
+	}
+	
+	/**
+	 * Prints the matrix to the standard output using default control arguments. The matrix
+	 * elements are formatted using the specified
+	 * <a href="http://java.sun.com/javase/6/docs/api/java/util/Formatter.html#syntax">format
+	 * string</a> and the specified locale. The format string is expected to receive a single
+	 * argument of type double. If <code>locale</code> is <code>null</code>, then no localization
+	 * is applied.
+	 * <p>
+	 * An invocation of this method of the form {@code print(m, f, l)} behaves in exactly the
+	 * same way as the invocation
+	 * <pre>
+	 *     print(m, new Control(), f, l)</pre>
+	 * @param m the matrix to print
+	 * @param format the format string
+	 * @param locale the locale to use; if it is <code>null</code>, then no localization is
+	 * applied
+	 * @throws NullPointerException if the matrix or the format is <code>null</code>
+	 * @throws java.util.IllegalFormatException if the format string is incorrect
+	 */
+	public static void print(Matrix m, String format, Locale locale) {
+		print(m, DEFAULT_CONTROL, new FormatterNumberFormatter(format, locale));
 	}
 	
 	/**
