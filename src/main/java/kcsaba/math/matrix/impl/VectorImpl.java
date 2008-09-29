@@ -110,7 +110,7 @@ class VectorImpl implements Vector {
 	public Matrix transpose() {
 		Matrix result = MatrixFactory.createMatrix(1, getDimension());
 		for (int i = 0; i < getDimension(); i++)
-			result.set(1, i, getCoord(i));
+			result.set(0, i, getCoord(i));
 		return result;
 	}
 
