@@ -15,14 +15,17 @@ class JamaSVD implements SingularValueDecomposition {
 		s = JamaBridge.fromJama(svd.getS());
 	}
 
+	@Override
 	public Matrix getU() {
 		return u;
 	}
 
+	@Override
 	public Matrix getV() {
 		return v;
 	}
 
+	@Override
 	public Matrix getS() {
 		return s;
 	}

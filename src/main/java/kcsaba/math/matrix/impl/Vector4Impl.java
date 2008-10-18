@@ -13,34 +13,42 @@ class Vector4Impl extends VectorImpl implements Vector4 {
 		super(4);
 	}
 
+	@Override
 	public double getX() {
 		return getCoord(0);
 	}
 
+	@Override
 	public double getY() {
 		return getCoord(1);
 	}
 
+	@Override
 	public double getZ() {
 		return getCoord(2);
 	}
 
+	@Override
 	public double getH() {
 		return getCoord(3);
 	}
 
+	@Override
 	public void setX(double value) {
 		setCoord(0, value);
 	}
 
+	@Override
 	public void setY(double value) {
 		setCoord(1, value);
 	}
 
+	@Override
 	public void setZ(double value) {
 		setCoord(2, value);
 	}
 
+	@Override
 	public void setH(double value) {
 		setCoord(3, value);
 	}
@@ -50,10 +58,12 @@ class Vector4Impl extends VectorImpl implements Vector4 {
 		return String.format("(%f; %f; %f; %f)", getX(), getY(), getZ(), getH());
 	}
 
+	@Override
 	public Vector4 plusVec(Vector4 v) {
 		return MatrixFactory.createVector4(getX() + v.getX(), getY() + v.getY(), getZ() + v.getZ(), getH() + v.getH());
 	}
 
+	@Override
 	public Vector4 minusVec(Vector4 v) {
 		return MatrixFactory.createVector4(getX() - v.getX(), getY() - v.getY(), getZ() - v.getZ(), getH() - v.getH());
 	}

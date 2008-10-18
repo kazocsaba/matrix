@@ -18,22 +18,27 @@ class MatrixImpl implements Matrix {
 		data = new double[rowCount][colCount];
 	}
 
+	@Override
 	public double get(int row, int col) {
 		return data[row][col];
 	}
 
+	@Override
 	public void set(int row, int col, double value) {
 		data[row][col] = value;
 	}
 
+	@Override
 	public int getColumnCount() {
 		return data[0].length;
 	}
 
+	@Override
 	public int getRowCount() {
 		return data.length;
 	}
 
+	@Override
 	public Matrix mul(Matrix m) {
 		if (getColumnCount() != m.getRowCount()) throw new IllegalArgumentException();
 		Matrix result = MatrixFactory.createMatrix(getRowCount(), m.getColumnCount());
@@ -47,12 +52,14 @@ class MatrixImpl implements Matrix {
 		return result;
 	}
 
+	@Override
 	public void scale(double c) {
 		for (int row = 0; row < getRowCount(); row++)
 			for (int col = 0; col < getColumnCount(); col++)
 				set(row, col, get(row, col)*c);
 	}
 
+	@Override
 	public void add(Matrix m) {
 		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();
@@ -60,6 +67,7 @@ class MatrixImpl implements Matrix {
 			set(i, j, get(i, j) + m.get(i, j));
 	}
 
+	@Override
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2) {
 		if (row1 < 0 || col1 < 0 || row2 >= getRowCount() || col2 >= getColumnCount() || row2 < row1 || col2 < col1)
 			throw new IllegalArgumentException();
@@ -70,6 +78,7 @@ class MatrixImpl implements Matrix {
 		return result;
 	}
 
+	@Override
 	public Matrix plus(Matrix m) {
 		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();
@@ -79,6 +88,7 @@ class MatrixImpl implements Matrix {
 		return result;
 	}
 
+	@Override
 	public Matrix inverse() throws SingularityException {
 		if (getRowCount()!=getColumnCount()) throw new IllegalArgumentException("Matrix is not square");
 		Jama.Matrix m=JamaBridge.toJama(this);
@@ -93,6 +103,7 @@ class MatrixImpl implements Matrix {
 		return JamaBridge.fromJama(m);
 	}
 
+	@Override
 	public Matrix pseudoInverse() {
 		double threshold = 1E-15;
 		SingularValueDecomposition svd = svd();
@@ -103,6 +114,7 @@ class MatrixImpl implements Matrix {
 		return svd.getV().transpose().mul(D).mul(svd.getU().transpose());
 	}
 	
+	@Override
 	public Matrix transpose() {
 		Matrix result = MatrixFactory.createMatrix(getColumnCount(), getRowCount());
 		for (int i = 0; i < getRowCount(); i++)
@@ -111,6 +123,25 @@ class MatrixImpl implements Matrix {
 		return result;
 	}
 
+	@Override
+	public double determinant() {
+		if (getRowCount()!=getColumnCount()) throw new IllegalArgumentException("Matrix is not square");
+		switch (getRowCount()) {
+			case 2:
+				return get(0, 0)*get(1, 1)-get(1, 0)*get(0, 1);
+			case 3:
+				return get(0, 0)*get(1, 1)*get(2, 2)+
+						get(0, 1)*get(1, 2)*get(2, 0)+
+						get(0, 2)*get(1, 0)*get(2, 1)-
+						get(0, 0)*get(1, 2)*get(2, 1)-
+						get(0, 1)*get(1, 0)*get(2, 2)-
+						get(0, 2)*get(1, 1)*get(2, 0);
+			default:
+				return JamaBridge.toJama(this).det();
+		}
+	}
+	
+	@Override
 	public SingularValueDecomposition svd() {
 		return new JamaSVD(this);
 	}

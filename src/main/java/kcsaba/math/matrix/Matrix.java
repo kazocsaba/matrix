@@ -99,6 +99,13 @@ public interface Matrix {
 	public Matrix transpose();
 	
 	/**
+	 * Return the determinant of this matrix.
+	 * @return the determinant
+	 * @throws IllegalArgumentException if this matrix is not square
+	 */
+	public double determinant();
+	
+	/**
 	 * Computes the singular value decomposition of this matrix.
 	 * @return the SVD of this matrix
 	 */
