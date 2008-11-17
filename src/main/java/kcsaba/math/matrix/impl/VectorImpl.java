@@ -154,4 +154,13 @@ class VectorImpl implements Vector {
 		return result;
 
 	}
+
+	@Override
+	public double norm() {
+		double n = 0;
+		for (int i = 0; i < data.length; i++)
+			n += data[i] * data[i];
+		return Math.sqrt(n);
+	}
+	
 }

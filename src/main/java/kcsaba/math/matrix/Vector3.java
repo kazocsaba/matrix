@@ -56,7 +56,7 @@ public interface Vector3 extends Vector {
 	 * @return a new vector containing the cross product
 	 */
 	public Vector3 cross(Vector3 v);
-
+	
 	/**
 	 * Returns a new vector that is the sum of this vector and the argument.
 	 * @param v the other vector

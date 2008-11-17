@@ -145,4 +145,13 @@ class MatrixImpl implements Matrix {
 	public SingularValueDecomposition svd() {
 		return new JamaSVD(this);
 	}
+
+	@Override
+	public double norm() {
+		double n = 0;
+		for (int i = 0; i < getRowCount(); i++)
+			for (int j = 0; j < getColumnCount(); j++)
+				n += data[i][j] * data[i][j];
+		return Math.sqrt(n);
+	}
 }

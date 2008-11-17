@@ -79,7 +79,7 @@ public interface Matrix {
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2);
 	
 	/**
-	 * Compute the inverse of this matrix.
+	 * Computes the inverse of this matrix.
 	 * @return the inverse of this matrix
 	 * @throws IllegalArgumentException if this matrix is not square
 	 * @throws SingularityException if this matrix is singular
@@ -87,23 +87,29 @@ public interface Matrix {
 	public Matrix inverse() throws SingularityException;
 	
 	/**
-	 * Compute the pseudo inverse of this matrix.
+	 * Computes the pseudo inverse of this matrix.
 	 * @return the pseudo inverse of this matrix
 	 */
 	public Matrix pseudoInverse();
 	
 	/**
-	 * Return the transpose of this matrix.
+	 * Returns the transpose of this matrix.
 	 * @return the transpose
 	 */
 	public Matrix transpose();
 	
 	/**
-	 * Return the determinant of this matrix.
+	 * Returns the determinant of this matrix.
 	 * @return the determinant
 	 * @throws IllegalArgumentException if this matrix is not square
 	 */
 	public double determinant();
+	
+	/**
+	 * Returns the 2-norm of this matrix.
+	 * @return the 2-norm
+	 */
+	public double norm();
 	
 	/**
 	 * Computes the singular value decomposition of this matrix.

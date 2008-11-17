@@ -18,7 +18,7 @@ public interface SingularValueDecomposition {
 	public Matrix getV();
 	
 	/**
-	 * Returns the diagonal matrix of singular values.
+	 * Returns the diagonal matrix of singular values. The singular values are in decreasing order.
 	 * @return the diagonal matrix of singular values
 	 */
 	public Matrix getS();
