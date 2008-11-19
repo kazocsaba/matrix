@@ -111,7 +111,7 @@ class MatrixImpl implements Matrix {
 		for (int i = 0; i < D.getRowCount(); i++) {
 			if (D.get(i, i) > threshold) D.set(i, i, 1 / D.get(i, i));
 		}
-		return svd.getV().transpose().mul(D).mul(svd.getU().transpose());
+		return svd.getV().mul(D).mul(svd.getU().transpose());
 	}
 	
 	@Override
