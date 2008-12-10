@@ -9,10 +9,23 @@ class JamaSVD implements SingularValueDecomposition {
 	private Matrix u,  v,  s;
 
 	JamaSVD(Matrix m) {
-		Jama.SingularValueDecomposition svd = new Jama.SingularValueDecomposition(JamaBridge.toJama(m));
-		u = JamaBridge.fromJama(svd.getU());
-		v = JamaBridge.fromJama(svd.getV());
-		s = JamaBridge.fromJama(svd.getS());
+		Jama.Matrix jm;
+		if (m.getRowCount() < m.getColumnCount()) {
+			// Jama can only do SVD for its transpose
+			jm = JamaBridge.toJamaTransposed(m);
+		} else {
+			jm = JamaBridge.toJama(m);
+		}
+		Jama.SingularValueDecomposition svd = new Jama.SingularValueDecomposition(jm);
+		if (m.getRowCount() < m.getColumnCount()) {
+			v = JamaBridge.fromJama(svd.getU());
+			u = JamaBridge.fromJama(svd.getV());
+			s = JamaBridge.fromJamaTranspose(svd.getS());
+		} else {
+			u = JamaBridge.fromJama(svd.getU());
+			v = JamaBridge.fromJama(svd.getV());
+			s = JamaBridge.fromJama(svd.getS());
+		}
 	}
 
 	@Override

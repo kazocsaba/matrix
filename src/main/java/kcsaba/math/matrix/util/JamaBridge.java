@@ -8,8 +8,10 @@ import kcsaba.math.matrix.MatrixFactory;
  * @author Kazó Csaba
  */
 public class JamaBridge {
-	private JamaBridge() {}
-	
+
+	private JamaBridge() {
+	}
+
 	/**
 	 * Returns a Jama matrix object representing the same matrix as the argument.
 	 * @param m a matrix
@@ -17,12 +19,27 @@ public class JamaBridge {
 	 * @throws NullPointerException if the argument is null
 	 */
 	public static Jama.Matrix toJama(Matrix m) {
-		Jama.Matrix result=new Jama.Matrix(m.getRowCount(), m.getColumnCount());
-		for (int i=0; i<m.getRowCount(); i++) for (int j=0; j<m.getColumnCount(); j++)
-			result.set(i, j, m.get(i, j));
+		Jama.Matrix result = new Jama.Matrix(m.getRowCount(), m.getColumnCount());
+		for (int i = 0; i < m.getRowCount(); i++)
+			for (int j = 0; j < m.getColumnCount(); j++)
+				result.set(i, j, m.get(i, j));
 		return result;
 	}
-	
+
+	/**
+	 * Returns a Jama matrix object representing the transpose of the argument.
+	 * @param m a matrix
+	 * @return a Jama matrix representing the transpose
+	 * @throws NullPointerException if the argument is null
+	 */
+	public static Jama.Matrix toJamaTransposed(Matrix m) {
+		Jama.Matrix result = new Jama.Matrix(m.getColumnCount(), m.getRowCount());
+		for (int i = 0; i < m.getRowCount(); i++)
+			for (int j = 0; j < m.getColumnCount(); j++)
+				result.set(j, i, m.get(i, j));
+		return result;
+	}
+
 	/**
 	 * Returns a matrix object representing the same matrix as the argument.
 	 * @param m a Jama matrix
@@ -30,9 +47,24 @@ public class JamaBridge {
 	 * @throws NullPointerException if the argument is null
 	 */
 	public static Matrix fromJama(Jama.Matrix m) {
-		Matrix result=MatrixFactory.createMatrix(m.getRowDimension(), m.getColumnDimension());
-		for (int i=0; i<result.getRowCount(); i++) for (int j=0; j<result.getColumnCount(); j++)
-			result.set(i, j, m.get(i, j));
+		Matrix result = MatrixFactory.createMatrix(m.getRowDimension(), m.getColumnDimension());
+		for (int i = 0; i < result.getRowCount(); i++)
+			for (int j = 0; j < result.getColumnCount(); j++)
+				result.set(i, j, m.get(i, j));
+		return result;
+	}
+
+	/**
+	 * Returns a matrix object representing the transpose of the argument.
+	 * @param m a Jama matrix
+	 * @return a matrix representing the transpose of the Jama instance
+	 * @throws NullPointerException if the argument is null
+	 */
+	public static Matrix fromJamaTranspose(Jama.Matrix m) {
+		Matrix result = MatrixFactory.createMatrix(m.getColumnDimension(), m.getRowDimension());
+		for (int i = 0; i < result.getRowCount(); i++)
+			for (int j = 0; j < result.getColumnCount(); j++)
+				result.set(i, j, m.get(j, i));
 		return result;
 	}
 }
