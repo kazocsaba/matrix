@@ -56,6 +56,43 @@ public abstract class MatrixFactory {
 	}
 	
 	/**
+	 * Creates a new vector with the same contents as the argument.
+	 * @param v the vector to copy
+	 * @return a copy of the argument
+	 * @throws NullPointerException if the argument is <code>null</code>
+	 */
+	public static final Vector3 createVector3(Vector3 v) {
+		return createVector3(v.getX(), v.getY(), v.getZ());
+	}
+	/**
+	 * Creates a new vector with the same contents as the argument.
+	 * @param v the vector to copy
+	 * @return a copy of the argument
+	 * @throws NullPointerException if the argument is <code>null</code>
+	 */
+	public static final Vector4 createVector4(Vector4 v) {
+		return createVector4(v.getX(), v.getY(), v.getZ(), v.getH());
+	}
+	/**
+	 * Creates a new vector with the same dimension and contents as the argument.
+	 * @param v the vector to copy
+	 * @return a copy of the argument
+	 * @throws NullPointerException if the argument is <code>null</code>
+	 */
+	public static final Vector createVector(Vector v) {
+		if (v==null) throw new NullPointerException();
+		switch (v.getDimension()) {
+			case 3: return createVector3((Vector3)v);
+			case 4: return createVector4((Vector4)v);
+			default:
+				Vector copy=createVector(v.getDimension());
+				for (int i=0; i<v.getDimension(); i++)
+					copy.setCoord(i, v.getCoord(i));
+				return copy;
+		}
+	}
+
+	/**
 	 * Creates a new matrix with all elements initialized to 0.
 	 * @param rowCount the number of rows
 	 * @param colCount the number of columns
@@ -70,7 +107,23 @@ public abstract class MatrixFactory {
 			return INSTANCE._createMatrix(rowCount, colCount);
 	}
 
-	
+	/**
+	 * Creates a new matrix with the same dimensions and contents as the argument.
+	 * @param m the matrix to copy
+	 * @return a copy of the argument
+	 * @throws NullPointerException if the argument is <code>null</code>
+	 */
+	public static final Matrix createMatrix(Matrix m) {
+		if (m==null) throw new NullPointerException();
+		if (m.getColumnCount()==1)
+			return createVector((Vector)m);
+		else {
+			Matrix copy=createMatrix(m.getRowCount(), m.getColumnCount());
+			for (int row=0; row<m.getRowCount(); row++) for (int col=0; col<m.getColumnCount(); col++)
+				copy.set(row, col, m.get(row, col));
+			return copy;
+		}
+	}
 	
 	/**
 	 * Creates a new 3D column vector with the initial value of 0.
