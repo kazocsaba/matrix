@@ -68,6 +68,14 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
+	public void subtract(Matrix m) {
+		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
+			throw new IllegalArgumentException();
+		for (int i=0; i<getRowCount(); i++) for (int j=0; j<getColumnCount(); j++)
+			set(i, j, get(i, j) - m.get(i, j));
+	}
+
+	@Override
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2) {
 		if (row1 < 0 || col1 < 0 || row2 >= getRowCount() || col2 >= getColumnCount() || row2 < row1 || col2 < col1)
 			throw new IllegalArgumentException();
@@ -85,6 +93,16 @@ class MatrixImpl implements Matrix {
 		Matrix result=MatrixFactory.createMatrix(getRowCount(), getColumnCount());
 		for (int i=0; i<getRowCount(); i++) for (int j=0; j<getColumnCount(); j++)
 			result.set(i, j, get(i, j) + m.get(i, j));
+		return result;
+	}
+
+	@Override
+	public Matrix minus(Matrix m) {
+		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
+			throw new IllegalArgumentException();
+		Matrix result=MatrixFactory.createMatrix(getRowCount(), getColumnCount());
+		for (int i=0; i<getRowCount(); i++) for (int j=0; j<getColumnCount(); j++)
+			result.set(i, j, get(i, j) - m.get(i, j));
 		return result;
 	}
 

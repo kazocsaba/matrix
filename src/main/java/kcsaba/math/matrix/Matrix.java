@@ -57,6 +57,15 @@ public interface Matrix {
 	public void add(Matrix m);
 	
 	/**
+	 * Subtracts each element of the argument from the corresponding element of this matrix. (An in-place
+	 * operation.)
+	 * @param m the other matrix
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
+	 */
+	public void subtract(Matrix m);
+
+	/**
 	 * Returns a new matrix that is the sum of this matrix and the argument.
 	 * @param m the other matrix
 	 * @return the sum of this matrix and the argument
@@ -65,6 +74,15 @@ public interface Matrix {
 	 */
 	public Matrix plus(Matrix m);
 	
+	/**
+	 * Returns a new matrix that is the difference of this matrix and the argument.
+	 * @param m the other matrix
+	 * @return the difference of this matrix and the argument
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
+	 */
+	public Matrix minus(Matrix m);
+
 	/**
 	 * Returns a new matrix that is a submatrix of this one. The result will be a matrix with
 	 * {@code row2-row1+1} rows and {@code col2-col1+1} columns, and will be initialized with the
