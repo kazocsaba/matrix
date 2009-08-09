@@ -96,6 +96,14 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
+	public void setSubmatrix(Matrix m, int row, int col) {
+		if (m.getColumnCount()>1 || row+m.getRowCount()>getDimension())
+			throw new IllegalArgumentException();
+		for (int r=0; r<m.getRowCount(); r++)
+			setCoord(row+r, m.get(r, 0));
+	}
+
+	@Override
 	public double dot(Vector v) {
 		if (getDimension() != v.getDimension()) throw new IllegalArgumentException();
 		double result = 0;

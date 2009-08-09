@@ -87,6 +87,14 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
+	public void setSubmatrix(Matrix m, int row, int col) {
+		if (row<0 || col<0 || row+m.getRowCount()>getRowCount() || col+m.getColumnCount()>getColumnCount())
+			throw new IllegalArgumentException();
+		for (int r=0; r<m.getRowCount(); r++) for (int c=0; c<m.getColumnCount(); c++)
+			set(row+r, col+c, m.get(r, c));
+	}
+
+	@Override
 	public Matrix plus(Matrix m) {
 		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();

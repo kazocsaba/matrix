@@ -95,7 +95,20 @@ public interface Matrix {
 	 * @throws IllegalArgumentException if the arguments don't properly specify a submatrix
 	 */
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2);
-	
+
+	/**
+	 * Sets a submatrix of the current matrix to match the argument. The submatrix position is
+	 * identified by its top left element at (row, col).
+	 * @param m the matrix to copy elements from
+	 * @param row the row to copy the first row of {@code m} to
+	 * @param col the column to copy the first column of {@code m} to
+	 * @throws NullPointerException if {@code m} is <code>null</code>
+	 * @throws IllegalArgumentException if {@code row} or {@code col} is negative or if
+	 * {@code row+m.getRowCount()>getRowCount()} or {@code row+m.getColumnCount()>getColumnCount()}
+	 * (i.e. the matrix {@code m} doesn't fit in the current matrix at the specified position)
+	 */
+	public void setSubmatrix(Matrix m, int row, int col);
+
 	/**
 	 * Computes the inverse of this matrix.
 	 * @return the inverse of this matrix
