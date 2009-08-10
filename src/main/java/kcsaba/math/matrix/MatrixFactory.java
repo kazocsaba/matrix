@@ -10,6 +10,21 @@ public abstract class MatrixFactory {
 	protected MatrixFactory() {}
 	private static final MatrixFactory INSTANCE=new MatrixFactoryImpl();
 	/**
+	 * Creates a new 2D column vector with the initial value of 0.
+	 * @return the new vector
+	 */
+	public static final Vector2 createVector2() {return INSTANCE._createVector2();}
+	/**
+	 * Creates and initializes a new 2D column vector.
+	 * @param x the x coordinate of the new vector
+	 * @param y the y coordinate of the new vector
+	 * @param z the z coordinate of the new vector
+	 * @return the new vector
+	 */
+	public static final Vector2 createVector2(double x, double y) {
+		return INSTANCE._createVector2(x, y);
+	}
+	/**
 	 * Creates a new 3D column vector with the initial value of 0.
 	 * @return the new vector
 	 */
@@ -49,12 +64,22 @@ public abstract class MatrixFactory {
 	public static final Vector createVector(int dimension) {
 		if (dimension<=0) throw new IllegalArgumentException();
 		switch (dimension) {
+			case 2: return createVector2();
 			case 3: return createVector3();
 			case 4: return createVector4();
 			default: return INSTANCE._createVector(dimension);
 		}
 	}
 	
+	/**
+	 * Creates a new vector with the same contents as the argument.
+	 * @param v the vector to copy
+	 * @return a copy of the argument
+	 * @throws NullPointerException if the argument is <code>null</code>
+	 */
+	public static final Vector2 createVector2(Vector2 v) {
+		return createVector2(v.getX(), v.getY());
+	}
 	/**
 	 * Creates a new vector with the same contents as the argument.
 	 * @param v the vector to copy
@@ -82,6 +107,7 @@ public abstract class MatrixFactory {
 	public static final Vector createVector(Vector v) {
 		if (v==null) throw new NullPointerException();
 		switch (v.getDimension()) {
+			case 2: return createVector2((Vector2)v);
 			case 3: return createVector3((Vector3)v);
 			case 4: return createVector4((Vector4)v);
 			default:
@@ -125,6 +151,24 @@ public abstract class MatrixFactory {
 		}
 	}
 	
+	/**
+	 * Creates a new 2D column vector with the initial value of 0.
+	 * @return the new vector
+	 */
+	protected abstract Vector2 _createVector2();
+	/**
+	 * Creates and initializes a new 2D column vector.
+	 * @param x the x coordinate of the new vector
+	 * @param y the y coordinate of the new vector
+	 * @return the new vector
+	 */
+	protected Vector2 _createVector2(double x, double y) {
+		Vector2 v=_createVector2();
+		v.setX(x);
+		v.setY(y);
+		return v;
+	}
+
 	/**
 	 * Creates a new 3D column vector with the initial value of 0.
 	 * @return the new vector

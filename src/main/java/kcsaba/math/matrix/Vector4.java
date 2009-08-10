@@ -50,7 +50,6 @@ public interface Vector4 extends Vector {
 	 * @param v the other vector
 	 * @return the sum of this vector and the argument
 	 * @throws NullPointerException if the argument is null
-	 * @throws IllegalArgumentException if the argument has different dimension than this vector
 	 */
 	public Vector4 plusVec(Vector4 v);
 	
@@ -59,7 +58,6 @@ public interface Vector4 extends Vector {
 	 * @param v the other vector
 	 * @return the difference of this vector and the argument
 	 * @throws NullPointerException if the argument is null
-	 * @throws IllegalArgumentException if the argument has different dimension than this vector
 	 */
 	public Vector4 minusVec(Vector4 v);
 }
