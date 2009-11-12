@@ -87,7 +87,7 @@ class VectorImpl implements Vector {
 
 	@Override
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2) {
-		if (col1 != 1 || col2 != 1 || row1 < 0 || row2 >= data.length || row2 < row1)
+		if (col1 != 0 || col2 != 0 || row1 < 0 || row2 >= data.length || row2 < row1)
 			throw new IllegalArgumentException();
 		Vector result = MatrixFactory.createVector(row2 - row1 + 1);
 		for (int i = 0; i < row2 - row1 + 1; i++)
