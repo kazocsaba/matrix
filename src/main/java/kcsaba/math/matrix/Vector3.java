@@ -45,7 +45,7 @@ public interface Vector3 extends Vector {
 	/**
 	 * Creates a new 4D vector that represents this vector in homogen coordinates.
 	 * (I.e. the x, y and z coordinates will be the same as of this vector, the
-	 * fourth coordinate will be 0.)
+	 * fourth coordinate will be 1.)
 	 * @return the homogen representation of this vector
 	 */
 	public Vector4 toHomogen();
