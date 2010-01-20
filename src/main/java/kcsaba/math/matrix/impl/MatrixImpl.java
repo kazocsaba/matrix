@@ -60,6 +60,15 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
+	public Matrix times(double c) {
+		Matrix result=MatrixFactory.createMatrix(getRowCount(), getColumnCount());
+		for (int row = 0; row < getRowCount(); row++)
+			for (int col = 0; col < getColumnCount(); col++)
+				result.set(row, col, get(row, col)*c);
+		return result;
+	}
+
+	@Override
 	public void add(Matrix m) {
 		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();

@@ -12,7 +12,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kcsaba</groupId>
-	<version>1.0.10</version>
+	<version>1.0.11</version>
 	<artifactId>Matrix</artifactId>
 	<packaging>jar</packaging>
 	<name>Matrix</name>

@@ -72,6 +72,14 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
+	public Matrix times(double c) {
+		Vector result=MatrixFactory.createVector(getDimension());
+		for (int i = 0; i < data.length; i++)
+			result.setCoord(i, data[i] * c);
+		return result;
+	}
+
+	@Override
 	public void add(Matrix m) {
 		if (m.getColumnCount() != 1 || m.getRowCount() != data.length) throw new IllegalArgumentException();
 		for (int i = 0; i < data.length; i++)

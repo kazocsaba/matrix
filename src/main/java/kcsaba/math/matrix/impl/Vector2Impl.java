@@ -114,6 +114,11 @@ public class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public Matrix times(double c) {
+		return MatrixFactory.createVector2(x * c, y * c);
+	}
+
+	@Override
 	public void add(Matrix m) {
 		if (m.getColumnCount()!=1 || m.getRowCount()!=2) throw new IllegalArgumentException();
 		Vector2 v=(Vector2)m;

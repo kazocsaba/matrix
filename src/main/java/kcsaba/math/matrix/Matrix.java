@@ -66,6 +66,13 @@ public interface Matrix {
 	public void subtract(Matrix m);
 
 	/**
+	 * Returns a new matrix which equals this matrix multiplied by a scalar.
+	 * @param c the scalar factor
+	 * @return a new matrix with the value {@code this*c}
+	 */
+	public Matrix times(double c);
+
+	/**
 	 * Returns a new matrix that is the sum of this matrix and the argument.
 	 * @param m the other matrix
 	 * @return the sum of this matrix and the argument
