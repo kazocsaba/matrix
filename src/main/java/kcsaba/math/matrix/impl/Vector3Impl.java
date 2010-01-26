@@ -8,7 +8,7 @@ import kcsaba.math.matrix.Vector4;
  *
  * @author Kazó Csaba
  */
-class Vector3Impl extends VectorImpl implements Vector3 {
+class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
 
 	public Vector3Impl() {
 		super(3);
@@ -60,15 +60,5 @@ class Vector3Impl extends VectorImpl implements Vector3 {
 	@Override
 	public String toString() {
 		return String.format("(%f; %f; %f)", getX(), getY(), getZ());
-	}
-
-	@Override
-	public Vector3 plusVec(Vector3 v) {
-		return MatrixFactory.createVector3(getX() + v.getX(), getY() + v.getY(), getZ() + v.getZ());
-	}
-
-	@Override
-	public Vector3 minusVec(Vector3 v) {
-		return MatrixFactory.createVector3(getX() - v.getX(), getY() - v.getY(), getZ() - v.getZ());
 	}
 }

@@ -18,7 +18,6 @@ public abstract class MatrixFactory {
 	 * Creates and initializes a new 2D column vector.
 	 * @param x the x coordinate of the new vector
 	 * @param y the y coordinate of the new vector
-	 * @param z the z coordinate of the new vector
 	 * @return the new vector
 	 */
 	public static final Vector2 createVector2(double x, double y) {
@@ -129,26 +128,44 @@ public abstract class MatrixFactory {
 		if (rowCount<=0 || colCount<=0) throw new IllegalArgumentException();
 		if (colCount==1)
 			return createVector(rowCount);
+		else if (rowCount==2 && colCount==2)
+			return INSTANCE._createMatrix2();
+		else if (rowCount==3 && colCount==3)
+			return INSTANCE._createMatrix3();
 		else
 			return INSTANCE._createMatrix(rowCount, colCount);
 	}
+	/**
+	 * Creates a new 2x2 matrix.
+	 * @return a new 2x2 matrix
+	 */
+	public static final Matrix2 createMatrix2() {
+		return INSTANCE._createMatrix2();
+	}
+	/**
+	 * Creates a new 3x3 matrix.
+	 * @return a new 3x3 matrix
+	 */
+	public static final Matrix3 createMatrix3() {
+		return INSTANCE._createMatrix3();
+	}
 
 	/**
-	 * Creates a new matrix with the same dimensions and contents as the argument.
+	 * Creates a copy of a matrix.
 	 * @param m the matrix to copy
-	 * @return a copy of the argument
-	 * @throws NullPointerException if the argument is <code>null</code>
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
-	public static final Matrix createMatrix(Matrix m) {
+	public static final <M extends Matrix> M copy(M m) {
 		if (m==null) throw new NullPointerException();
-		if (m.getColumnCount()==1)
-			return createVector((Vector)m);
-		else {
-			Matrix copy=createMatrix(m.getRowCount(), m.getColumnCount());
-			for (int row=0; row<m.getRowCount(); row++) for (int col=0; col<m.getColumnCount(); col++)
-				copy.set(row, col, m.get(row, col));
-			return copy;
-		}
+		M copy=(M)createMatrix(m.getRowCount(), m.getColumnCount());
+		for (int row=0; row<m.getRowCount(); row++) for (int col=0; col<m.getColumnCount(); col++)
+			copy.set(row, col, m.get(row, col));
+		return copy;
+	}
+
+	public static final <M extends Matrix> M createLike(M matrix) {
+		return (M)createMatrix(matrix.getRowCount(), matrix.getColumnCount());
 	}
 	
 	/**
@@ -224,4 +241,16 @@ public abstract class MatrixFactory {
 	 * @return a new matrix of the specified size
 	 */
 	protected abstract Matrix _createMatrix(int rowCount, int colCount);
+
+	/**
+	 * Creates a new 2x2 matrix with all elements initialized to 0.
+	 * @return a new 2x2 matrix
+	 */
+	protected abstract Matrix2 _createMatrix2();
+
+	/**
+	 * Creates a new 3x3 matrix with all elements initialized to 0.
+	 * @return a new 3x3 matrix
+	 */
+	protected abstract Matrix3 _createMatrix3();
 }

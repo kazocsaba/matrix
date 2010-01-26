@@ -1,6 +1,8 @@
 package kcsaba.math.matrix.impl;
 
 import kcsaba.math.matrix.Matrix;
+import kcsaba.math.matrix.Matrix2;
+import kcsaba.math.matrix.Matrix3;
 import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.Vector;
 import kcsaba.math.matrix.Vector2;
@@ -36,6 +38,16 @@ public class MatrixFactoryImpl extends MatrixFactory {
 	@Override
 	protected Matrix _createMatrix(int rowCount, int colCount) {
 		return new MatrixImpl(rowCount, colCount);
+	}
+
+	@Override
+	protected Matrix2 _createMatrix2() {
+		return new Matrix2Impl();
+	}
+
+	@Override
+	protected Matrix3 _createMatrix3() {
+		return new Matrix3Impl();
 	}
 
 }

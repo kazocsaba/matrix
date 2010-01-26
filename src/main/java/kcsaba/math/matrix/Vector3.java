@@ -4,7 +4,7 @@ package kcsaba.math.matrix;
  * A 3D column vector.
  * @author Kazó Csaba
  */
-public interface Vector3 extends Vector {
+public interface Vector3 extends Vector<Vector3> {
 
 	/**
 	 * Retrieves the x coordinate of the vector.
@@ -56,20 +56,4 @@ public interface Vector3 extends Vector {
 	 * @return a new vector containing the cross product
 	 */
 	public Vector3 cross(Vector3 v);
-	
-	/**
-	 * Returns a new vector that is the sum of this vector and the argument.
-	 * @param v the other vector
-	 * @return the sum of this vector and the argument
-	 * @throws NullPointerException if the argument is null
-	 */
-	public Vector3 plusVec(Vector3 v);
-	
-	/**
-	 * Returns a new vector that is the difference of this vector and the argument.
-	 * @param v the other vector
-	 * @return the difference of this vector and the argument
-	 * @throws NullPointerException if the argument is null
-	 */
-	public Vector3 minusVec(Vector3 v);
 }

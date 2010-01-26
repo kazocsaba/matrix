@@ -4,7 +4,7 @@ package kcsaba.math.matrix;
  * A matrix of double values.
  * @author Kazó Csaba
  */
-public interface Matrix {
+public interface Matrix<M extends Matrix<M>> {
 	/**
 	 * Retrieves an element of the matrix.
 	 * @param row the row index
@@ -70,7 +70,7 @@ public interface Matrix {
 	 * @param c the scalar factor
 	 * @return a new matrix with the value {@code this*c}
 	 */
-	public Matrix times(double c);
+	public M times(double c);
 
 	/**
 	 * Returns a new matrix that is the sum of this matrix and the argument.
@@ -79,7 +79,7 @@ public interface Matrix {
 	 * @throws NullPointerException if the argument is null
 	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
 	 */
-	public Matrix plus(Matrix m);
+	public M plus(Matrix m);
 	
 	/**
 	 * Returns a new matrix that is the difference of this matrix and the argument.
@@ -88,7 +88,7 @@ public interface Matrix {
 	 * @throws NullPointerException if the argument is null
 	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
 	 */
-	public Matrix minus(Matrix m);
+	public M minus(Matrix m);
 
 	/**
 	 * Returns a new matrix that is a submatrix of this one. The result will be a matrix with
@@ -122,7 +122,7 @@ public interface Matrix {
 	 * @throws IllegalArgumentException if this matrix is not square
 	 * @throws SingularityException if this matrix is singular
 	 */
-	public Matrix inverse() throws SingularityException;
+	public M inverse() throws SingularityException;
 	
 	/**
 	 * Computes the pseudo inverse of this matrix.

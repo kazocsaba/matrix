@@ -10,7 +10,7 @@ import kcsaba.math.matrix.util.JamaBridge;
  *
  * @author Kazó Csaba
  */
-class MatrixImpl implements Matrix {
+class MatrixImpl<M extends Matrix<M>> implements Matrix<M> {
 
 	private final double[][] data;
 
@@ -60,8 +60,8 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
-	public Matrix times(double c) {
-		Matrix result=MatrixFactory.createMatrix(getRowCount(), getColumnCount());
+	public M times(double c) {
+		M result=(M)MatrixFactory.createMatrix(getRowCount(), getColumnCount());
 		for (int row = 0; row < getRowCount(); row++)
 			for (int col = 0; col < getColumnCount(); col++)
 				result.set(row, col, get(row, col)*c);
@@ -104,27 +104,27 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
-	public Matrix plus(Matrix m) {
+	public M plus(Matrix m) {
 		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();
-		Matrix result=MatrixFactory.createMatrix(getRowCount(), getColumnCount());
+		M result=(M)MatrixFactory.createMatrix(getRowCount(), getColumnCount());
 		for (int i=0; i<getRowCount(); i++) for (int j=0; j<getColumnCount(); j++)
 			result.set(i, j, get(i, j) + m.get(i, j));
 		return result;
 	}
 
 	@Override
-	public Matrix minus(Matrix m) {
+	public M minus(Matrix m) {
 		if (getRowCount() != m.getRowCount() || getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();
-		Matrix result=MatrixFactory.createMatrix(getRowCount(), getColumnCount());
+		M result=(M)MatrixFactory.createMatrix(getRowCount(), getColumnCount());
 		for (int i=0; i<getRowCount(); i++) for (int j=0; j<getColumnCount(); j++)
 			result.set(i, j, get(i, j) - m.get(i, j));
 		return result;
 	}
 
 	@Override
-	public Matrix inverse() throws SingularityException {
+	public M inverse() throws SingularityException {
 		if (getRowCount()!=getColumnCount()) throw new IllegalArgumentException("Matrix is not square");
 		Jama.Matrix m=JamaBridge.toJama(this);
 		try {
@@ -135,7 +135,7 @@ class MatrixImpl implements Matrix {
 			else
 				throw e;
 		}
-		return JamaBridge.fromJama(m);
+		return (M)JamaBridge.fromJama(m);
 	}
 
 	@Override

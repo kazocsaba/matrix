@@ -10,7 +10,7 @@ import kcsaba.math.matrix.Vector;
  *
  * @author Kazó Csaba
  */
-class VectorImpl implements Vector {
+class VectorImpl<V extends Vector<V>> implements Vector<V> {
 
 	private final double[] data;
 
@@ -72,8 +72,8 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
-	public Matrix times(double c) {
-		Vector result=MatrixFactory.createVector(getDimension());
+	public V times(double c) {
+		V result=(V)MatrixFactory.createVector(getDimension());
 		for (int i = 0; i < data.length; i++)
 			result.setCoord(i, data[i] * c);
 		return result;
@@ -121,32 +121,32 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
-	public Matrix plus(Matrix m) {
+	public V plus(Matrix m) {
 		if (getRowCount() != m.getRowCount() || 1 != m.getColumnCount())
 			throw new IllegalArgumentException();
-		Vector result=MatrixFactory.createVector(getRowCount());
+		V result=(V)MatrixFactory.createVector(getRowCount());
 		for (int i=0; i<getRowCount(); i++)
 			result.setCoord(i,getCoord(i) + m.get(i, 0));
 		return result;
 	}
 
 	@Override
-	public Matrix minus(Matrix m) {
+	public V minus(Matrix m) {
 		if (getRowCount() != m.getRowCount() || 1 != m.getColumnCount())
 			throw new IllegalArgumentException();
-		Vector result=MatrixFactory.createVector(getRowCount());
+		V result=(V)MatrixFactory.createVector(getRowCount());
 		for (int i=0; i<getRowCount(); i++)
 			result.setCoord(i,getCoord(i) - m.get(i, 0));
 		return result;
 	}
 
 	@Override
-	public Matrix inverse() throws SingularityException {
+	public V inverse() throws SingularityException {
 		if (getRowCount() == 1) {
 			if (get(0, 0) == 0)
 				throw new SingularityException();
 			else {
-				Vector result = MatrixFactory.createVector(1);
+				V result = (V)MatrixFactory.createVector(1);
 				result.set(0, 0, 1 / get(0, 0));
 				return result;
 			}

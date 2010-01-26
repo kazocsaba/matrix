@@ -35,16 +35,6 @@ public class Vector2Impl implements Vector2 {
 	}
 
 	@Override
-	public Vector2 plusVec(Vector2 v) {
-		return MatrixFactory.createVector2(x+v.getX(), y+v.getY());
-	}
-
-	@Override
-	public Vector2 minusVec(Vector2 v) {
-		return MatrixFactory.createVector2(x-v.getX(), y-v.getY());
-	}
-
-	@Override
 	public int getDimension() {
 		return 2;
 	}
@@ -114,7 +104,7 @@ public class Vector2Impl implements Vector2 {
 	}
 
 	@Override
-	public Matrix times(double c) {
+	public Vector2 times(double c) {
 		return MatrixFactory.createVector2(x * c, y * c);
 	}
 
@@ -135,14 +125,14 @@ public class Vector2Impl implements Vector2 {
 	}
 
 	@Override
-	public Matrix plus(Matrix m) {
+	public Vector2 plus(Matrix m) {
 		if (m.getColumnCount()!=1 || m.getRowCount()!=2) throw new IllegalArgumentException();
 		Vector2 v=(Vector2)m;
 		return MatrixFactory.createVector2(x+v.getX(), y+v.getY());
 	}
 
 	@Override
-	public Matrix minus(Matrix m) {
+	public Vector2 minus(Matrix m) {
 		if (m.getColumnCount()!=1 || m.getRowCount()!=2) throw new IllegalArgumentException();
 		Vector2 v=(Vector2)m;
 		return MatrixFactory.createVector2(x-v.getX(), y-v.getY());
@@ -173,7 +163,7 @@ public class Vector2Impl implements Vector2 {
 	}
 
 	@Override
-	public Matrix inverse() throws SingularityException {
+	public Vector2 inverse() throws SingularityException {
 		throw new IllegalArgumentException();
 	}
 
@@ -210,5 +200,10 @@ public class Vector2Impl implements Vector2 {
 	@Override
 	public SingularValueDecomposition svd() {
 		return new JamaSVD(this);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("(%f; %f)", getX(), getY());
 	}
 }

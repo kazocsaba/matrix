@@ -1,13 +1,12 @@
 package kcsaba.math.matrix.impl;
 
-import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.Vector4;
 
 /**
  *
  * @author Kazó Csaba
  */
-class Vector4Impl extends VectorImpl implements Vector4 {
+class Vector4Impl extends VectorImpl<Vector4> implements Vector4 {
 
 	public Vector4Impl() {
 		super(4);
@@ -56,15 +55,5 @@ class Vector4Impl extends VectorImpl implements Vector4 {
 	@Override
 	public String toString() {
 		return String.format("(%f; %f; %f; %f)", getX(), getY(), getZ(), getH());
-	}
-
-	@Override
-	public Vector4 plusVec(Vector4 v) {
-		return MatrixFactory.createVector4(getX() + v.getX(), getY() + v.getY(), getZ() + v.getZ(), getH() + v.getH());
-	}
-
-	@Override
-	public Vector4 minusVec(Vector4 v) {
-		return MatrixFactory.createVector4(getX() - v.getX(), getY() - v.getY(), getZ() - v.getZ(), getH() - v.getH());
 	}
 }

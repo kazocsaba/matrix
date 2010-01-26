@@ -4,7 +4,7 @@ package kcsaba.math.matrix;
  * A 4D column vector. The elements are called x, y, z and h, respectively.
  * @author Kazó Csaba
  */
-public interface Vector4 extends Vector {
+public interface Vector4 extends Vector<Vector4> {
 	/**
 	 * Retrieves the x coordinate of the vector.
 	 * @return the same as {@code getCoord(0)}
@@ -45,19 +45,4 @@ public interface Vector4 extends Vector {
 	 * @param value the new value
 	 */
 	public void setH(double value);
-	/**
-	 * Returns a new vector that is the sum of this vector and the argument.
-	 * @param v the other vector
-	 * @return the sum of this vector and the argument
-	 * @throws NullPointerException if the argument is null
-	 */
-	public Vector4 plusVec(Vector4 v);
-	
-	/**
-	 * Returns a new vector that is the difference of this vector and the argument.
-	 * @param v the other vector
-	 * @return the difference of this vector and the argument
-	 * @throws NullPointerException if the argument is null
-	 */
-	public Vector4 minusVec(Vector4 v);
 }
