@@ -1,17 +1,25 @@
-package kcsaba.math.matrix.impl;
+package kcsaba.math.matrix.backbone;
 
 import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.Vector3;
 import kcsaba.math.matrix.Vector4;
 
 /**
- *
+ * A {@link MatrixData}-backed {@code Vector3} implementation.
+ * <p>
+ * This class is intended for subclassing to help the creation of implementations using specific {@code MatrixData}.
  * @author Kazó Csaba
  */
-class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
+public class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
 
-	public Vector3Impl() {
-		super(3);
+	/**
+	 * Creates an instance with the specified backing data.
+	 * @param data the backing data
+	 * @throws NullPointerException if {@code data} is {@code null}
+	 * @throws IllegalArgumentException if the type of this class does not match the dimensions of the backing data
+	 */
+	public Vector3Impl(MatrixData data) {
+		super(data);
 	}
 
 	@Override
@@ -56,9 +64,5 @@ class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
 				getZ() * v.getX() - getX() * v.getZ(),
 				getX() * v.getY() - getY() * v.getX());
 	}
-
-	@Override
-	public String toString() {
-		return String.format("(%f; %f; %f)", getX(), getY(), getZ());
-	}
+	
 }
