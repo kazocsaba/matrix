@@ -24,9 +24,9 @@ public final class Vector3Op extends VectorOp {
 	}
 
 	/**
-	 * @see Vector3#toHomogen
+	 * @see Vector3#toHomogeneous
 	 */
-	public static Vector4 toHomogen(Vector3 caller) {
+	public static Vector4 toHomogeneous(Vector3 caller) {
 		return MatrixFactory.createVector4(caller.getX(), caller.getY(), caller.getZ(), 1);
 	}
 }

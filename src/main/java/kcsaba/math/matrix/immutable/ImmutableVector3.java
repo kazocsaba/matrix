@@ -64,8 +64,8 @@ public class ImmutableVector3 extends ImmutableVector<Vector3> implements Vector
 	}
 
 	@Override
-	public Vector4 toHomogen() {
-		return Vector3Op.toHomogen(this);
+	public Vector4 toHomogeneous() {
+		return Vector3Op.toHomogeneous(this);
 	}
 
 	@Override
