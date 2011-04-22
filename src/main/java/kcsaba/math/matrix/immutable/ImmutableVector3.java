@@ -1,0 +1,75 @@
+package kcsaba.math.matrix.immutable;
+
+import kcsaba.math.matrix.Vector3;
+import kcsaba.math.matrix.Vector4;
+import kcsaba.math.matrix.backbone.Vector3Op;
+
+/**
+ * An immutable Vector3 implementation.
+ * @author Kazó Csaba
+ */
+public class ImmutableVector3 extends ImmutableVector<Vector3> implements Vector3 {
+
+	ImmutableVector3(Vector3 template) {
+		super(template);
+	}
+
+	ImmutableVector3(ImmutableData data) {
+		super(data);
+	}
+
+	@Override
+	public double getX() {
+		return getCoord(0);
+	}
+
+	@Override
+	public double getY() {
+		return getCoord(1);
+	}
+
+	@Override
+	public double getZ() {
+		return getCoord(2);
+	}
+
+	/**
+	 * Throws an exception and leaves the matrix unmodified.
+	 * @param value the new value
+	 * @throws UnsupportedOperationException always
+	 */
+	@Override
+	public void setX(double value) {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
+
+	/**
+	 * Throws an exception and leaves the matrix unmodified.
+	 * @param value the new value
+	 * @throws UnsupportedOperationException always
+	 */
+	@Override
+	public void setY(double value) {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
+
+	/**
+	 * Throws an exception and leaves the matrix unmodified.
+	 * @param value the new value
+	 * @throws UnsupportedOperationException always
+	 */
+	@Override
+	public void setZ(double value) {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
+
+	@Override
+	public Vector4 toHomogen() {
+		return Vector3Op.toHomogen(this);
+	}
+
+	@Override
+	public Vector3 cross(Vector3 v) {
+		return Vector3Op.cross(this, v);
+	}
+}
