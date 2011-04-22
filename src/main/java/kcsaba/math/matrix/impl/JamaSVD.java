@@ -1,4 +1,4 @@
-package kcsaba.math.matrix.backbone;
+package kcsaba.math.matrix.impl;
 
 import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.SingularValueDecomposition;
