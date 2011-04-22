@@ -6,6 +6,8 @@ import kcsaba.math.matrix.SingularValueDecomposition;
 import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.Vector;
 import kcsaba.math.matrix.Vector2;
+import kcsaba.math.matrix.backbone.MatrixOp;
+import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
@@ -164,19 +166,12 @@ public class Vector2Impl implements Vector2 {
 
 	@Override
 	public Vector2 inverse() throws SingularityException {
-		throw new IllegalArgumentException();
+		return (Vector2)VectorOp.inverse(this);
 	}
 
 	@Override
 	public Matrix pseudoInverse() {
-		double threshold = 1E-15;
-		double lenSq = x*x+y*y;
-		Matrix result = MatrixFactory.createMatrix(1, 2);
-		if (lenSq < threshold)
-			return result;
-		result.set(0, 0, x/lenSq);
-		result.set(0, 1, y/lenSq);
-		return result;
+		return VectorOp.pseudoInverse(this);
 	}
 
 	@Override
@@ -189,7 +184,7 @@ public class Vector2Impl implements Vector2 {
 
 	@Override
 	public double determinant() {
-		throw new IllegalArgumentException("Matrix is not square");
+		return VectorOp.determinant(this);
 	}
 
 	@Override
@@ -199,11 +194,11 @@ public class Vector2Impl implements Vector2 {
 
 	@Override
 	public SingularValueDecomposition svd() {
-		return new JamaSVD(this);
+		return MatrixOp.svd(this);
 	}
 
 	@Override
 	public String toString() {
-		return String.format("(%f; %f)", getX(), getY());
+		return VectorOp.toString(this);
 	}
 }

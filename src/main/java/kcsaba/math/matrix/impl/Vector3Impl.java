@@ -1,8 +1,9 @@
 package kcsaba.math.matrix.impl;
 
-import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.Vector3;
 import kcsaba.math.matrix.Vector4;
+import kcsaba.math.matrix.backbone.Vector3Op;
+import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
@@ -46,19 +47,16 @@ class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
 
 	@Override
 	public Vector4 toHomogen() {
-		return MatrixFactory.createVector4(getX(), getY(), getZ(), 1);
+		return Vector3Op.toHomogen(this);
 	}
 
 	@Override
 	public Vector3 cross(Vector3 v) {
-		return MatrixFactory.createVector3(
-				getY() * v.getZ() - getZ() * v.getY(),
-				getZ() * v.getX() - getX() * v.getZ(),
-				getX() * v.getY() - getY() * v.getX());
+		return Vector3Op.cross(this, v);
 	}
 
 	@Override
 	public String toString() {
-		return String.format("(%f; %f; %f)", getX(), getY(), getZ());
+		return VectorOp.toString(this);
 	}
 }

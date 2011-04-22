@@ -5,6 +5,8 @@ import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.SingularValueDecomposition;
 import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.Vector;
+import kcsaba.math.matrix.backbone.MatrixOp;
+import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
@@ -113,87 +115,53 @@ class VectorImpl<V extends Vector<V>> implements Vector<V> {
 
 	@Override
 	public double dot(Vector v) {
-		if (getDimension() != v.getDimension()) throw new IllegalArgumentException();
-		double result = 0;
-		for (int i = 0; i < getDimension(); i++)
-			result += getCoord(i) * v.getCoord(i);
-		return result;
+		return VectorOp.dot(this, v);
 	}
 
 	@Override
 	public V plus(Matrix m) {
-		if (getRowCount() != m.getRowCount() || 1 != m.getColumnCount())
-			throw new IllegalArgumentException();
-		V result=(V)MatrixFactory.createVector(getRowCount());
-		for (int i=0; i<getRowCount(); i++)
-			result.setCoord(i,getCoord(i) + m.get(i, 0));
-		return result;
+		return (V)MatrixOp.plus(this, m);
 	}
 
 	@Override
 	public V minus(Matrix m) {
-		if (getRowCount() != m.getRowCount() || 1 != m.getColumnCount())
-			throw new IllegalArgumentException();
-		V result=(V)MatrixFactory.createVector(getRowCount());
-		for (int i=0; i<getRowCount(); i++)
-			result.setCoord(i,getCoord(i) - m.get(i, 0));
-		return result;
+		return (V)MatrixOp.minus(this, m);
 	}
 
 	@Override
 	public V inverse() throws SingularityException {
-		if (getRowCount() == 1) {
-			if (get(0, 0) == 0)
-				throw new SingularityException();
-			else {
-				V result = (V)MatrixFactory.createVector(1);
-				result.set(0, 0, 1 / get(0, 0));
-				return result;
-			}
-		} else
-			throw new IllegalArgumentException();
+		return (V)VectorOp.inverse(this);
 	}
 
 	@Override
 	public Matrix transpose() {
-		Matrix result = MatrixFactory.createMatrix(1, getDimension());
-		for (int i = 0; i < getDimension(); i++)
-			result.set(0, i, getCoord(i));
-		return result;
+		return MatrixOp.transpose(this);
 	}
 	
 	@Override
 	public double determinant() {
-		if (getRowCount()!=1) throw new IllegalArgumentException("Matrix is not square");
-		return getCoord(0);
+		return VectorOp.determinant(this);
 	}
 	
 	@Override
 	public SingularValueDecomposition svd() {
-		return new JamaSVD(this);
+		return MatrixOp.svd(this);
 	}
 
 	@Override
 	public Matrix pseudoInverse() {
-		double threshold = 1E-15;
-		double lenSq = 0;
-		for (int i = 0; i < getDimension(); i++)
-			lenSq += getCoord(i) * getCoord(i);
-		Matrix result = MatrixFactory.createMatrix(1, getDimension());
-		if (lenSq < threshold)
-			return result;
-		for (int i = 0; i < getDimension(); i++)
-			result.set(0, i, getCoord(i) / lenSq);
-		return result;
+		return VectorOp.pseudoInverse(this);
 
 	}
 
 	@Override
 	public double norm() {
-		double n = 0;
-		for (int i = 0; i < data.length; i++)
-			n += data[i] * data[i];
-		return Math.sqrt(n);
+		return MatrixOp.norm(this);
+	}
+
+	@Override
+	public String toString() {
+		return VectorOp.toString(this);
 	}
 	
 }

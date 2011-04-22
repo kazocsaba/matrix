@@ -1,6 +1,7 @@
 package kcsaba.math.matrix.impl;
 
 import kcsaba.math.matrix.Vector4;
+import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
@@ -54,6 +55,6 @@ class Vector4Impl extends VectorImpl<Vector4> implements Vector4 {
 	
 	@Override
 	public String toString() {
-		return String.format("(%f; %f; %f; %f)", getX(), getY(), getZ(), getH());
+		return VectorOp.toString(this);
 	}
 }
