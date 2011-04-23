@@ -5,6 +5,7 @@ package kcsaba.math.matrix;
  * @author Kazó Csaba
  */
 public class SingularityException extends Exception {
+	private static final long serialVersionUID = 1L;
 
     /**
      * Creates a new instance of <code>SingularityException</code> without detail message.

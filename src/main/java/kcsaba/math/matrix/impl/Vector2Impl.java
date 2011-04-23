@@ -166,7 +166,7 @@ class Vector2Impl implements Vector2 {
 
 	@Override
 	public Matrix inverse() throws SingularityException {
-		return (Matrix)VectorOp.inverse(this);
+		return VectorOp.inverse(this);
 	}
 
 	@Override

@@ -131,7 +131,7 @@ public abstract class MatrixFactory<
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
 	public static final Matrix2 copy(Matrix2 m) {
-		return (Matrix2) copy(m);
+		return (Matrix2) copy((Matrix)m);
 	}
 
 	/**
@@ -141,7 +141,7 @@ public abstract class MatrixFactory<
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
 	public static final Matrix3 copy(Matrix3 m) {
-		return (Matrix3) copy(m);
+		return (Matrix3) copy((Matrix)m);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public abstract class MatrixFactory<
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
 	public static final Vector copy(Vector m) {
-		return (Vector) copy(m);
+		return (Vector) copy((Matrix)m);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public abstract class MatrixFactory<
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
 	public static final Vector2 copy(Vector2 m) {
-		return (Vector2) copy(m);
+		return (Vector2) copy((Matrix)m);
 	}
 
 	/**
@@ -171,7 +171,7 @@ public abstract class MatrixFactory<
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
 	public static final Vector3 copy(Vector3 m) {
-		return (Vector3) copy(m);
+		return (Vector3) copy((Matrix)m);
 	}
 
 	/**
@@ -181,7 +181,7 @@ public abstract class MatrixFactory<
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
 	public static final Vector4 copy(Vector4 m) {
-		return (Vector4) copy(m);
+		return (Vector4) copy((Matrix)m);
 	}
 	
 	/**

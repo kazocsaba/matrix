@@ -74,7 +74,7 @@ class VectorImpl implements Vector {
 
 	@Override
 	public Vector times(double c) {
-		Vector result=(Vector)MatrixFactory.createVector(getDimension());
+		Vector result=MatrixFactory.createVector(getDimension());
 		for (int i = 0; i < data.length; i++)
 			result.setCoord(i, data[i] * c);
 		return result;
@@ -129,7 +129,7 @@ class VectorImpl implements Vector {
 
 	@Override
 	public Matrix inverse() throws SingularityException {
-		return (Matrix)VectorOp.inverse(this);
+		return VectorOp.inverse(this);
 	}
 
 	@Override
