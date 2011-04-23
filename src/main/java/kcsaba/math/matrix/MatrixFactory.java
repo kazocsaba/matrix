@@ -78,53 +78,6 @@ public abstract class MatrixFactory<
 	}
 	
 	/**
-	 * Creates a new vector with the same contents as the argument.
-	 * @param v the vector to copy
-	 * @return a copy of the argument
-	 * @throws NullPointerException if the argument is <code>null</code>
-	 */
-	public static final Vector2 createVector2(Vector2 v) {
-		return createVector2(v.getX(), v.getY());
-	}
-	/**
-	 * Creates a new vector with the same contents as the argument.
-	 * @param v the vector to copy
-	 * @return a copy of the argument
-	 * @throws NullPointerException if the argument is <code>null</code>
-	 */
-	public static final Vector3 createVector3(Vector3 v) {
-		return createVector3(v.getX(), v.getY(), v.getZ());
-	}
-	/**
-	 * Creates a new vector with the same contents as the argument.
-	 * @param v the vector to copy
-	 * @return a copy of the argument
-	 * @throws NullPointerException if the argument is <code>null</code>
-	 */
-	public static final Vector4 createVector4(Vector4 v) {
-		return createVector4(v.getX(), v.getY(), v.getZ(), v.getH());
-	}
-	/**
-	 * Creates a new vector with the same dimension and contents as the argument.
-	 * @param v the vector to copy
-	 * @return a copy of the argument
-	 * @throws NullPointerException if the argument is <code>null</code>
-	 */
-	public static final Vector createVector(Vector v) {
-		if (v==null) throw new NullPointerException();
-		switch (v.getDimension()) {
-			case 2: return createVector2((Vector2)v);
-			case 3: return createVector3((Vector3)v);
-			case 4: return createVector4((Vector4)v);
-			default:
-				Vector copy=createVector(v.getDimension());
-				for (int i=0; i<v.getDimension(); i++)
-					copy.setCoord(i, v.getCoord(i));
-				return copy;
-		}
-	}
-
-	/**
 	 * Creates a new matrix with all elements initialized to 0.
 	 * @param rowCount the number of rows
 	 * @param colCount the number of columns
@@ -163,16 +116,142 @@ public abstract class MatrixFactory<
 	 * @return a new matrix with the same dimensions and contents as the argument
 	 * @throws NullPointerException if {@code matrix} is {@code null}
 	 */
-	public static final <M extends Matrix> M copy(M m) {
+	public static final Matrix copy(Matrix m) {
 		if (m==null) throw new NullPointerException();
-		M copy=(M)createMatrix(m.getRowCount(), m.getColumnCount());
+		Matrix copy=createMatrix(m.getRowCount(), m.getColumnCount());
 		for (int row=0; row<m.getRowCount(); row++) for (int col=0; col<m.getColumnCount(); col++)
 			copy.set(row, col, m.get(row, col));
 		return copy;
 	}
 
-	public static final <M extends Matrix> M createLike(M matrix) {
-		return (M)createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	/**
+	 * Creates a copy of a matrix.
+	 * @param m the matrix to copy
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Matrix2 copy(Matrix2 m) {
+		return (Matrix2) copy(m);
+	}
+
+	/**
+	 * Creates a copy of a matrix.
+	 * @param m the matrix to copy
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Matrix3 copy(Matrix3 m) {
+		return (Matrix3) copy(m);
+	}
+
+	/**
+	 * Creates a copy of a matrix.
+	 * @param m the matrix to copy
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector copy(Vector m) {
+		return (Vector) copy(m);
+	}
+
+	/**
+	 * Creates a copy of a matrix.
+	 * @param m the matrix to copy
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector2 copy(Vector2 m) {
+		return (Vector2) copy(m);
+	}
+
+	/**
+	 * Creates a copy of a matrix.
+	 * @param m the matrix to copy
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector3 copy(Vector3 m) {
+		return (Vector3) copy(m);
+	}
+
+	/**
+	 * Creates a copy of a matrix.
+	 * @param m the matrix to copy
+	 * @return a new matrix with the same dimensions and contents as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector4 copy(Vector4 m) {
+		return (Vector4) copy(m);
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Matrix createLike(Matrix matrix) {
+		return createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Matrix2 createLike(Matrix2 matrix) {
+		return (Matrix2) createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Matrix3 createLike(Matrix3 matrix) {
+		return (Matrix3) createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector createLike(Vector matrix) {
+		return (Vector) createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector2 createLike(Vector2 matrix) {
+		return (Vector2) createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector3 createLike(Vector3 matrix) {
+		return (Vector3) createMatrix(matrix.getRowCount(), matrix.getColumnCount());
+	}
+	
+	/**
+	 * Creates a matrix with the same dimensions as the argument.
+	 * @param matrix the template matrix
+	 * @return a new zero matrix with the same dimensions as the argument
+	 * @throws NullPointerException if {@code matrix} is {@code null}
+	 */
+	public static final Vector4 createLike(Vector4 matrix) {
+		return (Vector4) createMatrix(matrix.getRowCount(), matrix.getColumnCount());
 	}
 	
 	/**

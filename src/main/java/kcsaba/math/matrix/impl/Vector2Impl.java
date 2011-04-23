@@ -143,7 +143,7 @@ class Vector2Impl implements Vector2 {
 	@Override
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2) {
 		if (col1==0 && col2==0) {
-			if (row1==0 && row2==1) return MatrixFactory.createVector2(this);
+			if (row1==0 && row2==1) return MatrixFactory.copy(this);
 			if (row1==row2) {
 				double value=getCoord(row1);
 				Vector result=MatrixFactory.createVector(1);
