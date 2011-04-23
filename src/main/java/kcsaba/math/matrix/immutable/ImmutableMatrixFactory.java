@@ -27,6 +27,22 @@ public final class ImmutableMatrixFactory {
 	}
 
 	/**
+	 * Returns an immutable matrix with the same values as the argument.
+	 * @throws NullPointerException if {@code source} is {@code null}
+	 */
+	public static ImmutableMatrix2 copy(Matrix2 source) {
+		return new ImmutableMatrix2(source);
+	}
+
+	/**
+	 * Returns an immutable matrix with the same values as the argument.
+	 * @throws NullPointerException if {@code source} is {@code null}
+	 */
+	public static ImmutableMatrix3 copy(Matrix3 source) {
+		return new ImmutableMatrix3(source);
+	}
+
+	/**
 	 * Returns an immutable vector with the same values as the argument.
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
