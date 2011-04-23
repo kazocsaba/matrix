@@ -4,7 +4,7 @@ package kcsaba.math.matrix;
  * A 4D column vector. The elements are called x, y, z and h, respectively.
  * @author Kazó Csaba
  */
-public interface Vector4 extends Vector<Vector4> {
+public interface Vector4 extends Vector {
 	/**
 	 * Retrieves the x coordinate of the vector.
 	 * @return the same as {@code getCoord(0)}
@@ -45,4 +45,11 @@ public interface Vector4 extends Vector<Vector4> {
 	 * @param value the new value
 	 */
 	public void setH(double value);
+	
+	@Override
+	public Vector4 plus(Matrix m);
+	@Override
+	public Vector4 minus(Matrix m);
+	@Override
+	public Vector4 times(double c);
 }

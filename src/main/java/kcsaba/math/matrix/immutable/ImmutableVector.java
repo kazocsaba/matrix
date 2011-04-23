@@ -1,5 +1,6 @@
 package kcsaba.math.matrix.immutable;
 
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Vector;
 import kcsaba.math.matrix.backbone.VectorOp;
 
@@ -7,7 +8,7 @@ import kcsaba.math.matrix.backbone.VectorOp;
  * An immutable vector implementation.
  * @author Kazó Csaba
  */
-public class ImmutableVector<V extends Vector<V>> extends ImmutableMatrix<V> implements Vector<V> {
+public class ImmutableVector extends ImmutableMatrix implements Vector {
 
 	ImmutableVector(Vector template) {
 		super(template);
@@ -46,5 +47,20 @@ public class ImmutableVector<V extends Vector<V>> extends ImmutableMatrix<V> imp
 	@Override
 	public String toString() {
 		return VectorOp.toString(this);
+	}
+
+	@Override
+	public Vector plus(Matrix m) {
+		return (Vector) VectorOp.plus(this, m);
+	}
+
+	@Override
+	public Vector minus(Matrix m) {
+		return (Vector) VectorOp.minus(this, m);
+	}
+
+	@Override
+	public Vector times(double c) {
+		return (Vector) VectorOp.times(this, c);
 	}
 }

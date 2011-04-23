@@ -4,7 +4,7 @@ package kcsaba.math.matrix;
  * A column vector.
  * @author Kazó Csaba
  */
-public interface Vector<V extends Vector<V>> extends Matrix<V> {
+public interface Vector extends Matrix {
 	/**
 	 * Returns the dimension of this vector.
 	 * @return the same as {@code getRowCount()}
@@ -34,4 +34,11 @@ public interface Vector<V extends Vector<V>> extends Matrix<V> {
 	 * @throws IllegalArgumentException if the vector dimensions differ
 	 */
 	public double dot(Vector v);
+	
+	@Override
+	public Vector plus(Matrix m);
+	@Override
+	public Vector minus(Matrix m);
+	@Override
+	public Vector times(double c);
 }

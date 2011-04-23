@@ -1,12 +1,14 @@
 package kcsaba.math.matrix.immutable;
 
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Vector2;
+import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
  * @author Kazó Csaba
  */
-public class ImmutableVector2 extends ImmutableVector<Vector2> implements Vector2 {
+public class ImmutableVector2 extends ImmutableVector implements Vector2 {
 
 	ImmutableVector2(Vector2 template) {
 		super(template);
@@ -45,5 +47,19 @@ public class ImmutableVector2 extends ImmutableVector<Vector2> implements Vector
 	public void setY(double value) {
 		throw new UnsupportedOperationException("Matrix is read-only");
 	}
-	
+
+	@Override
+	public Vector2 plus(Matrix m) {
+		return (Vector2) VectorOp.plus(this, m);
+	}
+
+	@Override
+	public Vector2 minus(Matrix m) {
+		return (Vector2) VectorOp.minus(this, m);
+	}
+
+	@Override
+	public Vector2 times(double c) {
+		return (Vector2) VectorOp.times(this, c);
+	}
 }

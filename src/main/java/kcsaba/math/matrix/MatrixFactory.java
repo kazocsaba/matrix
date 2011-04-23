@@ -6,9 +6,16 @@ import kcsaba.math.matrix.impl.MatrixFactoryImpl;
  * Factory class for creating matrix instances.
  * @author Kazó Csaba
  */
-public abstract class MatrixFactory {
+public abstract class MatrixFactory<
+		M extends Matrix,
+		M2 extends Matrix2,
+		M3 extends Matrix3,
+		V extends Vector,
+		V2 extends Vector2,
+		V3 extends Vector3,
+		V4 extends Vector4> {
 	protected MatrixFactory() {}
-	private static final MatrixFactory INSTANCE=new MatrixFactoryImpl();
+	private static final MatrixFactory<Matrix,Matrix2,Matrix3,Vector,Vector2,Vector3,Vector4> INSTANCE=new MatrixFactoryImpl();
 	/**
 	 * Creates a new 2D column vector with the initial value of 0.
 	 * @return the new vector
@@ -172,15 +179,15 @@ public abstract class MatrixFactory {
 	 * Creates a new 2D column vector with the initial value of 0.
 	 * @return the new vector
 	 */
-	protected abstract Vector2 _createVector2();
+	protected abstract V2 _createVector2();
 	/**
 	 * Creates and initializes a new 2D column vector.
 	 * @param x the x coordinate of the new vector
 	 * @param y the y coordinate of the new vector
 	 * @return the new vector
 	 */
-	protected Vector2 _createVector2(double x, double y) {
-		Vector2 v=_createVector2();
+	protected V2 _createVector2(double x, double y) {
+		V2 v=_createVector2();
 		v.setX(x);
 		v.setY(y);
 		return v;
@@ -190,7 +197,7 @@ public abstract class MatrixFactory {
 	 * Creates a new 3D column vector with the initial value of 0.
 	 * @return the new vector
 	 */
-	protected abstract Vector3 _createVector3();
+	protected abstract V3 _createVector3();
 	/**
 	 * Creates and initializes a new 3D column vector.
 	 * @param x the x coordinate of the new vector
@@ -198,8 +205,8 @@ public abstract class MatrixFactory {
 	 * @param z the z coordinate of the new vector
 	 * @return the new vector
 	 */
-	protected Vector3 _createVector3(double x, double y, double z) {
-		Vector3 v=_createVector3();
+	protected V3 _createVector3(double x, double y, double z) {
+		V3 v=_createVector3();
 		v.setX(x);
 		v.setY(y);
 		v.setZ(z);
@@ -209,7 +216,7 @@ public abstract class MatrixFactory {
 	 * Creates a new 4D column vector with the initial value of 0.
 	 * @return the new vector
 	 */
-	protected abstract Vector4 _createVector4();
+	protected abstract V4 _createVector4();
 	/**
 	 * Creates and initializes a new 4D column vector.
 	 * @param x the x coordinate of the new vector
@@ -218,8 +225,8 @@ public abstract class MatrixFactory {
 	 * @param h the h coordinate of the new vector
 	 * @return the new vector
 	 */
-	protected Vector4 _createVector4(double x, double y, double z, double h) {
-		Vector4 v=_createVector4();
+	protected V4 _createVector4(double x, double y, double z, double h) {
+		V4 v=_createVector4();
 		v.setX(x);
 		v.setY(y);
 		v.setZ(z);
@@ -232,7 +239,7 @@ public abstract class MatrixFactory {
 	 * @return the new vector
 	 * @throws IllegalArgumentException if the argument is not positive
 	 */
-	protected abstract Vector _createVector(int dimension);
+	protected abstract V _createVector(int dimension);
 	
 	/**
 	 * Creates a new matrix with all elements initialized to 0.
@@ -240,17 +247,17 @@ public abstract class MatrixFactory {
 	 * @param colCount the number of columns; will not be 1
 	 * @return a new matrix of the specified size
 	 */
-	protected abstract Matrix _createMatrix(int rowCount, int colCount);
+	protected abstract M _createMatrix(int rowCount, int colCount);
 
 	/**
 	 * Creates a new 2x2 matrix with all elements initialized to 0.
 	 * @return a new 2x2 matrix
 	 */
-	protected abstract Matrix2 _createMatrix2();
+	protected abstract M2 _createMatrix2();
 
 	/**
 	 * Creates a new 3x3 matrix with all elements initialized to 0.
 	 * @return a new 3x3 matrix
 	 */
-	protected abstract Matrix3 _createMatrix3();
+	protected abstract M3 _createMatrix3();
 }

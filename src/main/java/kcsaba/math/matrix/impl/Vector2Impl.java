@@ -13,7 +13,7 @@ import kcsaba.math.matrix.backbone.VectorOp;
  *
  * @author Kazó Csaba
  */
-public class Vector2Impl implements Vector2 {
+class Vector2Impl implements Vector2 {
 	private double x, y;
 
 	@Override
@@ -165,8 +165,8 @@ public class Vector2Impl implements Vector2 {
 	}
 
 	@Override
-	public Vector2 inverse() throws SingularityException {
-		return (Vector2)VectorOp.inverse(this);
+	public Matrix inverse() throws SingularityException {
+		return (Matrix)VectorOp.inverse(this);
 	}
 
 	@Override

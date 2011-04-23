@@ -9,7 +9,7 @@ import kcsaba.math.matrix.backbone.MatrixOp;
  *
  * @author Kazó Csaba
  */
-class MatrixImpl<M extends Matrix<M>> implements Matrix<M> {
+class MatrixImpl implements Matrix {
 
 	private final double[][] data;
 
@@ -48,8 +48,8 @@ class MatrixImpl<M extends Matrix<M>> implements Matrix<M> {
 	}
 
 	@Override
-	public M times(double c) {
-		return (M)MatrixOp.times(this, c);
+	public Matrix times(double c) {
+		return MatrixOp.times(this, c);
 	}
 
 	@Override
@@ -73,18 +73,18 @@ class MatrixImpl<M extends Matrix<M>> implements Matrix<M> {
 	}
 
 	@Override
-	public M plus(Matrix m) {
-		return (M)MatrixOp.plus(this, m);
+	public Matrix plus(Matrix m) {
+		return MatrixOp.plus(this, m);
 	}
 
 	@Override
-	public M minus(Matrix m) {
-		return (M)MatrixOp.minus(this, m);
+	public Matrix minus(Matrix m) {
+		return MatrixOp.minus(this, m);
 	}
 
 	@Override
-	public M inverse() throws SingularityException {
-		return (M)MatrixOp.inverse(this);
+	public Matrix inverse() throws SingularityException {
+		return MatrixOp.inverse(this);
 	}
 
 	@Override

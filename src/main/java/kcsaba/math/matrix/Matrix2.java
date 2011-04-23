@@ -4,9 +4,7 @@ package kcsaba.math.matrix;
  * A 3x3 matrix.
  * @author Kazó Csaba
  */
-public interface Matrix2 extends Matrix<Matrix2> {
-	@Override
-	public Matrix2 transpose();
+public interface Matrix2 extends Matrix {
 	/**
 	 * Multiplies this matrix with the argument and returns the result.
 	 * @param v a vector
@@ -21,4 +19,15 @@ public interface Matrix2 extends Matrix<Matrix2> {
 	 * @throws NullPointerException if the argument is null
 	 */
 	public Matrix2 mul(Matrix2 m);
+	
+	@Override
+	public Matrix2 transpose();
+	@Override
+	public Matrix2 plus(Matrix m);
+	@Override
+	public Matrix2 minus(Matrix m);
+	@Override
+	public Matrix2 times(double c);
+	@Override
+	public Matrix2 inverse() throws SingularityException;
 }

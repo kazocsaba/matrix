@@ -5,14 +5,13 @@ import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.SingularValueDecomposition;
 import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.Vector;
-import kcsaba.math.matrix.backbone.MatrixOp;
 import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
  * @author Kazó Csaba
  */
-class VectorImpl<V extends Vector<V>> implements Vector<V> {
+class VectorImpl implements Vector {
 
 	private final double[] data;
 
@@ -74,8 +73,8 @@ class VectorImpl<V extends Vector<V>> implements Vector<V> {
 	}
 
 	@Override
-	public V times(double c) {
-		V result=(V)MatrixFactory.createVector(getDimension());
+	public Vector times(double c) {
+		Vector result=(Vector)MatrixFactory.createVector(getDimension());
 		for (int i = 0; i < data.length; i++)
 			result.setCoord(i, data[i] * c);
 		return result;
@@ -119,23 +118,23 @@ class VectorImpl<V extends Vector<V>> implements Vector<V> {
 	}
 
 	@Override
-	public V plus(Matrix m) {
-		return (V)MatrixOp.plus(this, m);
+	public Vector plus(Matrix m) {
+		return (Vector)VectorOp.plus(this, m);
 	}
 
 	@Override
-	public V minus(Matrix m) {
-		return (V)MatrixOp.minus(this, m);
+	public Vector minus(Matrix m) {
+		return (Vector)VectorOp.minus(this, m);
 	}
 
 	@Override
-	public V inverse() throws SingularityException {
-		return (V)VectorOp.inverse(this);
+	public Matrix inverse() throws SingularityException {
+		return (Matrix)VectorOp.inverse(this);
 	}
 
 	@Override
 	public Matrix transpose() {
-		return MatrixOp.transpose(this);
+		return VectorOp.transpose(this);
 	}
 	
 	@Override
@@ -145,7 +144,7 @@ class VectorImpl<V extends Vector<V>> implements Vector<V> {
 	
 	@Override
 	public SingularValueDecomposition svd() {
-		return MatrixOp.svd(this);
+		return VectorOp.svd(this);
 	}
 
 	@Override
@@ -156,7 +155,7 @@ class VectorImpl<V extends Vector<V>> implements Vector<V> {
 
 	@Override
 	public double norm() {
-		return MatrixOp.norm(this);
+		return VectorOp.norm(this);
 	}
 
 	@Override

@@ -1,13 +1,15 @@
 package kcsaba.math.matrix.impl;
 
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Matrix3;
+import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.Vector3;
 
 /**
  *
  * @author Kazó Csaba
  */
-public class Matrix3Impl extends MatrixImpl<Matrix3> implements Matrix3 {
+class Matrix3Impl extends MatrixImpl implements Matrix3 {
 
 	public Matrix3Impl() {
 		super(3, 3);
@@ -28,4 +30,23 @@ public class Matrix3Impl extends MatrixImpl<Matrix3> implements Matrix3 {
 		return (Matrix3)super.mul(m);
 	}
 
+	@Override
+	public Matrix3 inverse() throws SingularityException {
+		return (Matrix3)super.inverse();
+	}
+
+	@Override
+	public Matrix3 times(double c) {
+		return (Matrix3)super.times(c);
+	}
+
+	@Override
+	public Matrix3 minus(Matrix m) {
+		return (Matrix3)super.minus(m);
+	}
+
+	@Override
+	public Matrix3 plus(Matrix m) {
+		return (Matrix3)super.plus(m);
+	}
 }

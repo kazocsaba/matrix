@@ -1,5 +1,6 @@
 package kcsaba.math.matrix.immutable;
 
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Vector3;
 import kcsaba.math.matrix.Vector4;
 import kcsaba.math.matrix.backbone.Vector3Op;
@@ -8,7 +9,7 @@ import kcsaba.math.matrix.backbone.Vector3Op;
  * An immutable Vector3 implementation.
  * @author Kazó Csaba
  */
-public class ImmutableVector3 extends ImmutableVector<Vector3> implements Vector3 {
+public class ImmutableVector3 extends ImmutableVector implements Vector3 {
 
 	ImmutableVector3(Vector3 template) {
 		super(template);
@@ -71,5 +72,20 @@ public class ImmutableVector3 extends ImmutableVector<Vector3> implements Vector
 	@Override
 	public Vector3 cross(Vector3 v) {
 		return Vector3Op.cross(this, v);
+	}
+
+	@Override
+	public Vector3 plus(Matrix m) {
+		return (Vector3) Vector3Op.plus(this, m);
+	}
+
+	@Override
+	public Vector3 minus(Matrix m) {
+		return (Vector3) Vector3Op.minus(this, m);
+	}
+
+	@Override
+	public Vector3 times(double c) {
+		return (Vector3) Vector3Op.times(this, c);
 	}
 }

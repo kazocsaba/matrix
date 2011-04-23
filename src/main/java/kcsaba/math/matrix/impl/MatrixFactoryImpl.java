@@ -13,7 +13,7 @@ import kcsaba.math.matrix.Vector4;
  *
  * @author Kazó Csaba
  */
-public class MatrixFactoryImpl extends MatrixFactory {
+public class MatrixFactoryImpl extends MatrixFactory<Matrix,Matrix2,Matrix3,Vector,Vector2,Vector3,Vector4> {
 
 	@Override
 	protected Vector2 _createVector2() {

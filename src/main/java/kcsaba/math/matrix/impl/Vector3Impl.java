@@ -1,15 +1,15 @@
 package kcsaba.math.matrix.impl;
 
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Vector3;
 import kcsaba.math.matrix.Vector4;
 import kcsaba.math.matrix.backbone.Vector3Op;
-import kcsaba.math.matrix.backbone.VectorOp;
 
 /**
  *
  * @author Kazó Csaba
  */
-class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
+class Vector3Impl extends VectorImpl implements Vector3 {
 
 	public Vector3Impl() {
 		super(3);
@@ -57,6 +57,21 @@ class Vector3Impl extends VectorImpl<Vector3> implements Vector3 {
 
 	@Override
 	public String toString() {
-		return VectorOp.toString(this);
+		return Vector3Op.toString(this);
+	}
+
+	@Override
+	public Vector3 plus(Matrix m) {
+		return (Vector3)Vector3Op.plus(this, m);
+	}
+
+	@Override
+	public Vector3 minus(Matrix m) {
+		return (Vector3)Vector3Op.minus(this, m);
+	}
+
+	@Override
+	public Vector3 times(double c) {
+		return (Vector3)Vector3Op.times(this, c);
 	}
 }

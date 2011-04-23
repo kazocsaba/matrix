@@ -1,5 +1,6 @@
 package kcsaba.math.matrix.impl;
 
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Vector4;
 import kcsaba.math.matrix.backbone.VectorOp;
 
@@ -7,7 +8,7 @@ import kcsaba.math.matrix.backbone.VectorOp;
  *
  * @author Kazó Csaba
  */
-class Vector4Impl extends VectorImpl<Vector4> implements Vector4 {
+class Vector4Impl extends VectorImpl implements Vector4 {
 
 	public Vector4Impl() {
 		super(4);
@@ -56,5 +57,20 @@ class Vector4Impl extends VectorImpl<Vector4> implements Vector4 {
 	@Override
 	public String toString() {
 		return VectorOp.toString(this);
+	}
+
+	@Override
+	public Vector4 plus(Matrix m) {
+		return (Vector4)VectorOp.plus(this, m);
+	}
+
+	@Override
+	public Vector4 minus(Matrix m) {
+		return (Vector4)VectorOp.minus(this, m);
+	}
+
+	@Override
+	public Vector4 times(double c) {
+		return (Vector4)VectorOp.times(this, c);
 	}
 }

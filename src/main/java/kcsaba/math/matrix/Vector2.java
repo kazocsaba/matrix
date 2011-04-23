@@ -4,7 +4,7 @@ package kcsaba.math.matrix;
  * A 2D column vector.
  * @author Kazó Csaba
  */
-public interface Vector2 extends Vector<Vector2> {
+public interface Vector2 extends Vector {
 
 	/**
 	 * Retrieves the x coordinate of the vector.
@@ -29,4 +29,11 @@ public interface Vector2 extends Vector<Vector2> {
 	 * @param value the new value
 	 */
 	public void setY(double value);
+	
+	@Override
+	public Vector2 plus(Matrix m);
+	@Override
+	public Vector2 minus(Matrix m);
+	@Override
+	public Vector2 times(double c);
 }
