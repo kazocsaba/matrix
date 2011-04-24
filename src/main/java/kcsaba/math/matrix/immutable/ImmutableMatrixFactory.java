@@ -15,6 +15,105 @@ import kcsaba.math.matrix.Vector4;
 public final class ImmutableMatrixFactory {
 
 	/**
+	 * Creates a new immutable 2D column vector.
+	 * @param x the x coordinate of the new vector
+	 * @param y the y coordinate of the new vector
+	 * @return the new vector
+	 */
+	public static ImmutableVector2 createVector(final double x, final double y) {
+		return new ImmutableVector2(new ImmutableData() {
+
+			@Override
+			public double get(int row, int col) {
+				if (col!=0) throw new IndexOutOfBoundsException();
+				switch (row) {
+					case 0: return x;
+					case 1: return y;
+					default: throw new IndexOutOfBoundsException();
+				}
+			}
+
+			@Override
+			public int getColumnCount() {
+				return 1;
+			}
+
+			@Override
+			public int getRowCount() {
+				return 2;
+			}
+		});
+	}
+	
+	/**
+	 * Creates a new immutable 3D column vector.
+	 * @param x the x coordinate of the new vector
+	 * @param y the y coordinate of the new vector
+	 * @param z the z coordinate of the new vector
+	 * @return the new vector
+	 */
+	public static ImmutableVector3 createVector(final double x, final double y, final double z) {
+		return new ImmutableVector3(new ImmutableData() {
+
+			@Override
+			public double get(int row, int col) {
+				if (col!=0) throw new IndexOutOfBoundsException();
+				switch (row) {
+					case 0: return x;
+					case 1: return y;
+					case 2: return z;
+					default: throw new IndexOutOfBoundsException();
+				}
+			}
+
+			@Override
+			public int getColumnCount() {
+				return 1;
+			}
+
+			@Override
+			public int getRowCount() {
+				return 3;
+			}
+		});
+	}
+	
+	/**
+	 * Creates a new immutable 4D column vector.
+	 * @param x the x coordinate of the new vector
+	 * @param y the y coordinate of the new vector
+	 * @param z the z coordinate of the new vector
+	 * @param h the h coordinate of the new vector
+	 * @return the new vector
+	 */
+	public static ImmutableVector4 createVector(final double x, final double y, final double z, final double h) {
+		return new ImmutableVector4(new ImmutableData() {
+
+			@Override
+			public double get(int row, int col) {
+				if (col!=0) throw new IndexOutOfBoundsException();
+				switch (row) {
+					case 0: return x;
+					case 1: return y;
+					case 2: return z;
+					case 3: return h;
+					default: throw new IndexOutOfBoundsException();
+				}
+			}
+
+			@Override
+			public int getColumnCount() {
+				return 1;
+			}
+
+			@Override
+			public int getRowCount() {
+				return 4;
+			}
+		});
+	}
+	
+	/**
 	 * Returns an immutable matrix with the same values as the argument.
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
@@ -49,9 +148,9 @@ public final class ImmutableMatrixFactory {
 	public static ImmutableVector copy(Vector source) {
 		if (source instanceof ImmutableVector) return (ImmutableVector) source;
 		switch (source.getRowCount()) {
-			case 2: return new ImmutableVector2((Vector2)source);
-			case 3: return new ImmutableVector3((Vector3)source);
-			case 4: return new ImmutableVector4((Vector4)source);
+			case 2: return copy((Vector2)source);
+			case 3: return copy((Vector3)source);
+			case 4: return copy((Vector4)source);
 			default: return new ImmutableVector(source);
 		}
 	}
@@ -62,7 +161,7 @@ public final class ImmutableMatrixFactory {
 	 */
 	public static ImmutableVector2 copy(Vector2 source) {
 		if (source instanceof ImmutableVector2) return (ImmutableVector2) source;
-		return new ImmutableVector2(source);
+		return createVector(source.getX(), source.getY());
 	}
 	
 	/**
@@ -71,7 +170,7 @@ public final class ImmutableMatrixFactory {
 	 */
 	public static ImmutableVector3 copy(Vector3 source) {
 		if (source instanceof ImmutableVector3) return (ImmutableVector3) source;
-		return new ImmutableVector3(source);
+		return createVector(source.getX(), source.getY(), source.getZ());
 	}
 	
 	/**
@@ -80,7 +179,7 @@ public final class ImmutableMatrixFactory {
 	 */
 	public static ImmutableVector4 copy(Vector4 source) {
 		if (source instanceof ImmutableVector4) return (ImmutableVector4) source;
-		return new ImmutableVector4(source);
+		return createVector(source.getX(), source.getY(), source.getZ(), source.getH());
 	}
 	
 	private static ImmutableMatrix create(ImmutableData data) {
