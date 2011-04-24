@@ -1,6 +1,7 @@
 package kcsaba.math.matrix.backbone;
 
 import kcsaba.math.matrix.MatrixFactory;
+import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.Vector3;
 import kcsaba.math.matrix.Vector4;
 
