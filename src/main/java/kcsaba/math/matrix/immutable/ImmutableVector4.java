@@ -92,4 +92,10 @@ public class ImmutableVector4 extends ImmutableVector implements Vector4 {
 	public Vector4 times(double c) {
 		return (Vector4) VectorOp.times(this, c);
 	}
+
+	@Override
+	public Vector4 normalized() {
+		return (Vector4) VectorOp.normalized(this);
+	}
+	
 }

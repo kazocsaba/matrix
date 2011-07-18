@@ -162,5 +162,20 @@ class VectorImpl implements Vector {
 	public String toString() {
 		return VectorOp.toString(this);
 	}
+
+	@Override
+	public Vector normalized() {
+		return (Vector)VectorOp.normalized(this);
+	}
+
+	@Override
+	public double error(Matrix m) {
+		return VectorOp.error(this, m);
+	}
+
+	@Override
+	public void normalize() {
+		VectorOp.normalize(this);
+	}
 	
 }

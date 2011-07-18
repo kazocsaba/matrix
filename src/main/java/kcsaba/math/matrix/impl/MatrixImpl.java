@@ -111,4 +111,20 @@ class MatrixImpl implements Matrix {
 	public double norm() {
 		return MatrixOp.norm(this);
 	}
+
+	@Override
+	public double error(Matrix m) {
+		return MatrixOp.error(this, m);
+	}
+
+	@Override
+	public void normalize() {
+		MatrixOp.normalize(this);
+	}
+
+	@Override
+	public Matrix normalized() {
+		return MatrixOp.normalized(this);
+	}
+	
 }

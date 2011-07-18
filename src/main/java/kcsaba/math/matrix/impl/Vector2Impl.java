@@ -189,7 +189,7 @@ class Vector2Impl implements Vector2 {
 
 	@Override
 	public double norm() {
-		return Math.sqrt(x*x+y*y);
+		return Math.hypot(x, y);
 	}
 
 	@Override
@@ -200,5 +200,20 @@ class Vector2Impl implements Vector2 {
 	@Override
 	public String toString() {
 		return VectorOp.toString(this);
+	}
+
+	@Override
+	public Vector2 normalized() {
+		return (Vector2) VectorOp.normalized(this);
+	}
+
+	@Override
+	public double error(Matrix m) {
+		return VectorOp.error(this, m);
+	}
+
+	@Override
+	public void normalize() {
+		VectorOp.normalize(this);
 	}
 }

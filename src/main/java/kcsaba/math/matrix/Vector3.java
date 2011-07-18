@@ -63,4 +63,6 @@ public interface Vector3 extends Vector {
 	public Vector3 minus(Matrix m);
 	@Override
 	public Vector3 times(double c);
+	@Override
+	public Vector3 normalized();
 }

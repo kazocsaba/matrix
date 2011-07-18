@@ -196,4 +196,29 @@ public class MatrixOp {
 				n += caller.get(i, j) * caller.get(i, j);
 		return Math.sqrt(n);
 	}
+	/**
+	 * @see Matrix#normalize()
+	 */
+	public static void normalize(Matrix caller) {
+		caller.scale(1/caller.norm());
+	}
+	/**
+	 * @see Matrix#normalized()
+	 */
+	public static Matrix normalized(Matrix caller) {
+		return caller.times(1/caller.norm());
+	}
+	/**
+	 * @see Matrix#error(Matrix)
+	 */
+	public static double error(Matrix caller, Matrix other) {
+		if (caller.getRowCount()!=other.getRowCount() || caller.getColumnCount()!=other.getColumnCount())
+			throw new IllegalArgumentException("Matrix dimensions do not match");
+		double error=0;
+		for (int row=0; row<caller.getRowCount(); row++) for (int col=0; col<caller.getColumnCount(); col++) {
+			double diff=caller.get(row, col)-other.get(row, col);
+			error+=diff*diff;
+		}
+		return Math.sqrt(error);
+	}
 }

@@ -36,4 +36,6 @@ public interface Vector2 extends Vector {
 	public Vector2 minus(Matrix m);
 	@Override
 	public Vector2 times(double c);
+	@Override
+	public Vector2 normalized();
 }

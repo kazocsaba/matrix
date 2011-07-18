@@ -30,4 +30,6 @@ public interface Matrix2 extends Matrix {
 	public Matrix2 times(double c);
 	@Override
 	public Matrix2 inverse() throws SingularityException;
+	@Override
+	public Matrix2 normalized();
 }

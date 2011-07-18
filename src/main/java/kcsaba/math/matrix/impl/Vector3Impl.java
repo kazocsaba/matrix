@@ -74,4 +74,9 @@ class Vector3Impl extends VectorImpl implements Vector3 {
 	public Vector3 times(double c) {
 		return (Vector3)Vector3Op.times(this, c);
 	}
+
+	@Override
+	public Vector3 normalized() {
+		return (Vector3)Vector3Op.normalized(this);
+	}
 }

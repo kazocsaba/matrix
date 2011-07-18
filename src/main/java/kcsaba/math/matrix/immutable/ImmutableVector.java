@@ -63,4 +63,9 @@ public class ImmutableVector extends ImmutableMatrix implements Vector {
 	public Vector times(double c) {
 		return (Vector) VectorOp.times(this, c);
 	}
+
+	@Override
+	public Vector normalized() {
+		return (Vector) VectorOp.normalized(this);
+	}
 }

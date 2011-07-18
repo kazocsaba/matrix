@@ -53,4 +53,9 @@ public class ImmutableMatrix3 extends ImmutableMatrix implements Matrix3 {
 	public Matrix3 inverse() throws SingularityException {
 		return (Matrix3) super.inverse();
 	}
+
+	@Override
+	public Matrix3 normalized() {
+		return (Matrix3) super.normalized();
+	}
 }

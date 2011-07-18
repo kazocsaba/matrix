@@ -150,6 +150,27 @@ public interface Matrix {
 	public double norm();
 	
 	/**
+	 * Returns the 2-norm of the difference of this matrix and the argument. This norm is often used as an error measure
+	 * between two matrices.
+	 * @param m the other matrix
+	 * @return {@code this.minus(m).norm()}
+	 * @throws NullPointerException if the argument is null
+	 * @throws IllegalArgumentException if the argument has different dimensions than this matrix
+	 */
+	public double error(Matrix m);
+	
+	/**
+	 * Scales this matrix by a scalar so that its 2-norm become 1. This method is equivalent to {@code scale(1/norm())}.
+	 */
+	public void normalize();
+	
+	/**
+	 * Returns a matrix equal to this matrix scaled to unit 2-norm.
+	 * @return {@code times(1/norm())}
+	 */
+	public Matrix normalized();
+	
+	/**
 	 * Computes the singular value decomposition of this matrix.
 	 * @return the SVD of this matrix
 	 */

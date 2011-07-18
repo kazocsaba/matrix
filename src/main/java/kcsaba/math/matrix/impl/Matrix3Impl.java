@@ -49,4 +49,9 @@ class Matrix3Impl extends MatrixImpl implements Matrix3 {
 	public Matrix3 plus(Matrix m) {
 		return (Matrix3)super.plus(m);
 	}
+
+	@Override
+	public Matrix3 normalized() {
+		return (Matrix3)super.normalized();
+	}
 }

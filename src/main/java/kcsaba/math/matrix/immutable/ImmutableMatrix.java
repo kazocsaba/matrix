@@ -142,4 +142,19 @@ public class ImmutableMatrix implements Matrix {
 	public double norm() {
 		return MatrixOp.norm(this);
 	}
+
+	@Override
+	public double error(Matrix m) {
+		return MatrixOp.error(this, m);
+	}
+
+	@Override
+	public void normalize() {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
+
+	@Override
+	public Matrix normalized() {
+		return MatrixOp.normalized(this);
+	}
 }

@@ -49,5 +49,10 @@ class Matrix2Impl extends MatrixImpl implements Matrix2 {
 	public Matrix2 plus(Matrix m) {
 		return (Matrix2)super.plus(m);
 	}
+
+	@Override
+	public Matrix2 normalized() {
+		return (Matrix2)super.normalized();
+	}
 	
 }

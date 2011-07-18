@@ -62,4 +62,9 @@ public class ImmutableVector2 extends ImmutableVector implements Vector2 {
 	public Vector2 times(double c) {
 		return (Vector2) VectorOp.times(this, c);
 	}
+
+	@Override
+	public Vector2 normalized() {
+		return (Vector2) VectorOp.normalized(this);
+	}
 }
