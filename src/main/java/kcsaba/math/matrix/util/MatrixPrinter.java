@@ -219,6 +219,44 @@ public class MatrixPrinter {
 		}
 		out.flush();
 	}
+	
+	/**
+	 * Prints the matrix to the standard output, producing an array representation that can be used to recreate
+	 * the matrix with {@link kcsaba.math.matrix.MatrixFactory#createMatrix(double[][])} or
+	 * {@link kcsaba.math.matrix.MatrixFactory#createVector(double[])}. This method is intended for debugging.
+	 * @param m the matrix to print
+	 * @throws NullPointerException if the argument is {@code null}
+	 */
+	public static void printCode(Matrix m) {
+		PrintWriter out=new PrintWriter(System.out);
+		if (m.getColumnCount()==1) {
+			out.print('{');
+			out.print(m.get(0, 0));
+			for (int row=1; row<m.getRowCount(); row++) {
+				out.print(", ");
+				out.print(m.get(row, 0));
+			}
+			out.println('}');
+		} else {
+			out.println('{');
+			for (int row=0; row<m.getRowCount(); row++) {
+				out.print("\t{");
+				out.print(m.get(row, 0));
+				for (int col=1; col<m.getColumnCount(); col++) {
+					out.print(", ");
+					out.print(m.get(row, col));
+				}
+				out.print('}');
+				if (row<m.getRowCount()-1)
+					out.println(',');
+				else
+					out.println();
+			}
+			out.println('}');
+		}
+		out.flush();
+	}
+	
 	/**
 	 * {@code MatrixPrinter.Control} encapsulates data used for printing matrices.
 	 * These data are the following:
