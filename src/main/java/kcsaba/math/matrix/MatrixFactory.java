@@ -299,4 +299,75 @@ public class MatrixFactory {
 				m.set(i, j, Math.random());
 		return m;
 	}
+	
+	//
+	// Matrix creation from arrays
+	//
+	
+	/**
+	 * Creates a matrix and initializes its elements from an array. The parameter should be a {@code double[r][c]}
+	 * array with {@code r>0} and {@code c>0}. The matrix element at row {@code row} and column {@code col} will be
+	 * {@code elements[row][col]}.
+	 * @param elements the array containing the elements of the matrix
+	 * @return the new matrix initialized from the array
+	 * @throws NullPointerException if the array is {@code null}
+	 * @throws IllegalArgumentException if the dimensions of the array are not valid
+	 */
+	public static Matrix createMatrix(double[][] elements) {
+		Matrix m=createMatrix(elements.length, elements[0].length);
+		for (int row=0; row<m.getRowCount(); row++) {
+			double[] rowData=elements[row];
+			if (rowData.length!=m.getColumnCount()) throw new IllegalArgumentException("Invalid array");
+			for (int col=0; col<m.getColumnCount(); col++) {
+				m.set(row, col, rowData[col]);
+			}
+		}
+		return m;
+	}
+	
+	/**
+	 * Creates a matrix and initializes its elements from an array. The parameter should be a {@code double[2][2]}
+	 * array. The matrix element at row {@code row} and column {@code col} will be
+	 * {@code elements[row][col]}.
+	 * @param elements the array containing the elements of the matrix
+	 * @return the new matrix initialized from the array
+	 * @throws NullPointerException if the array is {@code null}
+	 * @throws IllegalArgumentException if the dimensions of the array are not correct
+	 */
+	public static Matrix2 createMatrix2(double[][] elements) {
+		Matrix m=createMatrix(elements);
+		if (m.getRowCount()!=2 || m.getColumnCount()!=2)
+			throw new IllegalArgumentException("Array describes a matrix of size "+m.getRowCount()+"x"+m.getColumnCount()+" instead of 2x2");
+		return (Matrix2)m;
+	}
+	
+	/**
+	 * Creates a matrix and initializes its elements from an array. The parameter should be a {@code double[3][3]}
+	 * array. The matrix element at row {@code row} and column {@code col} will be
+	 * {@code elements[row][col]}.
+	 * @param elements the array containing the elements of the matrix
+	 * @return the new matrix initialized from the array
+	 * @throws NullPointerException if the array is {@code null}
+	 * @throws IllegalArgumentException if the dimensions of the array are not correct
+	 */
+	public static Matrix3 createMatrix3(double[][] elements) {
+		Matrix m=createMatrix(elements);
+		if (m.getRowCount()!=3 || m.getColumnCount()!=3)
+			throw new IllegalArgumentException("Array describes a matrix of size "+m.getRowCount()+"x"+m.getColumnCount()+" instead of 3x3");
+		return (Matrix3)m;
+	}
+	
+	/**
+	 * Creates a vector and initializes its elements from an array.
+	 * @param elements the array containing the elements of the vector
+	 * @return the new vector initialized from the array
+	 * @throws NullPointerException if the array is {@code null}
+	 * @throws IllegalArgumentException if the length of the array is zero
+	 */
+	public static Vector createVector(double[] elements) {
+		Vector v=createVector(elements.length);
+		for (int i=0; i<elements.length; i++)
+			v.setCoord(i, elements[i]);
+		return v;
+	}
 }

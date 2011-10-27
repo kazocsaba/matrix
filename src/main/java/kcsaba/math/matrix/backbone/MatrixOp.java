@@ -4,7 +4,7 @@ import kcsaba.math.matrix.Matrix;
 import kcsaba.math.matrix.MatrixFactory;
 import kcsaba.math.matrix.SingularValueDecomposition;
 import kcsaba.math.matrix.SingularityException;
-import kcsaba.math.matrix.util.JamaBridge;
+import kcsaba.math.matrix.immutable.ImmutableMatrixFactory;
 
 /**
  * Implementations of the Matrix functions for the benefit of Matrix subclasses. These methods rely on the
@@ -123,16 +123,7 @@ public class MatrixOp {
 	 */
 	public static Matrix inverse(Matrix caller) throws SingularityException {
 		if (caller.getRowCount()!=caller.getColumnCount()) throw new IllegalArgumentException("Matrix is not square");
-		Jama.Matrix m=JamaBridge.toJama(caller);
-		try {
-			m=m.inverse();
-		} catch (RuntimeException e) {
-			if ("Matrix is singular.".equals(e.getMessage()))
-				throw new SingularityException();
-			else
-				throw e;
-		}
-		return JamaBridge.fromJama(m);
+		return new JamaLU(caller).solve(ImmutableMatrixFactory.identity(caller.getRowCount()));
 	}
 
 	/**
@@ -175,7 +166,7 @@ public class MatrixOp {
 						caller.get(0, 1)*caller.get(1, 0)*caller.get(2, 2)-
 						caller.get(0, 2)*caller.get(1, 1)*caller.get(2, 0);
 			default:
-				return JamaBridge.toJama(caller).det();
+				return new JamaLU(caller).det();
 		}
 	}
 	
