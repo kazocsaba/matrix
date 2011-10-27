@@ -1,11 +1,5 @@
-package kcsaba.math.matrix.impl;
+package kcsaba.math.matrix;
 
-import kcsaba.math.matrix.Matrix;
-import kcsaba.math.matrix.MatrixFactory;
-import kcsaba.math.matrix.SingularValueDecomposition;
-import kcsaba.math.matrix.SingularityException;
-import kcsaba.math.matrix.Vector;
-import kcsaba.math.matrix.Vector2;
 import kcsaba.math.matrix.backbone.MatrixOp;
 import kcsaba.math.matrix.backbone.VectorOp;
 
@@ -107,7 +101,7 @@ class Vector2Impl implements Vector2 {
 
 	@Override
 	public Vector2 times(double c) {
-		return MatrixFactory.createVector2(x * c, y * c);
+		return MatrixFactory.createVector(x * c, y * c);
 	}
 
 	@Override
@@ -130,14 +124,14 @@ class Vector2Impl implements Vector2 {
 	public Vector2 plus(Matrix m) {
 		if (m.getColumnCount()!=1 || m.getRowCount()!=2) throw new IllegalArgumentException();
 		Vector2 v=(Vector2)m;
-		return MatrixFactory.createVector2(x+v.getX(), y+v.getY());
+		return MatrixFactory.createVector(x+v.getX(), y+v.getY());
 	}
 
 	@Override
 	public Vector2 minus(Matrix m) {
 		if (m.getColumnCount()!=1 || m.getRowCount()!=2) throw new IllegalArgumentException();
 		Vector2 v=(Vector2)m;
-		return MatrixFactory.createVector2(x-v.getX(), y-v.getY());
+		return MatrixFactory.createVector(x-v.getX(), y-v.getY());
 	}
 
 	@Override

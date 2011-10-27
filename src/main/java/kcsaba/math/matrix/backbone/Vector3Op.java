@@ -18,7 +18,7 @@ public final class Vector3Op extends VectorOp {
 	 * @see Vector3#cross(Vector3)
 	 */
 	public static Vector3 cross(Vector3 caller, Vector3 v) {
-		return MatrixFactory.createVector3(
+		return MatrixFactory.createVector(
 				caller.getY() * v.getZ() - caller.getZ() * v.getY(),
 				caller.getZ() * v.getX() - caller.getX() * v.getZ(),
 				caller.getX() * v.getY() - caller.getY() * v.getX());
@@ -28,6 +28,6 @@ public final class Vector3Op extends VectorOp {
 	 * @see Vector3#toHomogeneous
 	 */
 	public static Vector4 toHomogeneous(Vector3 caller) {
-		return MatrixFactory.createVector4(caller.getX(), caller.getY(), caller.getZ(), 1);
+		return MatrixFactory.createVector(caller.getX(), caller.getY(), caller.getZ(), 1);
 	}
 }

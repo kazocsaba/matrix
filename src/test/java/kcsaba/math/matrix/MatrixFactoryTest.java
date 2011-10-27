@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
  */
 public class MatrixFactoryTest {
 
-    public MatrixFactoryTest() {
-    }
 	private static Set<Matrix> instances;
 
 	private Class<? extends Matrix> getClassFor(int rows, int cols) {

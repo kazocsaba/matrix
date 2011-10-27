@@ -1,9 +1,4 @@
-package kcsaba.math.matrix.impl;
-
-import kcsaba.math.matrix.Matrix;
-import kcsaba.math.matrix.Matrix3;
-import kcsaba.math.matrix.SingularityException;
-import kcsaba.math.matrix.Vector3;
+package kcsaba.math.matrix;
 
 /**
  *

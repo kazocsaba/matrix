@@ -1,8 +1,5 @@
-package kcsaba.math.matrix.impl;
+package kcsaba.math.matrix;
 
-import kcsaba.math.matrix.Matrix;
-import kcsaba.math.matrix.SingularValueDecomposition;
-import kcsaba.math.matrix.SingularityException;
 import kcsaba.math.matrix.backbone.MatrixOp;
 
 /**
