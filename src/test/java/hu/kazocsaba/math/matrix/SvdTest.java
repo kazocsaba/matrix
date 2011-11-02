@@ -1,8 +1,5 @@
 package hu.kazocsaba.math.matrix;
 
-import hu.kazocsaba.math.matrix.SingularValueDecomposition;
-import hu.kazocsaba.math.matrix.MatrixFactory;
-import hu.kazocsaba.math.matrix.Matrix;
 import org.junit.Test;
 import java.util.Random;
 import static org.junit.Assert.*;

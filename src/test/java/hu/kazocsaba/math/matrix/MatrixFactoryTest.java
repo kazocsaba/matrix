@@ -1,13 +1,5 @@
 package hu.kazocsaba.math.matrix;
 
-import hu.kazocsaba.math.matrix.Matrix3;
-import hu.kazocsaba.math.matrix.Vector3;
-import hu.kazocsaba.math.matrix.Vector4;
-import hu.kazocsaba.math.matrix.MatrixFactory;
-import hu.kazocsaba.math.matrix.Matrix;
-import hu.kazocsaba.math.matrix.Vector2;
-import hu.kazocsaba.math.matrix.Vector;
-import hu.kazocsaba.math.matrix.Matrix2;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.BeforeClass;

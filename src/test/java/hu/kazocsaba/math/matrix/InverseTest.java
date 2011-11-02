@@ -1,8 +1,5 @@
 package hu.kazocsaba.math.matrix;
 
-import hu.kazocsaba.math.matrix.Matrix3;
-import hu.kazocsaba.math.matrix.MatrixFactory;
-import hu.kazocsaba.math.matrix.SingularityException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
