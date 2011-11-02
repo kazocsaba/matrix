@@ -7,7 +7,7 @@ sizes have specialized subtypes, e.g. `Matrix3` for 3x3
 matrices, `Vector` for nx1 matrices, and `Vector2` for 2x1
 matrices.
 
-.Type Safety
+== Type Safety
 
 Classes of this library ensure that any `Matrix` object
 that is created will implement the subtype that
@@ -15,7 +15,7 @@ matches its dimensions the closest. For example,
 multiplying a 3x4 matrix and a 4x3 matrix will result in
 a 3x3 matrix that can be cast to type `Matrix3`.
 
-.Creating Instances
+== Creating Instances
 
 Default implementations of the matrix types can be
 constructed using the `MatrixFactory` class. All functions
@@ -30,7 +30,7 @@ created using `ImmutableMatrixFactory`.
 NOTE: Matrices returned by `ImmutableMatrix` objects from `Matrix`
 functions (e.g. `transpose()` or `plus()`) are _not_ immutable.
 
-.Displaying Matrices
+== Displaying Matrices
 
 The `MatrixPrinter` class can be used to produce human-readable
 representations of matrices.
