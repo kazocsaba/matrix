@@ -66,8 +66,9 @@
 				<version>2.1.2</version>
 				<executions>
 					<execution>
+						<id>attach-sources</id>
 						<goals>
-							<goal>jar</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -78,6 +79,7 @@
 				<version>2.8</version>
 				<executions>
 					<execution>
+						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
