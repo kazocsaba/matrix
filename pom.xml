@@ -38,8 +38,8 @@
 	</licenses>
 	
 	<scm>
-		<connection>scm:git:git@github.com/kazocsaba/matrix.git</connection>
-		<developerConnection>scm:git:git@github.com/kazocsaba/matrix.git</developerConnection>
+		<connection>scm:git:git@github.com:kazocsaba/matrix.git</connection>
+		<developerConnection>scm:git:git@github.com:kazocsaba/matrix.git</developerConnection>
 		<url>https://github.com/kazocsaba/matrix.git</url>
 	</scm>
 	
