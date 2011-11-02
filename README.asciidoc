@@ -5,7 +5,10 @@ This library provides simple matrix data structures and
 associated operations. For ease of use, certain matrix
 sizes have specialized subtypes, e.g. `Matrix3` for 3x3
 matrices, `Vector` for nx1 matrices, and `Vector2` for 2x1
-matrices.
+matrices. The subtypes define convenience functions (like
+`Vector3.getX()`) or provide additional function overrides
+with more concrete return types (like `Matrix3.mul(Vector3)`,
+which returns `Vector3`).
 
 == Type Safety
 
@@ -14,6 +17,22 @@ that is created will implement the subtype that
 matches its dimensions the closest. For example,
 multiplying a 3x4 matrix and a 4x3 matrix will result in
 a 3x3 matrix that can be cast to type `Matrix3`.
+
+The type hierarchy is as follows:
+
+[horizontal]
+Matrix:: root type, implemented by all matrix objects
+[horizontal]
+Matrix2::: 2x2 matrix
+Matrix3::: 3x3 matrix
+Vector::: matrix with a single column
+[horizontal]
+Vector2:::: 2D vector (2x1 matrix)
+Vector3:::: 3D vector (3x1 matrix)
+Vector4:::: 4D vector (4x1 matrix)
+
+New versions of the library might introduce new specialized
+types.
 
 == Creating Instances
 
