@@ -27,7 +27,7 @@ public class ImmutableMatrix implements Matrix {
 
 	@Override
 	public double getQuick(int row, int col) {
-		return data.get(row, col);
+		return data.getQuick(row, col);
 	}
 
 	/**
