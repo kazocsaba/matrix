@@ -25,6 +25,8 @@ in Maven:
 		<version>a.b.c</version>
 	</dependency>
 
+You can also browse the [online javadoc](http://kazocsaba.github.com/matrix/apidocs/index.html).
+
 Type safety
 -----------
 
