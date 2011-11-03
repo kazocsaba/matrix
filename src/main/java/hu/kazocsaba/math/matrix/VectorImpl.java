@@ -25,7 +25,17 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
+	public double getCoordQuick(int index) {
+		return data[index];
+	}
+
+	@Override
 	public void setCoord(int index, double value) {
+		data[index] = value;
+	}
+
+	@Override
+	public void setCoordQuick(int index, double value) {
 		data[index] = value;
 	}
 
@@ -36,8 +46,18 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
+	public double getQuick(int row, int col) {
+		return data[row];
+	}
+
+	@Override
 	public void set(int row, int col, double value) {
 		if (col != 0) throw new IndexOutOfBoundsException();
+		data[row] = value;
+	}
+
+	@Override
+	public void setQuick(int row, int col, double value) {
 		data[row] = value;
 	}
 
@@ -57,7 +77,7 @@ class VectorImpl implements Vector {
 		Matrix result = MatrixFactory.createMatrix(getRowCount(), m.getColumnCount());
 		for (int row = 0; row < result.getRowCount(); row++)
 			for (int col = 0; col < result.getColumnCount(); col++)
-				result.set(row, col, data[row] * m.get(0, col));
+				result.setQuick(row, col, data[row] * m.getQuick(0, col));
 		return result;
 	}
 
@@ -71,7 +91,7 @@ class VectorImpl implements Vector {
 	public Vector times(double c) {
 		Vector result=MatrixFactory.createVector(getDimension());
 		for (int i = 0; i < data.length; i++)
-			result.setCoord(i, data[i] * c);
+			result.setCoordQuick(i, data[i] * c);
 		return result;
 	}
 
@@ -79,14 +99,14 @@ class VectorImpl implements Vector {
 	public void add(Matrix m) {
 		if (m.getColumnCount() != 1 || m.getRowCount() != data.length) throw new IllegalArgumentException();
 		for (int i = 0; i < data.length; i++)
-			data[i] += m.get(i, 0);
+			data[i] += m.getQuick(i, 0);
 	}
 
 	@Override
 	public void subtract(Matrix m) {
 		if (m.getColumnCount() != 1 || m.getRowCount() != data.length) throw new IllegalArgumentException();
 		for (int i = 0; i < data.length; i++)
-			data[i] -= m.get(i, 0);
+			data[i] -= m.getQuick(i, 0);
 	}
 
 	@Override
@@ -95,7 +115,7 @@ class VectorImpl implements Vector {
 			throw new IllegalArgumentException();
 		Vector result = MatrixFactory.createVector(row2 - row1 + 1);
 		for (int i = 0; i < row2 - row1 + 1; i++)
-			result.setCoord(i, data[row1 + i]);
+			result.setCoordQuick(i, data[row1 + i]);
 		return result;
 	}
 
@@ -104,7 +124,7 @@ class VectorImpl implements Vector {
 		if (col!=0 || m.getColumnCount()>1 || row<0 || row+m.getRowCount()>getDimension())
 			throw new IllegalArgumentException();
 		for (int r=0; r<m.getRowCount(); r++)
-			setCoord(row+r, m.get(r, 0));
+			setCoordQuick(row+r, m.get(r, 0));
 	}
 
 	@Override

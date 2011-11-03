@@ -21,6 +21,11 @@ class ImmutableDataImpl implements ImmutableData {
 	}
 
 	@Override
+	public double getQuick(int row, int col) {
+		return data[row][col];
+	}
+
+	@Override
 	public int getColumnCount() {
 		return data[0].length;
 	}

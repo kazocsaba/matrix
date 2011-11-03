@@ -14,32 +14,32 @@ class Vector3Impl extends VectorImpl implements Vector3 {
 
 	@Override
 	public double getX() {
-		return getCoord(0);
+		return getCoordQuick(0);
 	}
 
 	@Override
 	public double getY() {
-		return getCoord(1);
+		return getCoordQuick(1);
 	}
 
 	@Override
 	public double getZ() {
-		return getCoord(2);
+		return getCoordQuick(2);
 	}
 
 	@Override
 	public void setX(double value) {
-		setCoord(0, value);
+		setCoordQuick(0, value);
 	}
 
 	@Override
 	public void setY(double value) {
-		setCoord(1, value);
+		setCoordQuick(1, value);
 	}
 
 	@Override
 	public void setZ(double value) {
-		setCoord(2, value);
+		setCoordQuick(2, value);
 	}
 
 	@Override

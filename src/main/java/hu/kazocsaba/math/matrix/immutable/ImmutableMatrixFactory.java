@@ -34,6 +34,14 @@ public final class ImmutableMatrixFactory {
 			}
 
 			@Override
+			public double getQuick(int row, int col) {
+				if (row==0)
+					return x;
+				else
+					return y;
+			}
+
+			@Override
 			public int getColumnCount() {
 				return 1;
 			}
@@ -63,6 +71,15 @@ public final class ImmutableMatrixFactory {
 					case 1: return y;
 					case 2: return z;
 					default: throw new IndexOutOfBoundsException();
+				}
+			}
+
+			@Override
+			public double getQuick(int row, int col) {
+				switch (row) {
+					case 0: return x;
+					case 1: return y;
+					default: return z;
 				}
 			}
 
@@ -98,6 +115,16 @@ public final class ImmutableMatrixFactory {
 					case 2: return z;
 					case 3: return h;
 					default: throw new IndexOutOfBoundsException();
+				}
+			}
+
+			@Override
+			public double getQuick(int row, int col) {
+				switch (row) {
+					case 0: return x;
+					case 1: return y;
+					case 2: return z;
+					default: return h;
 				}
 			}
 
@@ -214,6 +241,11 @@ public final class ImmutableMatrixFactory {
 			}
 
 			@Override
+			public double getQuick(int row, int col) {
+				return 0;
+			}
+
+			@Override
 			public int getColumnCount() {
 				return rows;
 			}
@@ -243,6 +275,11 @@ public final class ImmutableMatrixFactory {
 			}
 
 			@Override
+			public double getQuick(int row, int col) {
+				return 1;
+			}
+
+			@Override
 			public int getColumnCount() {
 				return rows;
 			}
@@ -267,6 +304,11 @@ public final class ImmutableMatrixFactory {
 			@Override
 			public double get(int row, int col) {
 				if (row<0 || row>=size || col<0 || col>=size) throw new IndexOutOfBoundsException();
+				return row==col ? 1 : 0;
+			}
+
+			@Override
+			public double getQuick(int row, int col) {
 				return row==col ? 1 : 0;
 			}
 

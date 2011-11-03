@@ -21,7 +21,7 @@ public class VectorOp extends MatrixOp {
 		if (caller.getDimension() != v.getDimension()) throw new IllegalArgumentException();
 		double result = 0;
 		for (int i = 0; i < caller.getDimension(); i++)
-			result += caller.getCoord(i) * v.getCoord(i);
+			result += caller.getCoordQuick(i) * v.getCoordQuick(i);
 		return result;
 	}
 	
@@ -34,7 +34,7 @@ public class VectorOp extends MatrixOp {
 				throw new SingularityException();
 			else {
 				Vector result = MatrixFactory.createVector(1);
-				result.set(0, 0, 1 / caller.get(0, 0));
+				result.setQuick(0, 0, 1 / caller.getQuick(0, 0));
 				return result;
 			}
 		} else
@@ -46,7 +46,7 @@ public class VectorOp extends MatrixOp {
 	 */
 	public static double determinant(Vector caller) {
 		if (caller.getDimension()!=1) throw new IllegalArgumentException("Matrix is not square");
-		return caller.getCoord(0);
+		return caller.getCoordQuick(0);
 	}
 	
 	/**
@@ -56,12 +56,12 @@ public class VectorOp extends MatrixOp {
 		double threshold = 1E-15;
 		double lenSq = 0;
 		for (int i = 0; i < caller.getDimension(); i++)
-			lenSq += caller.getCoord(i) * caller.getCoord(i);
+			lenSq += caller.getCoordQuick(i) * caller.getCoordQuick(i);
 		Matrix result = MatrixFactory.createMatrix(1, caller.getDimension());
 		if (lenSq < threshold)
 			return result;
 		for (int i = 0; i < caller.getDimension(); i++)
-			result.set(0, i, caller.getCoord(i) / lenSq);
+			result.set(0, i, caller.getCoordQuick(i) / lenSq);
 		return result;
 	}
 	
@@ -70,7 +70,7 @@ public class VectorOp extends MatrixOp {
 		sb.append('(');
 		for (int i=0; i<caller.getDimension(); i++) {
 			if (i>0) sb.append("; ");
-			sb.append(String.format("%f", caller.getCoord(i)));
+			sb.append(String.format("%f", caller.getCoordQuick(i)));
 		}
 		sb.append(')');
 		return sb.toString();

@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.1.0 (???):
+
+- Introduce functions `Matrix.getQuick/setQuick` and `Vector.getCoordQuick/setCoordQuick` which skip index checking; refactor library functions to use these
+  after they have checked their parameters.
+- The default matrix implementations now use `double[]` instead of `double[][]` to store their elements.
+
 Version 1.0.0 (2011.11.02):
 
 - Moved everything to package `hu.kazocsaba.math.matrix`.

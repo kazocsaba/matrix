@@ -14,6 +14,14 @@ public interface Matrix {
 	 */
 	public double get(int row, int col);
 	/**
+	 * Retrieves an element of the matrix without checking the arguments. If the row or the column index is invalid,
+	 * the behaviour of this method is unspecified. For example, it may return some value or throw an exception.
+	 * @param row the row index
+	 * @param col the column index
+	 * @return the element at the specified position
+	 */
+	public double getQuick(int row, int col);
+	/**
 	 * Updates an element of the matrix.
 	 * @param row the row index
 	 * @param col the column index
@@ -21,6 +29,14 @@ public interface Matrix {
 	 * @throws IndexOutOfBoundsException if either index is out of range
 	 */
 	public void set(int row, int col, double value);
+	/**
+	 * Updates an element of the matrix without checking the indexes. If the row or the column index is invalid,
+	 * the behaviour of this method is unspecified. For example, it may set some element or throw an exception.
+	 * @param row the row index
+	 * @param col the column index
+	 * @param value the new value
+	 */
+	public void setQuick(int row, int col, double value);
 	/**
 	 * Returns the number of columns.
 	 * @return the number of columns

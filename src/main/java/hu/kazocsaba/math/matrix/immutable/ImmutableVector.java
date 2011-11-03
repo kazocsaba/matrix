@@ -28,6 +28,11 @@ public class ImmutableVector extends ImmutableMatrix implements Vector {
 		return get(index, 0);
 	}
 
+	@Override
+	public double getCoordQuick(int index) {
+		return getQuick(index, 0);
+	}
+
 	/**
 	 * Throws an exception and leaves the matrix unmodified.
 	 * @param index the coordinate to set
@@ -36,6 +41,17 @@ public class ImmutableVector extends ImmutableMatrix implements Vector {
 	 */
 	@Override
 	public void setCoord(int index, double value) {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
+
+	/**
+	 * Throws an exception and leaves the matrix unmodified.
+	 * @param index the coordinate to set
+	 * @param value the new value
+	 * @throws UnsupportedOperationException always
+	 */
+	@Override
+	public void setCoordQuick(int index, double value) {
 		throw new UnsupportedOperationException("Matrix is read-only");
 	}
 

@@ -45,12 +45,28 @@ class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public double getCoordQuick(int index) {
+		if (index==0)
+			return x;
+		else
+			return y;
+	}
+
+	@Override
 	public void setCoord(int index, double value) {
 		switch (index) {
 			case 0: x=value; break;
 			case 1: y=value; break;
 			default: throw new IllegalArgumentException();
 		}
+	}
+
+	@Override
+	public void setCoordQuick(int index, double value) {
+		if (index==0)
+			x=value;
+		else
+			y=value;
 	}
 
 	@Override
@@ -67,9 +83,19 @@ class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public double getQuick(int row, int col) {
+		return getCoordQuick(row);
+	}
+
+	@Override
 	public void set(int row, int col, double value) {
 		if (col!=0) throw new IllegalArgumentException();
 		setCoord(row, value);
+	}
+
+	@Override
+	public void setQuick(int row, int col, double value) {
+		setCoordQuick(row, value);
 	}
 
 	@Override
@@ -87,8 +113,8 @@ class Vector2Impl implements Vector2 {
 		if (m.getRowCount()!=1) throw new IllegalArgumentException();
 		Matrix result=MatrixFactory.createMatrix(2, m.getColumnCount());
 		for (int col=0; col<result.getColumnCount(); col++) {
-			result.set(0, col, x*m.get(0, col));
-			result.set(1, col, y*m.get(0, col));
+			result.setQuick(0, col, x*m.getQuick(0, col));
+			result.setQuick(1, col, y*m.getQuick(0, col));
 		}
 		return result;
 	}
@@ -141,7 +167,7 @@ class Vector2Impl implements Vector2 {
 			if (row1==row2) {
 				double value=getCoord(row1);
 				Vector result=MatrixFactory.createVector(1);
-				result.setCoord(0, value);
+				result.setCoordQuick(0, value);
 				return result;
 			}
 		}
@@ -153,7 +179,7 @@ class Vector2Impl implements Vector2 {
 		if (col!=0 || m.getColumnCount()>1 || row<0 || row+m.getRowCount()>2)
 			throw new IllegalArgumentException();
 		if (m.getColumnCount()>1 || m.getRowCount()>2) throw new IllegalArgumentException();
-		setCoord(row, m.get(0, 0));
+		setCoordQuick(row, m.get(0, 0));
 		if (m.getRowCount()==2)
 			y=((Vector2)m).getY();
 	}
@@ -171,8 +197,8 @@ class Vector2Impl implements Vector2 {
 	@Override
 	public Matrix transpose() {
 		Matrix result=MatrixFactory.createMatrix(1, 2);
-		result.set(0, 0, x);
-		result.set(0, 1, y);
+		result.setQuick(0, 0, x);
+		result.setQuick(0, 1, y);
 		return result;
 	}
 

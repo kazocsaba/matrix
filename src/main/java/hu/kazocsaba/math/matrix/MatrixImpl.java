@@ -8,30 +8,45 @@ import hu.kazocsaba.math.matrix.backbone.MatrixOp;
  */
 class MatrixImpl implements Matrix {
 
-	private final double[][] data;
+	private final double[] data;
+	private final int rows, cols;
 
 	MatrixImpl(int rowCount, int colCount) {
-		data = new double[rowCount][colCount];
+		data = new double[rowCount*colCount];
+		rows=rowCount;
+		cols=colCount;
 	}
 
 	@Override
 	public double get(int row, int col) {
-		return data[row][col];
+		if (row<0 || row>=rows || col<0 || col>=cols) throw new IndexOutOfBoundsException();
+		return getQuick(row, col);
+	}
+
+	@Override
+	public double getQuick(int row, int col) {
+		return data[row*cols+col];
 	}
 
 	@Override
 	public void set(int row, int col, double value) {
-		data[row][col] = value;
+		if (row<0 || row>=rows || col<0 || col>=cols) throw new IndexOutOfBoundsException();
+		setQuick(row, col, value);
+	}
+
+	@Override
+	public void setQuick(int row, int col, double value) {
+		data[row*cols+col] = value;
 	}
 
 	@Override
 	public int getColumnCount() {
-		return data[0].length;
+		return cols;
 	}
 
 	@Override
 	public int getRowCount() {
-		return data.length;
+		return rows;
 	}
 
 	@Override

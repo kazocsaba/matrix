@@ -25,8 +25,8 @@ public class MatrixOp {
 			for (int col = 0; col < result.getColumnCount(); col++) {
 				double v = 0;
 				for (int i = 0; i < caller.getColumnCount(); i++)
-					v += caller.get(row, i) * m.get(i, col);
-				result.set(row, col, v);
+					v += caller.getQuick(row, i) * m.getQuick(i, col);
+				result.setQuick(row, col, v);
 			}
 		return result;
 	}
@@ -37,7 +37,7 @@ public class MatrixOp {
 	public static void scale(Matrix caller, double c) {
 		for (int row = 0; row < caller.getRowCount(); row++)
 			for (int col = 0; col < caller.getColumnCount(); col++)
-				caller.set(row, col, caller.get(row, col)*c);
+				caller.setQuick(row, col, caller.getQuick(row, col)*c);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class MatrixOp {
 		Matrix result=MatrixFactory.createLike(caller);
 		for (int row = 0; row < caller.getRowCount(); row++)
 			for (int col = 0; col < caller.getColumnCount(); col++)
-				result.set(row, col, caller.get(row, col)*c);
+				result.setQuick(row, col, caller.getQuick(row, col)*c);
 		return result;
 	}
 
@@ -58,7 +58,7 @@ public class MatrixOp {
 		if (caller.getRowCount() != m.getRowCount() || caller.getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();
 		for (int i=0; i<caller.getRowCount(); i++) for (int j=0; j<caller.getColumnCount(); j++)
-			caller.set(i, j, caller.get(i, j) + m.get(i, j));
+			caller.setQuick(i, j, caller.getQuick(i, j) + m.getQuick(i, j));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class MatrixOp {
 		if (caller.getRowCount() != m.getRowCount() || caller.getColumnCount() != m.getColumnCount())
 			throw new IllegalArgumentException();
 		for (int i=0; i<caller.getRowCount(); i++) for (int j=0; j<caller.getColumnCount(); j++)
-			caller.set(i, j, caller.get(i, j) - m.get(i, j));
+			caller.setQuick(i, j, caller.getQuick(i, j) - m.getQuick(i, j));
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class MatrixOp {
 		Matrix result = MatrixFactory.createMatrix(row2 - row1 + 1, col2 - col1 + 1);
 		for (int row = 0; row < result.getRowCount(); row++)
 			for (int col = 0; col < result.getColumnCount(); col++)
-				result.set(row, col, caller.get(row1 + row, col1 + col));
+				result.setQuick(row, col, caller.getQuick(row1 + row, col1 + col));
 		return result;
 	}
 
@@ -91,7 +91,7 @@ public class MatrixOp {
 		if (row<0 || col<0 || row+m.getRowCount()>caller.getRowCount() || col+m.getColumnCount()>caller.getColumnCount())
 			throw new IllegalArgumentException();
 		for (int r=0; r<m.getRowCount(); r++) for (int c=0; c<m.getColumnCount(); c++)
-			caller.set(row+r, col+c, m.get(r, c));
+			caller.setQuick(row+r, col+c, m.getQuick(r, c));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class MatrixOp {
 			throw new IllegalArgumentException();
 		Matrix result=MatrixFactory.createLike(caller);
 		for (int i=0; i<caller.getRowCount(); i++) for (int j=0; j<caller.getColumnCount(); j++)
-			result.set(i, j, caller.get(i, j) + m.get(i, j));
+			result.setQuick(i, j, caller.getQuick(i, j) + m.getQuick(i, j));
 		return result;
 	}
 
@@ -114,7 +114,7 @@ public class MatrixOp {
 			throw new IllegalArgumentException();
 		Matrix result=MatrixFactory.createLike(caller);
 		for (int i=0; i<caller.getRowCount(); i++) for (int j=0; j<caller.getColumnCount(); j++)
-			result.set(i, j, caller.get(i, j) - m.get(i, j));
+			result.setQuick(i, j, caller.getQuick(i, j) - m.getQuick(i, j));
 		return result;
 	}
 
@@ -134,7 +134,7 @@ public class MatrixOp {
 		SingularValueDecomposition svd = caller.svd();
 		Matrix D = svd.getS();
 		for (int i = 0; i < D.getRowCount(); i++) {
-			if (D.get(i, i) > threshold) D.set(i, i, 1 / D.get(i, i));
+			if (D.get(i, i) > threshold) D.setQuick(i, i, 1 / D.getQuick(i, i));
 		}
 		return svd.getV().mul(D).mul(svd.getU().transpose());
 	}
@@ -146,7 +146,7 @@ public class MatrixOp {
 		Matrix result = MatrixFactory.createMatrix(caller.getColumnCount(), caller.getRowCount());
 		for (int i = 0; i < caller.getRowCount(); i++)
 			for (int j = 0; j < caller.getColumnCount(); j++)
-				result.set(j, i, caller.get(i, j));
+				result.setQuick(j, i, caller.getQuick(i, j));
 		return result;
 	}
 
@@ -157,14 +157,14 @@ public class MatrixOp {
 		if (caller.getRowCount()!=caller.getColumnCount()) throw new IllegalArgumentException("Matrix is not square");
 		switch (caller.getRowCount()) {
 			case 2:
-				return caller.get(0, 0)*caller.get(1, 1)-caller.get(1, 0)*caller.get(0, 1);
+				return caller.getQuick(0, 0)*caller.getQuick(1, 1)-caller.getQuick(1, 0)*caller.getQuick(0, 1);
 			case 3:
-				return caller.get(0, 0)*caller.get(1, 1)*caller.get(2, 2)+
-						caller.get(0, 1)*caller.get(1, 2)*caller.get(2, 0)+
-						caller.get(0, 2)*caller.get(1, 0)*caller.get(2, 1)-
-						caller.get(0, 0)*caller.get(1, 2)*caller.get(2, 1)-
-						caller.get(0, 1)*caller.get(1, 0)*caller.get(2, 2)-
-						caller.get(0, 2)*caller.get(1, 1)*caller.get(2, 0);
+				return caller.getQuick(0, 0)*caller.getQuick(1, 1)*caller.getQuick(2, 2)+
+						caller.getQuick(0, 1)*caller.getQuick(1, 2)*caller.getQuick(2, 0)+
+						caller.getQuick(0, 2)*caller.getQuick(1, 0)*caller.getQuick(2, 1)-
+						caller.getQuick(0, 0)*caller.getQuick(1, 2)*caller.getQuick(2, 1)-
+						caller.getQuick(0, 1)*caller.getQuick(1, 0)*caller.getQuick(2, 2)-
+						caller.getQuick(0, 2)*caller.getQuick(1, 1)*caller.getQuick(2, 0);
 			default:
 				return new JamaLU(caller).det();
 		}
@@ -184,7 +184,7 @@ public class MatrixOp {
 		double n = 0;
 		for (int i = 0; i < caller.getRowCount(); i++)
 			for (int j = 0; j < caller.getColumnCount(); j++)
-				n += caller.get(i, j) * caller.get(i, j);
+				n += caller.getQuick(i, j) * caller.getQuick(i, j);
 		return Math.sqrt(n);
 	}
 	/**
@@ -207,7 +207,7 @@ public class MatrixOp {
 			throw new IllegalArgumentException("Matrix dimensions do not match");
 		double error=0;
 		for (int row=0; row<caller.getRowCount(); row++) for (int col=0; col<caller.getColumnCount(); col++) {
-			double diff=caller.get(row, col)-other.get(row, col);
+			double diff=caller.getQuick(row, col)-other.getQuick(row, col);
 			error+=diff*diff;
 		}
 		return Math.sqrt(error);

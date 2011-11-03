@@ -7,6 +7,7 @@ package hu.kazocsaba.math.matrix.immutable;
 interface ImmutableData {
 
 	public double get(int row, int col);
+	public double getQuick(int row, int col);
 
 	public int getColumnCount();
 

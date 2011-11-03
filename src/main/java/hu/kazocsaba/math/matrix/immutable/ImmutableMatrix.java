@@ -25,6 +25,11 @@ public class ImmutableMatrix implements Matrix {
 		return data.get(row, col);
 	}
 
+	@Override
+	public double getQuick(int row, int col) {
+		return data.get(row, col);
+	}
+
 	/**
 	 * Throws an exception and leaves the matrix unmodified.
 	 * @param row the row index
@@ -34,6 +39,18 @@ public class ImmutableMatrix implements Matrix {
 	 */
 	@Override
 	public void set(int row, int col, double value) {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
+
+	/**
+	 * Throws an exception and leaves the matrix unmodified.
+	 * @param row the row index
+	 * @param col the column index
+	 * @param value the new value
+	 * @throws UnsupportedOperationException always
+	 */
+	@Override
+	public void setQuick(int row, int col, double value) {
 		throw new UnsupportedOperationException("Matrix is read-only");
 	}
 
