@@ -1,7 +1,8 @@
 package hu.kazocsaba.math.matrix;
 
 /**
- * The eigenvectors and eigenvalues of a matrix.
+ * The eigenvectors and eigenvalues of a matrix. It provides the eigenvector-eigenvalue pairs in
+ * descending order of the real part of the eigenvalues.
  * @author Kazó Csaba
  */
 public interface EigenDecomposition {
@@ -18,6 +19,7 @@ public interface EigenDecomposition {
 	 * @throws IndexOutOfBoundsException if the index is invalid
 	 */
 	public double getEigenvalue(int index);
+	
 	/**
 	 * Returns the imaginary part of an eigenvalue.
 	 * @param index the index of the eigenvalue to return

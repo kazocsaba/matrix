@@ -4,6 +4,9 @@ import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.Vector;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Eigenvalue decomposition algorithm. Adapted from JAMA.
@@ -44,7 +47,24 @@ class JamaEIG implements EigenDecomposition {
    */
    private double[] d, e;
 
-	private Vector[] eigenvector;
+	class Part implements Comparable<Part> {
+		public double valueReal, valueIm;
+		public Vector vector;
+
+		public Part(double valueReal, double valueIm, Vector vector) {
+			this.valueReal = valueReal;
+			this.valueIm = valueIm;
+			this.vector = vector;
+		}
+
+		@Override
+		public int compareTo(Part o) {
+			// decreasing order of real part
+			return -Double.compare(valueReal, o.valueReal);
+		}
+		
+	}
+	private List<Part> result;
 
 /* ------------------------
    Private Methods
@@ -901,12 +921,14 @@ class JamaEIG implements EigenDecomposition {
          hqr2(V, H);
       }
 		
-		eigenvector=new Vector[n];
+		result=new ArrayList<Part>(n);
 		for (int i=0; i<n; i++) {
-			eigenvector[i]=MatrixFactory.createVector(n);
+			Vector eigenvector=MatrixFactory.createVector(n);
 			for (int row=0; row<n; row++)
-				eigenvector[i].setCoordQuick(row, V[row][i]);
+				eigenvector.setCoordQuick(row, V[row][i]);
+			result.add(new Part(d[i], e[i], eigenvector));
 		}
+		Collections.sort(result);
    }
 
 /* ------------------------
@@ -920,17 +942,17 @@ class JamaEIG implements EigenDecomposition {
 
 	@Override
 	public double getEigenvalue(int index) {
-		return d[index];
+		return result.get(index).valueReal;
 	}
 
 	@Override
 	public double getEigenvalueIm(int index) {
-		return e[index];
+		return result.get(index).valueIm;
 	}
 
 	@Override
 	public Vector getEigenvector(int index) {
-		return eigenvector[index];
+		return result.get(index).vector;
 	}
 	
 
