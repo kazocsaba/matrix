@@ -1,6 +1,5 @@
 package hu.kazocsaba.math.matrix;
 
-import hu.kazocsaba.math.matrix.backbone.MatrixOp;
 import hu.kazocsaba.math.matrix.backbone.VectorOp;
 
 /**
@@ -214,7 +213,12 @@ class Vector2Impl implements Vector2 {
 
 	@Override
 	public SingularValueDecomposition svd() {
-		return MatrixOp.svd(this);
+		return VectorOp.svd(this);
+	}
+
+	@Override
+	public EigenDecomposition eig() {
+		return VectorOp.eig(this);
 	}
 
 	@Override

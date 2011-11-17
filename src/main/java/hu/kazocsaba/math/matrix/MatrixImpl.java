@@ -120,6 +120,11 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
+	public EigenDecomposition eig() {
+		return MatrixOp.eig(this);
+	}
+
+	@Override
 	public double norm() {
 		return MatrixOp.norm(this);
 	}

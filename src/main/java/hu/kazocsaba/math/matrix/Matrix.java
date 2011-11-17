@@ -191,4 +191,10 @@ public interface Matrix {
 	 * @return the SVD of this matrix
 	 */
 	public SingularValueDecomposition svd();
+	
+	/**
+	 * Computes the eigen decomposition of this matrix.
+	 * @return the eigenvalues and eigenvectors of this matrix
+	 */
+	public EigenDecomposition eig();
 }

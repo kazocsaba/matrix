@@ -1,5 +1,6 @@
 package hu.kazocsaba.math.matrix.backbone;
 
+import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
@@ -175,6 +176,13 @@ public class MatrixOp {
 	 */
 	public static SingularValueDecomposition svd(Matrix caller) {
 		return new JamaSVD(caller);
+	}
+	
+	/**
+	 * @see Matrix#eig()
+	 */
+	public static EigenDecomposition eig(Matrix caller) {
+		return new JamaEIG(caller);
 	}
 
 	/**

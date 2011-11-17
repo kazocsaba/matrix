@@ -1,5 +1,6 @@
 package hu.kazocsaba.math.matrix.immutable;
 
+import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
 import hu.kazocsaba.math.matrix.SingularityException;
@@ -153,6 +154,11 @@ public class ImmutableMatrix implements Matrix {
 	@Override
 	public SingularValueDecomposition svd() {
 		return MatrixOp.svd(this);
+	}
+
+	@Override
+	public EigenDecomposition eig() {
+		return MatrixOp.eig(this);
 	}
 
 	@Override

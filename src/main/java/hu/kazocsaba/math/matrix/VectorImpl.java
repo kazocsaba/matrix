@@ -163,6 +163,11 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
+	public EigenDecomposition eig() {
+		return VectorOp.eig(this);
+	}
+
+	@Override
 	public Matrix pseudoInverse() {
 		return VectorOp.pseudoInverse(this);
 
