@@ -1,10 +1,11 @@
 Changelog
 =========
 
-Version 1.1.0 (???):
+Version 1.1.0 (2011.11.17):
 
-- Introduce functions `Matrix.getQuick/setQuick` and `Vector.getCoordQuick/setCoordQuick` which skip index checking; refactor library functions to use these
+- Introduced functions `Matrix.getQuick/setQuick` and `Vector.getCoordQuick/setCoordQuick` which skip index checking; refactor library functions to use these
   after they have checked their parameters.
+- Added Matrix.eig() eigen decomposition.
 - The default matrix implementations now use `double[]` instead of `double[][]` to store their elements.
 
 Version 1.0.0 (2011.11.02):
