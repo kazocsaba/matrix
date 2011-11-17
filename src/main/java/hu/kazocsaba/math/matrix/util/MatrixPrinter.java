@@ -176,7 +176,7 @@ public class MatrixPrinter {
 		int[] columnWidths=new int[m.getColumnCount()];
 		int maxColumnWidth = 0;
 		for (int i=0; i<m.getRowCount(); i++) for (int j=0; j<m.getColumnCount(); j++) {
-			elements[i][j]=formatter.format(m.get(i,j));
+			elements[i][j]=formatter.format(m.getQuick(i,j));
 			columnWidths[j]=Math.max(columnWidths[j], elements[i][j].length());
 			maxColumnWidth=Math.max(maxColumnWidth, elements[i][j].length());
 		}
@@ -231,20 +231,20 @@ public class MatrixPrinter {
 		PrintWriter out=new PrintWriter(System.out);
 		if (m.getColumnCount()==1) {
 			out.print('{');
-			out.print(m.get(0, 0));
+			out.print(m.getQuick(0, 0));
 			for (int row=1; row<m.getRowCount(); row++) {
 				out.print(", ");
-				out.print(m.get(row, 0));
+				out.print(m.getQuick(row, 0));
 			}
 			out.println('}');
 		} else {
 			out.println('{');
 			for (int row=0; row<m.getRowCount(); row++) {
 				out.print("\t{");
-				out.print(m.get(row, 0));
+				out.print(m.getQuick(row, 0));
 				for (int col=1; col<m.getColumnCount(); col++) {
 					out.print(", ");
-					out.print(m.get(row, col));
+					out.print(m.getQuick(row, col));
 				}
 				out.print('}');
 				if (row<m.getRowCount()-1)

@@ -30,7 +30,7 @@ public class VectorOp extends MatrixOp {
 	 */
 	public static Matrix inverse(Vector caller) throws SingularityException {
 		if (caller.getRowCount() == 1) {
-			if (caller.get(0, 0) == 0)
+			if (caller.getQuick(0, 0) == 0)
 				throw new SingularityException();
 			else {
 				Vector result = MatrixFactory.createVector(1);

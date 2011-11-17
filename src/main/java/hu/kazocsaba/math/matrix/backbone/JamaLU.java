@@ -45,7 +45,7 @@ class JamaLU {
 
       LU = new double[A.getRowCount()][A.getColumnCount()];
 		for (int row=0; row<A.getRowCount(); row++) for (int col=0; col<A.getColumnCount(); col++) {
-			LU[row][col]=A.get(row, col);
+			LU[row][col]=A.getQuick(row, col);
 		}
       m = A.getRowCount();
       n = A.getColumnCount();
@@ -276,7 +276,7 @@ class JamaLU {
       double[][] X = new double[piv.length][nx];
 		for (int i=0; i<piv.length; i++) {
 			for (int j=0; j<nx; j++) {
-				X[i][j]=B.get(piv[i], j);
+				X[i][j]=B.getQuick(piv[i], j);
 			}
 		}
 

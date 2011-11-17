@@ -20,12 +20,12 @@ public class ImmutableVector2 extends ImmutableVector implements Vector2 {
 
 	@Override
 	public double getX() {
-		return getCoord(0);
+		return getCoordQuick(0);
 	}
 
 	@Override
 	public double getY() {
-		return getCoord(1);
+		return getCoordQuick(1);
 	}
 
 	/**

@@ -21,17 +21,17 @@ public class ImmutableVector3 extends ImmutableVector implements Vector3 {
 
 	@Override
 	public double getX() {
-		return getCoord(0);
+		return getCoordQuick(0);
 	}
 
 	@Override
 	public double getY() {
-		return getCoord(1);
+		return getCoordQuick(1);
 	}
 
 	@Override
 	public double getZ() {
-		return getCoord(2);
+		return getCoordQuick(2);
 	}
 
 	/**

@@ -858,7 +858,7 @@ class JamaEIG implements EigenDecomposition {
 		
       double[][] A = new double[Arg.getRowCount()][Arg.getColumnCount()];
 		for (int row=0; row<Arg.getRowCount(); row++) for (int col=0; col<Arg.getColumnCount(); col++) {
-			A[row][col]=Arg.get(row, col);
+			A[row][col]=Arg.getQuick(row, col);
 		}
       n = Arg.getColumnCount();
       double[][] V = new double[n][n];
@@ -905,7 +905,7 @@ class JamaEIG implements EigenDecomposition {
 		for (int i=0; i<n; i++) {
 			eigenvector[i]=MatrixFactory.createVector(n);
 			for (int row=0; row<n; row++)
-				eigenvector[i].setCoord(row, V[row][i]);
+				eigenvector[i].setCoordQuick(row, V[row][i]);
 		}
    }
 

@@ -122,7 +122,7 @@ public class MatrixFactory {
 		if (m==null) throw new NullPointerException();
 		Matrix copy=createMatrix(m.getRowCount(), m.getColumnCount());
 		for (int row=0; row<m.getRowCount(); row++) for (int col=0; col<m.getColumnCount(); col++)
-			copy.set(row, col, m.get(row, col));
+			copy.set(row, col, m.getQuick(row, col));
 		return copy;
 	}
 
@@ -367,7 +367,7 @@ public class MatrixFactory {
 	public static Vector createVector(double[] elements) {
 		Vector v=createVector(elements.length);
 		for (int i=0; i<elements.length; i++)
-			v.setCoord(i, elements[i]);
+			v.setCoordQuick(i, elements[i]);
 		return v;
 	}
 }

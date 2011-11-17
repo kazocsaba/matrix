@@ -178,7 +178,7 @@ class Vector2Impl implements Vector2 {
 		if (col!=0 || m.getColumnCount()>1 || row<0 || row+m.getRowCount()>2)
 			throw new IllegalArgumentException();
 		if (m.getColumnCount()>1 || m.getRowCount()>2) throw new IllegalArgumentException();
-		setCoordQuick(row, m.get(0, 0));
+		setCoordQuick(row, m.getQuick(0, 0));
 		if (m.getRowCount()==2)
 			y=((Vector2)m).getY();
 	}

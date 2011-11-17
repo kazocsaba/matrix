@@ -18,11 +18,11 @@ class JamaSVD implements SingularValueDecomposition {
 		if (matrix.getRowCount() < matrix.getColumnCount()) {
 			// Jama can only do SVD for its transpose
 			for (int row=0; row<matrix.getRowCount(); row++) for (int col=0; col<matrix.getColumnCount(); col++) {
-				A[col][row]=matrix.get(row, col);
+				A[col][row]=matrix.getQuick(row, col);
 			}
 		} else {
 			for (int row=0; row<matrix.getRowCount(); row++) for (int col=0; col<matrix.getColumnCount(); col++) {
-				A[row][col]=matrix.get(row, col);
+				A[row][col]=matrix.getQuick(row, col);
 			}
 		}
 		int m=A.length;

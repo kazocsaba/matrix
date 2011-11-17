@@ -135,7 +135,7 @@ public class MatrixOp {
 		SingularValueDecomposition svd = caller.svd();
 		Matrix D = svd.getS();
 		for (int i = 0; i < D.getRowCount(); i++) {
-			if (D.get(i, i) > threshold) D.setQuick(i, i, 1 / D.getQuick(i, i));
+			if (D.getQuick(i, i) > threshold) D.setQuick(i, i, 1 / D.getQuick(i, i));
 		}
 		return svd.getV().mul(D).mul(svd.getU().transpose());
 	}
