@@ -82,6 +82,12 @@ class VectorImpl implements Vector {
 	}
 
 	@Override
+	public Vector mul(Vector v) {
+		if (v.getRowCount()!=1) throw new IllegalArgumentException();
+		return this.times(v.getQuick(0, 0));
+	}
+
+	@Override
 	public void scale(double c) {
 		for (int i = 0; i < data.length; i++)
 			data[i] *= c;

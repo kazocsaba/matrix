@@ -4,6 +4,7 @@ import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
 import hu.kazocsaba.math.matrix.SingularityException;
+import hu.kazocsaba.math.matrix.Vector;
 import hu.kazocsaba.math.matrix.backbone.MatrixOp;
 
 /**
@@ -67,6 +68,11 @@ public class ImmutableMatrix implements Matrix {
 	@Override
 	public Matrix mul(Matrix m) {
 		return MatrixOp.mul(this, m);
+	}
+
+	@Override
+	public Vector mul(Vector v) {
+		return (Vector)MatrixOp.mul(this, v);
 	}
 
 	/**

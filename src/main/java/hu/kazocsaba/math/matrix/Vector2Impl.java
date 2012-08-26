@@ -119,6 +119,12 @@ class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public Vector mul(Vector v) {
+		if (v.getRowCount()!=1) throw new IllegalArgumentException();
+		return this.times(v.getQuick(0, 0));
+	}
+
+	@Override
 	public void scale(double c) {
 		x*=c;
 		y*=c;

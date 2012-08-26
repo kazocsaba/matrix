@@ -53,10 +53,20 @@ public interface Matrix {
 	 * @param m a matrix
 	 * @return the product of the two matrices
 	 * @throws IllegalArgumentException if the matrix dimensions don't match (i.e.
-	 * this.getColumnCount()!=m.getRowCount()
+	 * this.getColumnCount()!=m.getRowCount())
 	 * @throws NullPointerException if the argument is null
 	 */
 	public Matrix mul(Matrix m);
+	
+	/**
+	 * Multiplies this matrix with the argument and returns the result.
+	 * @param v a vector
+	 * @return the product of this matrix and the vector
+	 * @throws IllegalArgumentException if the matrix dimensions don't match (i.e.
+	 * this.getColumnCount()!=v.getDimension())
+	 * @throws NullPointerException if the argument is null
+	 */
+	public Vector mul(Vector v);
 	
 	/**
 	 * Scales this matrix (in place) by a scalar by multiplying all matrix elements with c.

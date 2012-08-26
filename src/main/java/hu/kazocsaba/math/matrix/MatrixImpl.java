@@ -55,6 +55,11 @@ class MatrixImpl implements Matrix {
 	}
 
 	@Override
+	public Vector mul(Vector v) {
+		return (Vector)MatrixOp.mul(this, v);
+	}
+
+	@Override
 	public void scale(double c) {
 		MatrixOp.scale(this, c);
 	}
