@@ -128,6 +128,19 @@ public interface Matrix {
 	 * @throws IllegalArgumentException if the arguments don't properly specify a submatrix
 	 */
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2);
+	
+	/**
+	 * Provides access to submatrices of this matrix. The accessor returned by this method provides submatrices with
+	 * the same semantics as {@link #getSubmatrix(int, int, int, int)}: it creates new, independent, modifiable
+	 * matrices initialized with the requested submatrix data. For example:
+	 * <blockquote><pre>
+	 * getSub().matrix3(0, 1)</pre></blockquote>
+	 * is equivalent to
+	 * <blockquote><pre>
+	 * (Matrix3) getSubmatrix(0, 2, 1, 3)</pre></blockquote>
+	 * @return an accessor to the submatrices of this matrix
+	 */
+	public SubmatrixAccessor getSub();
 
 	/**
 	 * Sets a submatrix of the current matrix to match the argument. The submatrix position is

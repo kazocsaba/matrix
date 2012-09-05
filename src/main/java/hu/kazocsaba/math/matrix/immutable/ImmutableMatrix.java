@@ -4,8 +4,10 @@ import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
 import hu.kazocsaba.math.matrix.SingularityException;
+import hu.kazocsaba.math.matrix.SubmatrixAccessor;
 import hu.kazocsaba.math.matrix.Vector;
 import hu.kazocsaba.math.matrix.backbone.MatrixOp;
+import hu.kazocsaba.math.matrix.backbone.SubmatrixAccessorImpl;
 
 /**
  * An immutable matrix implementation.
@@ -113,6 +115,11 @@ public class ImmutableMatrix implements Matrix {
 	@Override
 	public Matrix getSubmatrix(int row1, int row2, int col1, int col2) {
 		return MatrixOp.getSubmatrix(this, row1, row2, col1, col2);
+	}
+
+	@Override
+	public SubmatrixAccessor getSub() {
+		return new SubmatrixAccessorImpl(this);
 	}
 
 	/**

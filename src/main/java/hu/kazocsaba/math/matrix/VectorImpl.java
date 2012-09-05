@@ -1,5 +1,6 @@
 package hu.kazocsaba.math.matrix;
 
+import hu.kazocsaba.math.matrix.backbone.SubmatrixAccessorImpl;
 import hu.kazocsaba.math.matrix.backbone.VectorOp;
 
 /**
@@ -123,6 +124,11 @@ class VectorImpl implements Vector {
 		for (int i = 0; i < row2 - row1 + 1; i++)
 			result.setCoordQuick(i, data[row1 + i]);
 		return result;
+	}
+
+	@Override
+	public SubmatrixAccessor getSub() {
+		return new SubmatrixAccessorImpl(this);
 	}
 
 	@Override
