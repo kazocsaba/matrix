@@ -252,4 +252,14 @@ class Vector2Impl implements Vector2 {
 	public void normalize() {
 		VectorOp.normalize(this);
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return VectorOp.equals(this, obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return VectorOp.hashCode(this);
+	}
 }

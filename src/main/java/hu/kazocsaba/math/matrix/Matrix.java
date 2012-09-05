@@ -220,4 +220,13 @@ public interface Matrix {
 	 * @return the eigenvalues and eigenvectors of this matrix
 	 */
 	public EigenDecomposition eig();
+	
+	/**
+	 * Returns {@code true} if the argument is also a matrix and has the same dimensions and contents as this matrix.
+	 * The matrix elements are compared with double equality without any tolerance.
+	 * @param o an object
+	 * @return {@code true} if this matrix and the argument are equal, {@code false} otherwise
+	 */
+	@Override
+	public boolean equals(Object o);
 }

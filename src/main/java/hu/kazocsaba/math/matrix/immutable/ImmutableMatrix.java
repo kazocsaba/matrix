@@ -193,4 +193,14 @@ public class ImmutableMatrix implements Matrix {
 	public Matrix normalized() {
 		return MatrixOp.normalized(this);
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return MatrixOp.equals(this, obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return MatrixOp.hashCode(this);
+	}
 }

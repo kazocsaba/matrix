@@ -210,4 +210,14 @@ class VectorImpl implements Vector {
 		VectorOp.normalize(this);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		return VectorOp.equals(this, obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return VectorOp.hashCode(this);
+	}
+	
 }

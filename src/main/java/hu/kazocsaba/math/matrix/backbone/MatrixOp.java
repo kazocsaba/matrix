@@ -220,4 +220,31 @@ public class MatrixOp {
 		}
 		return Math.sqrt(error);
 	}
+	/**
+	 * @see Matrix#equals(Object)
+	 */
+	public static boolean equals(Matrix caller, Object o) {
+		if (!(o instanceof Matrix)) return false;
+		if (o==caller) return true;
+		
+		Matrix other=(Matrix)o;
+		if (caller.getRowCount()!=other.getRowCount()) return false;
+		if (caller.getColumnCount()!=other.getColumnCount()) return false;
+		
+		for (int row=0; row<caller.getRowCount(); row++) for (int col=0; col<caller.getColumnCount(); col++) {
+			if (caller.getQuick(row, col)!=other.getQuick(row, col)) return false;
+		}
+		return true;
+	}
+	/**
+	 * Implements a hashCode appropriate for the equals relation.
+	 */
+	public static int hashCode(Matrix caller) {
+		int result = 1;
+		for (int row=0; row<caller.getRowCount(); row++) for (int col=0; col<caller.getColumnCount(); col++) {
+			long bits = Double.doubleToLongBits(caller.getQuick(row, col));
+			result = 31 * result + (int)(bits ^ (bits >>> 32));
+		}
+		return result;
+	}
 }
