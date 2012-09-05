@@ -370,4 +370,27 @@ public class MatrixFactory {
 			v.setCoordQuick(i, elements[i]);
 		return v;
 	}
+	
+	/**
+	 * Creates a matrix backed by the specified data structure.
+	 * @param core the data structure for the new matrix
+	 * @return a matrix of proper type using the specified matrix core for its implementation
+	 * @throws NullPointerException if {@code core} is {@code null}
+	 */
+	public static Matrix create(MatrixCore core) {
+		if (core.getColumnCount()==1) {
+			switch (core.getRowCount()) {
+				case 2: return new CoredVector2Impl(core);
+				case 3: return new CoredVector3Impl(core);
+				case 4: return new CoredVector4Impl(core);
+				default: return new CoredVectorImpl(core);
+			}
+		} else {
+			if (core.getRowCount()==2 && core.getColumnCount()==2)
+				return new CoredMatrix2Impl(core);
+			if (core.getRowCount()==3 && core.getColumnCount()==3)
+				return new CoredMatrix3Impl(core);
+			return new CoredMatrixImpl(core);
+		}
+	}
 }

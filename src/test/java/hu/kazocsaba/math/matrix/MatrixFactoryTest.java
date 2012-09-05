@@ -56,4 +56,20 @@ public class MatrixFactoryTest {
 			assertTrue(getClassFor(m.getRowCount(), m.getColumnCount()).isInstance(MatrixFactory.copy(m)));
 		}
 	}
+	@Test
+	public void testCreateFromCore() {
+		for (Matrix m: instances) {
+			assertTrue(getClassFor(m.getRowCount(), m.getColumnCount()).isInstance(MatrixFactory.create(new MatrixCore(m.getRowCount(), m.getColumnCount()) {
+
+				@Override
+				public double getQuick(int row, int col) {
+					return 0;
+				}
+
+				@Override
+				public void setQuick(int row, int col, double value) {
+				}
+			})));
+		}
+	}
 }

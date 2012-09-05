@@ -26,7 +26,8 @@ public class ImmutableMatrix implements Matrix {
 
 	@Override
 	public double get(int row, int col) {
-		return data.get(row, col);
+		if (row<0 || row>=getRowCount() || col<0 || col>=getColumnCount()) throw new IndexOutOfBoundsException();
+		return getQuick(row, col);
 	}
 
 	@Override

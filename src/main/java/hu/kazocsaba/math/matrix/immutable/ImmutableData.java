@@ -1,15 +1,20 @@
 package hu.kazocsaba.math.matrix.immutable;
 
+import hu.kazocsaba.math.matrix.MatrixCore;
+
 /**
  *
  * @author Kazó Csaba
  */
-interface ImmutableData {
+abstract class ImmutableData extends MatrixCore {
 
-	public double get(int row, int col);
-	public double getQuick(int row, int col);
+	ImmutableData(int rowCount, int colCount) {
+		super(rowCount, colCount);
+	}
 
-	public int getColumnCount();
+	@Override
+	public final void setQuick(int row, int col, double value) {
+		throw new UnsupportedOperationException("Matrix is read-only");
+	}
 
-	public int getRowCount();
 }
