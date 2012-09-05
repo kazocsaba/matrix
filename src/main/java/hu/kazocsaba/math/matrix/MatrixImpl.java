@@ -1,7 +1,6 @@
 package hu.kazocsaba.math.matrix;
 
 import hu.kazocsaba.math.matrix.backbone.MatrixOp;
-import hu.kazocsaba.math.matrix.backbone.SubmatrixAccessorImpl;
 
 /**
  *
@@ -87,7 +86,12 @@ class MatrixImpl implements Matrix {
 
 	@Override
 	public SubmatrixAccessor getSub() {
-		return new SubmatrixAccessorImpl(this);
+		return MatrixOp.getSub(this);
+	}
+
+	@Override
+	public SubmatrixAccessor viewSub() {
+		return MatrixOp.viewSub(this);
 	}
 
 	@Override

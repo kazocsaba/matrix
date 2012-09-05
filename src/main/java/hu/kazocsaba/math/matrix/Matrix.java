@@ -141,6 +141,13 @@ public interface Matrix {
 	 * @return an accessor to the submatrices of this matrix
 	 */
 	public SubmatrixAccessor getSub();
+	
+	/**
+	 * Provides views to submatrices of this matrix. The matrices returned by methods of the accessor share data with
+	 * this matrix.
+	 * @return an accessor to submatrix views of this matrix
+	 */
+	public SubmatrixAccessor viewSub();
 
 	/**
 	 * Sets a submatrix of the current matrix to match the argument. The submatrix position is

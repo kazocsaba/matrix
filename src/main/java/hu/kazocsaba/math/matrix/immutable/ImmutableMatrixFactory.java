@@ -164,7 +164,7 @@ public final class ImmutableMatrixFactory {
 		return createVector(source.getX(), source.getY(), source.getZ(), source.getH());
 	}
 
-	private static ImmutableMatrix create(ImmutableData data) {
+	static ImmutableMatrix create(ImmutableData data) {
 		if (data.getColumnCount() == 1) {
 			switch (data.getRowCount()) {
 				case 2:

@@ -1,6 +1,5 @@
 package hu.kazocsaba.math.matrix;
 
-import hu.kazocsaba.math.matrix.backbone.SubmatrixAccessorImpl;
 import hu.kazocsaba.math.matrix.backbone.VectorOp;
 
 /**
@@ -128,7 +127,12 @@ class VectorImpl implements Vector {
 
 	@Override
 	public SubmatrixAccessor getSub() {
-		return new SubmatrixAccessorImpl(this);
+		return VectorOp.getSub(this);
+	}
+
+	@Override
+	public SubmatrixAccessor viewSub() {
+		return VectorOp.viewSub(this);
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import hu.kazocsaba.math.matrix.SingularityException;
 import hu.kazocsaba.math.matrix.SubmatrixAccessor;
 import hu.kazocsaba.math.matrix.Vector;
 import hu.kazocsaba.math.matrix.backbone.MatrixOp;
-import hu.kazocsaba.math.matrix.backbone.SubmatrixAccessorImpl;
 
 /**
  * An immutable matrix implementation.
@@ -120,7 +119,12 @@ public class ImmutableMatrix implements Matrix {
 
 	@Override
 	public SubmatrixAccessor getSub() {
-		return new SubmatrixAccessorImpl(this);
+		return MatrixOp.getSub(this);
+	}
+
+	@Override
+	public ImmutableSubmatrixViewAccessor viewSub() {
+		return new ImmutableSubmatrixViewAccessor(this);
 	}
 
 	/**

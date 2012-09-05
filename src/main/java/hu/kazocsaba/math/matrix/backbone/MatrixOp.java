@@ -5,6 +5,7 @@ import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
 import hu.kazocsaba.math.matrix.SingularityException;
+import hu.kazocsaba.math.matrix.SubmatrixAccessor;
 import hu.kazocsaba.math.matrix.immutable.ImmutableMatrixFactory;
 
 /**
@@ -84,7 +85,18 @@ public class MatrixOp {
 				result.setQuick(row, col, caller.getQuick(row1 + row, col1 + col));
 		return result;
 	}
-
+	/**
+	 * @see Matrix#getSub()}
+	 */
+	public static SubmatrixAccessor getSub(Matrix caller) {
+		return new SubmatrixAccessorImpl(caller);
+	}
+	/**
+	 * @see Matrix#viewSub()}
+	 */
+	public static SubmatrixAccessor viewSub(Matrix caller) {
+		return new SubmatrixViewAccessorImpl(caller);
+	}
 	/**
 	 * @see Matrix#setSubmatrix(Matrix,int,int)
 	 */

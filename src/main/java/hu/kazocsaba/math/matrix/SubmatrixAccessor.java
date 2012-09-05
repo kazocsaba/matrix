@@ -8,6 +8,19 @@ package hu.kazocsaba.math.matrix;
  */
 public interface SubmatrixAccessor {
 	/**
+	 * Returns a submatrix. <strong>Note that unlike {@link Matrix#getSubmatrix(int, int, int, int) Matrix.getSubmatrix},
+	 * this function expects the dimensions of the submatrix.</strong>
+	 *
+	 * @param row the first row of the submatrix
+	 * @param col the first column of the submatrix
+	 * @param rowCount the number of rows in the submatrix
+	 * @param colCount the number of columns in the submatrix
+	 * @return the specified submatrix
+	 * @throws IllegalArgumentException if the parameters do not specify a proper submatrix
+	 */
+	public Matrix matrix(int row, int col, int rowCount, int colCount);
+
+	/**
 	 * Returns a 2x2 submatrix. This function selects the elements between {@code (row, col)} and {@code (row+1, col+1)}.
 	 *
 	 * @param row the first row of the submatrix
