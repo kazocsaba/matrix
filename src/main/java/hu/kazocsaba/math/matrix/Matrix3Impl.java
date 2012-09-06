@@ -16,6 +16,11 @@ class Matrix3Impl extends MatrixImpl implements Matrix3 {
 	}
 
 	@Override
+	public Matrix3 transposedView() {
+		return (Matrix3)super.transposedView();
+	}
+
+	@Override
 	public Vector3 mul(Vector3 v) {
 		return (Vector3)super.mul(v);
 	}

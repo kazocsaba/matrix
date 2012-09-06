@@ -218,6 +218,11 @@ class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public Matrix transposedView() {
+		return VectorOp.transposedView(this);
+	}
+
+	@Override
 	public double determinant() {
 		return VectorOp.determinant(this);
 	}

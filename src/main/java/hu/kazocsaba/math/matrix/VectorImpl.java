@@ -167,6 +167,11 @@ class VectorImpl implements Vector {
 	public Matrix transpose() {
 		return VectorOp.transpose(this);
 	}
+
+	@Override
+	public Matrix transposedView() {
+		return VectorOp.transposedView(this);
+	}
 	
 	@Override
 	public double determinant() {

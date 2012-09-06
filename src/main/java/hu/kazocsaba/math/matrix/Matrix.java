@@ -183,6 +183,12 @@ public interface Matrix {
 	public Matrix transpose();
 	
 	/**
+	 * Returns a view of the transpose of this matrix. The view returned by this method shares data with this matrix.
+	 * @return a transposed view of this matrix
+	 */
+	public Matrix transposedView();
+	
+	/**
 	 * Returns the determinant of this matrix.
 	 * @return the determinant
 	 * @throws IllegalArgumentException if this matrix is not square

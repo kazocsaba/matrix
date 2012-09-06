@@ -165,6 +165,11 @@ public class ImmutableMatrix implements Matrix {
 	}
 
 	@Override
+	public ImmutableMatrix transposedView() {
+		return ImmutableMatrixFactory.create(new TransposedImmutableData(data));
+	}
+	
+	@Override
 	public double determinant() {
 		return MatrixOp.determinant(this);
 	}

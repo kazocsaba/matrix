@@ -16,6 +16,11 @@ class Matrix2Impl extends MatrixImpl implements Matrix2 {
 	}
 
 	@Override
+	public Matrix2 transposedView() {
+		return (Matrix2)super.transposedView();
+	}
+
+	@Override
 	public Vector2 mul(Vector2 v) {
 		return (Vector2)super.mul(v);
 	}

@@ -2,6 +2,7 @@ package hu.kazocsaba.math.matrix.backbone;
 
 import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
+import hu.kazocsaba.math.matrix.MatrixCore;
 import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
 import hu.kazocsaba.math.matrix.SingularityException;
@@ -161,6 +162,24 @@ public class MatrixOp {
 			for (int j = 0; j < caller.getColumnCount(); j++)
 				result.setQuick(j, i, caller.getQuick(i, j));
 		return result;
+	}
+	
+	/**
+	 * @see Matrix#transposedView()
+	 */
+	public static Matrix transposedView(final Matrix caller) {
+		return MatrixFactory.create(new MatrixCore(caller.getColumnCount(), caller.getRowCount()) {
+
+			@Override
+			public double getQuick(int row, int col) {
+				return caller.getQuick(col, row);
+			}
+
+			@Override
+			public void setQuick(int row, int col, double value) {
+				caller.setQuick(col, row, value);
+			}
+		});
 	}
 
 	/**

@@ -25,6 +25,11 @@ public class ImmutableMatrix2 extends ImmutableMatrix implements Matrix2 {
 	}
 
 	@Override
+	public ImmutableMatrix2 transposedView() {
+		return (ImmutableMatrix2)super.transposedView();
+	}
+
+	@Override
 	public Vector2 mul(Vector2 v) {
 		return (Vector2) super.mul(v);
 	}

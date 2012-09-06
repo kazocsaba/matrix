@@ -25,6 +25,11 @@ public class ImmutableMatrix3 extends ImmutableMatrix implements Matrix3 {
 	}
 
 	@Override
+	public ImmutableMatrix3 transposedView() {
+		return (ImmutableMatrix3)super.transposedView();
+	}
+
+	@Override
 	public Vector3 mul(Vector3 v) {
 		return (Vector3) super.mul(v);
 	}

@@ -121,6 +121,11 @@ class CoredMatrixImpl implements Matrix {
 	}
 
 	@Override
+	public Matrix transposedView() {
+		return MatrixOp.transposedView(this);
+	}
+
+	@Override
 	public double determinant() {
 		return MatrixOp.determinant(this);
 	}

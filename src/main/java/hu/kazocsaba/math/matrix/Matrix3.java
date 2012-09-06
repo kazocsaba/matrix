@@ -23,6 +23,8 @@ public interface Matrix3 extends Matrix {
 	@Override
 	public Matrix3 transpose();
 	@Override
+	public Matrix3 transposedView();
+	@Override
 	public Matrix3 plus(Matrix m);
 	@Override
 	public Matrix3 minus(Matrix m);

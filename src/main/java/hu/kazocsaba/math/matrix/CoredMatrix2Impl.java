@@ -25,6 +25,11 @@ class CoredMatrix2Impl extends CoredMatrixImpl implements Matrix2 {
 	}
 
 	@Override
+	public Matrix2 transposedView() {
+		return (Matrix2)super.transposedView();
+	}
+
+	@Override
 	public Matrix2 plus(Matrix m) {
 		return (Matrix2)super.plus(m);
 	}
