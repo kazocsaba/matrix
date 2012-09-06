@@ -87,6 +87,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable matrix with the same values as the argument.
 	 *
+	 * @param source the matrix containing the data for the new immutable matrix
+	 * @return an immutable matrix containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableMatrix copy(Matrix source) {
@@ -100,6 +102,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable matrix with the same values as the argument.
 	 *
+	 * @param source the matrix containing the data for the new immutable matrix
+	 * @return an immutable matrix containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableMatrix2 copy(Matrix2 source) {
@@ -109,6 +113,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable matrix with the same values as the argument.
 	 *
+	 * @param source the matrix containing the data for the new immutable matrix
+	 * @return an immutable matrix containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableMatrix3 copy(Matrix3 source) {
@@ -118,6 +124,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable vector with the same values as the argument.
 	 *
+	 * @param source the vector containing the data for the new immutable vector
+	 * @return an immutable vector containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableVector copy(Vector source) {
@@ -137,6 +145,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable vector with the same values as the argument.
 	 *
+	 * @param source the vector containing the data for the new immutable vector
+	 * @return an immutable vector containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableVector2 copy(Vector2 source) {
@@ -147,6 +157,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable vector with the same values as the argument.
 	 *
+	 * @param source the vector containing the data for the new immutable vector
+	 * @return an immutable vector containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableVector3 copy(Vector3 source) {
@@ -157,6 +169,8 @@ public final class ImmutableMatrixFactory {
 	/**
 	 * Returns an immutable vector with the same values as the argument.
 	 *
+	 * @param source the vector containing the data for the new immutable vector
+	 * @return an immutable vector containing the same elements as {@code source}
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableVector4 copy(Vector4 source) {
@@ -168,6 +182,7 @@ public final class ImmutableMatrixFactory {
 	 * Creates an immutable matrix with its elements taken from an array. The parameter should be a {@code double[r][c]}
 	 * array with {@code r>0} and {@code c>0}. The matrix element at row {@code row} and column {@code col} will be
 	 * {@code elements[row][col]}.
+	 * 
 	 * @param elements the array containing the elements of the matrix
 	 * @return the new matrix
 	 * @throws NullPointerException if the array is {@code null}

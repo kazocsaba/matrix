@@ -91,37 +91,37 @@ public class MatrixOp {
 		return result;
 	}
 	/**
-	 * @see Matrix#getSub()}
+	 * @see Matrix#getSub()
 	 */
 	public static SubmatrixAccessor getSub(Matrix caller) {
 		return new SubmatrixAccessorImpl(caller);
 	}
 	/**
-	 * @see Matrix#viewSub()}
+	 * @see Matrix#viewSub()
 	 */
 	public static SubmatrixAccessor viewSub(Matrix caller) {
 		return new SubmatrixViewAccessorImpl(caller);
 	}
 	/**
-	 * @see Matrix2#getSub()}
+	 * @see Matrix2#getSub()
 	 */
 	public static SubmatrixAccessor2 getSub(Matrix2 caller) {
 		return new SubmatrixAccessor2Impl(caller);
 	}
 	/**
-	 * @see Matrix2#viewSub()}
+	 * @see Matrix2#viewSub()
 	 */
 	public static SubmatrixAccessor2 viewSub(Matrix2 caller) {
 		return new SubmatrixViewAccessor2Impl(caller);
 	}
 	/**
-	 * @see Matrix3#getSub()}
+	 * @see Matrix3#getSub()
 	 */
 	public static SubmatrixAccessor3 getSub(Matrix3 caller) {
 		return new SubmatrixAccessor3Impl(caller);
 	}
 	/**
-	 * @see Matrix3#viewSub()}
+	 * @see Matrix3#viewSub()
 	 */
 	public static SubmatrixAccessor3 viewSub(Matrix3 caller) {
 		return new SubmatrixViewAccessor3Impl(caller);

@@ -14,6 +14,9 @@ import hu.kazocsaba.math.matrix.Vector4;
  * @author Kazó Csaba
  */
 public abstract class AbstractSubmatrixAccessor implements SubmatrixAccessor {
+	/**
+	 * The matrix whose submatrices are to be accessed.
+	 */
 	protected final Matrix matrix;
 
 	/**
