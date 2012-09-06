@@ -7,8 +7,8 @@ import hu.kazocsaba.math.matrix.backbone.AbstractSubmatrixAccessor;
  *
  * @author Kazó Csaba
  */
-class ImmutableSubmatrixViewAccessor extends AbstractSubmatrixAccessor {
-	class ViewData extends ImmutableData {
+public class ImmutableSubmatrixViewAccessor extends AbstractSubmatrixAccessor {
+	private class ViewData extends ImmutableData {
 		private final int subRow;
 		private final int subCol;
 
@@ -26,11 +26,11 @@ class ImmutableSubmatrixViewAccessor extends AbstractSubmatrixAccessor {
 		}
 	}
 
-	class ViewRowVectorData extends ImmutableData {
+	private class ViewRowVectorData extends ImmutableData {
 		private final int subRow;
 		private final int subCol;
 
-		public ViewRowVectorData(int row, int col, int dimension) {
+		ViewRowVectorData(int row, int col, int dimension) {
 			super(dimension, 1);
 			if (row < 0 || col < 0 || row + getColumnCount() - 1 >= matrix.getRowCount() || col + getRowCount() - 1 >= matrix.getColumnCount())
 				throw new IllegalArgumentException();

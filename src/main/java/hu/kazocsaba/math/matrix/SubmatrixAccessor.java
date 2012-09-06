@@ -2,7 +2,7 @@ package hu.kazocsaba.math.matrix;
 
 /**
  * Provides strongly typed access to submatrices. The exact semantics of the accessor methods depend on the
- * implementation
+ * implementation.
  *
  * @author Kazó Csaba
  */

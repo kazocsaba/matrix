@@ -1,5 +1,7 @@
 package hu.kazocsaba.math.matrix;
 
+import hu.kazocsaba.math.matrix.backbone.MatrixOp;
+
 /**
  *
  * @author Kazó Csaba
@@ -53,6 +55,16 @@ class Matrix2Impl extends MatrixImpl implements Matrix2 {
 	@Override
 	public Matrix2 normalized() {
 		return (Matrix2)super.normalized();
+	}
+
+	@Override
+	public SubmatrixAccessor2 getSub() {
+		return MatrixOp.getSub(this);
+	}
+
+	@Override
+	public SubmatrixAccessor2 viewSub() {
+		return MatrixOp.viewSub(this);
 	}
 	
 }

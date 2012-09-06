@@ -34,4 +34,8 @@ public interface Matrix2 extends Matrix {
 	public Matrix2 inverse() throws SingularityException;
 	@Override
 	public Matrix2 normalized();
+	@Override
+	public SubmatrixAccessor2 getSub();
+	@Override
+	public SubmatrixAccessor2 viewSub();
 }

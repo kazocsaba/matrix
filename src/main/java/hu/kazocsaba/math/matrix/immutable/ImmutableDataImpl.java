@@ -22,9 +22,7 @@ class ImmutableDataImpl extends ImmutableData {
 		for (int row=0; row<getRowCount(); row++) {
 			double[] rowData=elements[row];
 			if (rowData.length!=getColumnCount()) throw new IllegalArgumentException("Invalid array");
-			for (int col=0; col<getColumnCount(); col++) {
-				data[row*getColumnCount()+col]=rowData[col];
-			}
+			System.arraycopy(rowData, 0, data, row*getColumnCount(), getColumnCount());
 		}
 	}
 

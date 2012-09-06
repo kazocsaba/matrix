@@ -2,11 +2,15 @@ package hu.kazocsaba.math.matrix.backbone;
 
 import hu.kazocsaba.math.matrix.EigenDecomposition;
 import hu.kazocsaba.math.matrix.Matrix;
+import hu.kazocsaba.math.matrix.Matrix2;
+import hu.kazocsaba.math.matrix.Matrix3;
 import hu.kazocsaba.math.matrix.MatrixCore;
 import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.SingularValueDecomposition;
 import hu.kazocsaba.math.matrix.SingularityException;
 import hu.kazocsaba.math.matrix.SubmatrixAccessor;
+import hu.kazocsaba.math.matrix.SubmatrixAccessor2;
+import hu.kazocsaba.math.matrix.SubmatrixAccessor3;
 import hu.kazocsaba.math.matrix.immutable.ImmutableMatrixFactory;
 
 /**
@@ -97,6 +101,30 @@ public class MatrixOp {
 	 */
 	public static SubmatrixAccessor viewSub(Matrix caller) {
 		return new SubmatrixViewAccessorImpl(caller);
+	}
+	/**
+	 * @see Matrix2#getSub()}
+	 */
+	public static SubmatrixAccessor2 getSub(Matrix2 caller) {
+		return new SubmatrixAccessor2Impl(caller);
+	}
+	/**
+	 * @see Matrix2#viewSub()}
+	 */
+	public static SubmatrixAccessor2 viewSub(Matrix2 caller) {
+		return new SubmatrixViewAccessor2Impl(caller);
+	}
+	/**
+	 * @see Matrix3#getSub()}
+	 */
+	public static SubmatrixAccessor3 getSub(Matrix3 caller) {
+		return new SubmatrixAccessor3Impl(caller);
+	}
+	/**
+	 * @see Matrix3#viewSub()}
+	 */
+	public static SubmatrixAccessor3 viewSub(Matrix3 caller) {
+		return new SubmatrixViewAccessor3Impl(caller);
 	}
 	/**
 	 * @see Matrix#setSubmatrix(Matrix,int,int)

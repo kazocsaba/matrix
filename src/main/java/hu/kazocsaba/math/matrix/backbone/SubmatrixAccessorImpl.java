@@ -15,7 +15,7 @@ class SubmatrixAccessorImpl extends AbstractSubmatrixAccessor {
 	 *
 	 * @param matrix the matrix whose submatrices are to be accessed.
 	 */
-	public SubmatrixAccessorImpl(Matrix matrix) {
+	SubmatrixAccessorImpl(Matrix matrix) {
 		super(matrix);
 	}
 

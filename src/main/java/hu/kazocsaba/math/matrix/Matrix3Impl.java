@@ -1,5 +1,7 @@
 package hu.kazocsaba.math.matrix;
 
+import hu.kazocsaba.math.matrix.backbone.MatrixOp;
+
 /**
  *
  * @author Kazó Csaba
@@ -53,5 +55,15 @@ class Matrix3Impl extends MatrixImpl implements Matrix3 {
 	@Override
 	public Matrix3 normalized() {
 		return (Matrix3)super.normalized();
+	}
+	
+	@Override
+	public SubmatrixAccessor3 getSub() {
+		return MatrixOp.getSub(this);
+	}
+
+	@Override
+	public SubmatrixAccessor3 viewSub() {
+		return MatrixOp.viewSub(this);
 	}
 }

@@ -1,7 +1,7 @@
 package hu.kazocsaba.math.matrix.backbone;
 
-import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.Matrix;
+import hu.kazocsaba.math.matrix.MatrixFactory;
 import hu.kazocsaba.math.matrix.Vector3;
 import hu.kazocsaba.math.matrix.Vector4;
 

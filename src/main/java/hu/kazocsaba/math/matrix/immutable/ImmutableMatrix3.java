@@ -3,7 +3,9 @@ package hu.kazocsaba.math.matrix.immutable;
 import hu.kazocsaba.math.matrix.Matrix;
 import hu.kazocsaba.math.matrix.Matrix3;
 import hu.kazocsaba.math.matrix.SingularityException;
+import hu.kazocsaba.math.matrix.SubmatrixAccessor3;
 import hu.kazocsaba.math.matrix.Vector3;
+import hu.kazocsaba.math.matrix.backbone.MatrixOp;
 
 /**
  * An immutable Matrix3 implementation.
@@ -62,5 +64,15 @@ public class ImmutableMatrix3 extends ImmutableMatrix implements Matrix3 {
 	@Override
 	public Matrix3 normalized() {
 		return (Matrix3) super.normalized();
+	}
+
+	@Override
+	public SubmatrixAccessor3 getSub() {
+		return MatrixOp.getSub(this);
+	}
+
+	@Override
+	public ImmutableSubmatrixViewAccessor3 viewSub() {
+		return new ImmutableSubmatrixViewAccessor3(this);
 	}
 }
