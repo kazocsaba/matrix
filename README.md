@@ -53,7 +53,8 @@ Creating instances
 ------------------
 
 Default implementations of the matrix types can be
-constructed using the `MatrixFactory` class. All functions
+constructed using the `MatrixFactory` class. Unless otherwise
+noted in the documentation, all functions
 of the `Matrix` interface and its subinterfaces must use
 this factory to construct new instances.
 
@@ -64,6 +65,46 @@ created using `ImmutableMatrixFactory`.
 
 NOTE: Matrices returned by `ImmutableMatrix` objects from `Matrix`
 functions (e.g. `transpose()` or `plus()`) are _not_ immutable.
+
+Custom implementation
+---------------------
+
+The `MatrixCore` class can be used to create a matrix backed by
+a custom data structure. For example:
+
+	public class DiagonalMatrixCore extends MatrixCore {
+		private final double[] elements;
+
+		DiagonalMatrixCore(int size) {
+			// the actual dimensions of the matrix is 'size x size'
+			super(size, size);
+			elements = new double[size];
+		}
+
+		// the 'quick' functions can assume that the arguments have already been checked
+
+		@Override
+		public double getQuick(int row, int col) {
+			if (row==col)
+				return elements[row];
+			else
+				return 0;
+		}
+
+		@Override
+		public void setQuick(int row, int col, double value) {
+			if (row!=col) throw new UnsupportedOperationException();
+			elements[row]=value;
+		}
+	}
+	
+	...
+	
+	// create a 5x5 diagonal matrix
+	Matrix d=MatrixFactory.create(new DiagonalMatrixCore(5));
+	
+	// the Matrix instance is strongly typed, like all instances created by the library
+	Matrix3 m=(Matrix3)MatrixFactory.create(new DiagonalMatrixCore(3));
 
 Displaying matrices
 -------------------
