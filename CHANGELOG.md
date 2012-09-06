@@ -1,11 +1,20 @@
 Changelog
 =========
 
+Version 1.2.0 (2012.09.06):
+
+- Added `Matrix.mul(Vector)` override.
+- Added support for accessing submatrices in a strongly typed fashion via `Matrix.getSub()`.
+- Introduced matrix views for submatrices (`Matrix.viewSub()`) and transpose (`Matrix.transposedView()`).
+- Matrix implementations now support `equals` and `hashCode`.
+- Added support for easily creating matrices backed by custom data; see `MatrixCore` and `MatrixFactory.create(MatrixCore)`.
+- Added `ImmutableMatrixFactory.createMatrix(double[][])`.
+
 Version 1.1.0 (2011.11.17):
 
 - Introduced functions `Matrix.getQuick/setQuick` and `Vector.getCoordQuick/setCoordQuick` which skip index checking; refactor library functions to use these
   after they have checked their parameters.
-- Added Matrix.eig() eigen decomposition.
+- Added `Matrix.eig()` eigen decomposition.
 - The default matrix implementations now use `double[]` instead of `double[][]` to store their elements.
 
 Version 1.0.0 (2011.11.02):
