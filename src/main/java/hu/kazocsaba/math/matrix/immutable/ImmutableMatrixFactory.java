@@ -164,6 +164,19 @@ public final class ImmutableMatrixFactory {
 		return createVector(source.getX(), source.getY(), source.getZ(), source.getH());
 	}
 
+	/**
+	 * Creates an immutable matrix with its elements taken from an array. The parameter should be a {@code double[r][c]}
+	 * array with {@code r>0} and {@code c>0}. The matrix element at row {@code row} and column {@code col} will be
+	 * {@code elements[row][col]}.
+	 * @param elements the array containing the elements of the matrix
+	 * @return the new matrix
+	 * @throws NullPointerException if the array is {@code null}
+	 * @throws IllegalArgumentException if the dimensions of the array are not valid
+	 */
+	public static ImmutableMatrix createMatrix(double[][] elements) {
+		return create(new ImmutableDataImpl(elements));
+	}
+	
 	static ImmutableMatrix create(ImmutableData data) {
 		if (data.getColumnCount() == 1) {
 			switch (data.getRowCount()) {

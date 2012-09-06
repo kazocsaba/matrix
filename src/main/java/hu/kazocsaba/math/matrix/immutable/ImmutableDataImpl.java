@@ -16,6 +16,18 @@ class ImmutableDataImpl extends ImmutableData {
 			data[row*getColumnCount()+col]=template.getQuick(row, col);
 	}
 
+	ImmutableDataImpl(double[][] elements) {
+		super(elements.length, elements[0].length);
+		data = new double[getRowCount()*getColumnCount()];
+		for (int row=0; row<getRowCount(); row++) {
+			double[] rowData=elements[row];
+			if (rowData.length!=getColumnCount()) throw new IllegalArgumentException("Invalid array");
+			for (int col=0; col<getColumnCount(); col++) {
+				data[row*getColumnCount()+col]=rowData[col];
+			}
+		}
+	}
+
 	@Override
 	public double getQuick(int row, int col) {
 		return data[row*getColumnCount()+col];
