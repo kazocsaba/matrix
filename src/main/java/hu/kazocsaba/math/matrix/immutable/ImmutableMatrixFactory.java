@@ -107,6 +107,7 @@ public final class ImmutableMatrixFactory {
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableMatrix2 copy(Matrix2 source) {
+		if (source instanceof ImmutableMatrix2) return (ImmutableMatrix2)source;
 		return new ImmutableMatrix2(source);
 	}
 
@@ -118,6 +119,7 @@ public final class ImmutableMatrixFactory {
 	 * @throws NullPointerException if {@code source} is {@code null}
 	 */
 	public static ImmutableMatrix3 copy(Matrix3 source) {
+		if (source instanceof ImmutableMatrix3) return (ImmutableMatrix3)source;
 		return new ImmutableMatrix3(source);
 	}
 
