@@ -228,6 +228,11 @@ class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public Vector fromHomogeneous() {
+		return VectorOp.fromHomogeneous(this);
+	}
+
+	@Override
 	public double determinant() {
 		return VectorOp.determinant(this);
 	}

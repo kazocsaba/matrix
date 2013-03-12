@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version ?:
+
+- Added `Vector.toHomogeneous()` and `Vector.fromHomogeneous()`.
+
 Version 1.2.0 (2012.09.06):
 
 - Added `Matrix.mul(Vector)` override.

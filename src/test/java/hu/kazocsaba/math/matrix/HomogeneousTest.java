@@ -57,4 +57,50 @@ public class HomogeneousTest {
 		assertEquals(MatrixFactory.createVector(new double[]{3.3, 4.4, 5.5, 6.6, 1}), ((Vector)MatrixFactory.create(new TestCore(4))).toHomogeneous());
 		assertEquals(MatrixFactory.createVector(new double[]{3.3, 4.4, 5.5, 6.6, 7.7, 1}), ((Vector)MatrixFactory.create(new TestCore(5))).toHomogeneous());
 	}
+	
+	@Test
+	public void testFromHomogeneous() {
+		assertEquals(MatrixFactory.createVector(new double[]{3.3/2}), MatrixFactory.createVector(3.3, 2).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2), MatrixFactory.createVector(3.3, 4.4, 2).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2, 5.5/2), MatrixFactory.createVector(3.3, 4.4, 5.5, 2).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2, 5.5/2, 6.6/2), MatrixFactory.createVector(new double[]{3.3, 4.4, 5.5, 6.6, 2}).fromHomogeneous());
+	}
+	@Test
+	public void testImmutableFromHomogeneous() {
+		assertEquals(MatrixFactory.createVector(new double[]{3.3/2}), ImmutableMatrixFactory.createVector(3.3, 2).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2), ImmutableMatrixFactory.createVector(3.3, 4.4, 2).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2, 5.5/2), ImmutableMatrixFactory.createVector(3.3, 4.4, 5.5, 2).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2, 5.5/2, 6.6/2), ((Vector)ImmutableMatrixFactory.createMatrix(new double[][]{{3.3}, {4.4}, {5.5}, {6.6}, {2}})).fromHomogeneous());
+	}
+	@Test
+	public void testCoredFromHomogeneous() {
+		class TestCore extends MatrixCore {
+
+			public TestCore(int dimension) {
+				super(dimension, 1);
+			}
+
+			@Override
+			public double getQuick(int row, int col) {
+				if (row==getRowCount()-1) return 2;
+				switch (row) {
+					case 0: return 3.3;
+					case 1: return 4.4;
+					case 2: return 5.5;
+					case 3: return 6.6;
+					default: throw new AssertionError();
+				}
+			}
+
+			@Override
+			public void setQuick(int row, int col, double value) {
+				throw new UnsupportedOperationException("Not supported yet.");
+			}
+			
+		}
+		assertEquals(MatrixFactory.createVector(new double[]{3.3/2}), ((Vector)MatrixFactory.create(new TestCore(2))).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2), ((Vector)MatrixFactory.create(new TestCore(3))).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2, 5.5/2), ((Vector)MatrixFactory.create(new TestCore(4))).fromHomogeneous());
+		assertEquals(MatrixFactory.createVector(3.3/2, 4.4/2, 5.5/2, 6.6/2), ((Vector)MatrixFactory.create(new TestCore(5))).fromHomogeneous());
+	}
 }

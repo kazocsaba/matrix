@@ -89,5 +89,9 @@ public class ImmutableVector extends ImmutableMatrix implements Vector {
 	public Vector toHomogeneous() {
 		return VectorOp.toHomogeneous(this);
 	}
-	
+
+	@Override
+	public Vector fromHomogeneous() {
+		return VectorOp.fromHomogeneous(this);
+	}
 }

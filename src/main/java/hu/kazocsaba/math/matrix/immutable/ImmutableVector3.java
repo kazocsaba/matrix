@@ -1,6 +1,7 @@
 package hu.kazocsaba.math.matrix.immutable;
 
 import hu.kazocsaba.math.matrix.Matrix;
+import hu.kazocsaba.math.matrix.Vector2;
 import hu.kazocsaba.math.matrix.Vector3;
 import hu.kazocsaba.math.matrix.Vector4;
 import hu.kazocsaba.math.matrix.backbone.Vector3Op;
@@ -66,7 +67,12 @@ public class ImmutableVector3 extends ImmutableVector implements Vector3 {
 
 	@Override
 	public Vector4 toHomogeneous() {
-		return Vector3Op.toHomogeneous(this);
+		return (Vector4)Vector3Op.toHomogeneous(this);
+	}
+
+	@Override
+	public Vector2 fromHomogeneous() {
+		return (Vector2)Vector3Op.fromHomogeneous(this);
 	}
 
 	@Override

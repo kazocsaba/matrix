@@ -47,6 +47,9 @@ public interface Vector4 extends Vector {
 	public void setH(double value);
 	
 	@Override
+	public Vector3 fromHomogeneous();
+	
+	@Override
 	public Vector4 plus(Matrix m);
 	@Override
 	public Vector4 minus(Matrix m);

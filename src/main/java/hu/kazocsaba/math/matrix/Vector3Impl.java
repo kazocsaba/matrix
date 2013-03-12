@@ -44,7 +44,12 @@ class Vector3Impl extends VectorImpl implements Vector3 {
 
 	@Override
 	public Vector4 toHomogeneous() {
-		return Vector3Op.toHomogeneous(this);
+		return (Vector4)Vector3Op.toHomogeneous(this);
+	}
+
+	@Override
+	public Vector2 fromHomogeneous() {
+		return (Vector2)Vector3Op.fromHomogeneous(this);
 	}
 
 	@Override

@@ -177,6 +177,11 @@ class VectorImpl implements Vector {
 	public Vector toHomogeneous() {
 		return VectorOp.toHomogeneous(this);
 	}
+
+	@Override
+	public Vector fromHomogeneous() {
+		return VectorOp.fromHomogeneous(this);
+	}
 	
 	@Override
 	public double determinant() {

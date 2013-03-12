@@ -68,4 +68,9 @@ class CoredVector4Impl extends CoredVectorImpl implements Vector4 {
 	public Vector4 normalized() {
 		return (Vector4)super.normalized();
 	}
+
+	@Override
+	public Vector3 fromHomogeneous() {
+		return (Vector3)super.fromHomogeneous();
+	}
 }

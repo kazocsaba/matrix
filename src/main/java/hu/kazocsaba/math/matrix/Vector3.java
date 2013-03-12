@@ -44,6 +44,8 @@ public interface Vector3 extends Vector {
 
 	@Override
 	public Vector4 toHomogeneous();
+	@Override
+	public Vector2 fromHomogeneous();
 
 	/**
 	 * Returns the cross product of this vector and the argument.

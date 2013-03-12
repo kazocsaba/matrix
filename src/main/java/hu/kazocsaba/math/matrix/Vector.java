@@ -45,6 +45,13 @@ public interface Vector extends Matrix {
 	 * @return the homogeneous representation of this vector
 	 */
 	public Vector toHomogeneous();
+	/**
+	 * Assuming this vector is in homogeneous form, returns the Cartesian representation. This function performs
+	 * homogeneous division, and e.g. for {@code (a, b, c, d)} it returns {@code (a/d, b/d, c/d)}.
+	 * @return the Cartesian representation of this vector
+	 * @throws IllegalArgumentException if the dimension of this vector is 1
+	 */
+	public Vector fromHomogeneous();
 	
 	/**
 	 * Returns the dot product of this vector and the argument

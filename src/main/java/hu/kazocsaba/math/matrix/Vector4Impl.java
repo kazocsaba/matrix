@@ -76,4 +76,9 @@ class Vector4Impl extends VectorImpl implements Vector4 {
 	public Vector4 normalized() {
 		return (Vector4)VectorOp.normalized(this);
 	}
+
+	@Override
+	public Vector3 fromHomogeneous() {
+		return (Vector3)VectorOp.fromHomogeneous(this);
+	}
 }
