@@ -1,7 +1,7 @@
 Changelog
 =========
 
-Version ?:
+Version 1.2.1 (2013.03.12):
 
 - Added `Vector.toHomogeneous()` and `Vector.fromHomogeneous()`.
 
