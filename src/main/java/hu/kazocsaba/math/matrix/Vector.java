@@ -39,6 +39,12 @@ public interface Vector extends Matrix {
 	 * @param value the new value
 	 */
 	public void setCoordQuick(int index, double value);
+	/**
+	 * Creates a new vector that is the homogeneous representation of this vector. The return value contains the same
+	 * elements with a 1 appended to the end; e.g. for {@code (a, b, c)} it returns {@code (a, b, c, 1)}.
+	 * @return the homogeneous representation of this vector
+	 */
+	public Vector toHomogeneous();
 	
 	/**
 	 * Returns the dot product of this vector and the argument

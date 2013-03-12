@@ -65,6 +65,17 @@ public class VectorOp extends MatrixOp {
 		return result;
 	}
 	
+	/**
+	 * @see Vector#toHomogeneous()
+	 */
+	public static Vector toHomogeneous(Vector caller) {
+		Vector result = MatrixFactory.createVector(caller.getDimension() + 1);
+		for (int i = 0; i < caller.getDimension(); i++)
+			result.setCoordQuick(i, caller.getCoordQuick(i));
+		result.setCoordQuick(result.getDimension() - 1, 1);
+		return result;
+	}
+	
 	public static String toString(Vector caller) {
 		StringBuilder sb=new StringBuilder(24);
 		sb.append('(');

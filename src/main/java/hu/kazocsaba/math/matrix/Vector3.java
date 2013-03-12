@@ -42,12 +42,7 @@ public interface Vector3 extends Vector {
 	 */
 	public void setZ(double value);
 
-	/**
-	 * Creates a new 4D vector that represents this vector in homogeneous coordinates.
-	 * (I.e. the x, y and z coordinates will be the same as of this vector, the
-	 * fourth coordinate will be 1.)
-	 * @return the homogeneous representation of this vector
-	 */
+	@Override
 	public Vector4 toHomogeneous();
 
 	/**

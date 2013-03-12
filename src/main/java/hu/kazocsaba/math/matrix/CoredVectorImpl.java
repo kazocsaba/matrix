@@ -60,4 +60,9 @@ class CoredVectorImpl extends CoredMatrixImpl implements Vector {
 	public Vector normalized() {
 		return (Vector)VectorOp.normalized(this);
 	}
+
+	@Override
+	public Vector toHomogeneous() {
+		return VectorOp.toHomogeneous(this);
+	}
 }

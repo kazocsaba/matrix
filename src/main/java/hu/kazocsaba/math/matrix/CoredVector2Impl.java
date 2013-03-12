@@ -1,5 +1,7 @@
 package hu.kazocsaba.math.matrix;
 
+import hu.kazocsaba.math.matrix.backbone.VectorOp;
+
 /**
  *
  * @author Kazó Csaba
@@ -47,5 +49,10 @@ class CoredVector2Impl extends CoredVectorImpl implements Vector2 {
 	@Override
 	public Vector2 normalized() {
 		return (Vector2)super.normalized();
+	}
+
+	@Override
+	public Vector3 toHomogeneous() {
+		return (Vector3)VectorOp.toHomogeneous(this);
 	}
 }

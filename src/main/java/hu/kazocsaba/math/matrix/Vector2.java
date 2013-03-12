@@ -31,6 +31,8 @@ public interface Vector2 extends Vector {
 	public void setY(double value);
 	
 	@Override
+	public Vector3 toHomogeneous();
+	@Override
 	public Vector2 plus(Matrix m);
 	@Override
 	public Vector2 minus(Matrix m);

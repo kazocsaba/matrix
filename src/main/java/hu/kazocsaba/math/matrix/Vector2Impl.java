@@ -223,6 +223,11 @@ class Vector2Impl implements Vector2 {
 	}
 
 	@Override
+	public Vector3 toHomogeneous() {
+		return MatrixFactory.createVector(x, y, 1);
+	}
+
+	@Override
 	public double determinant() {
 		return VectorOp.determinant(this);
 	}
